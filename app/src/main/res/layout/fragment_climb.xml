@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="895dp"
+    android:background="@color/bg_general"
+    android:padding="@dimen/padding"
+    tools:context=".MatchActivity"
+    tools:ignore="ExtraText">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/rungTabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:background="@color/bg_general"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IDClimbRungDirections"
+        app:tabBackground="@drawable/button_states"
+        app:tabIndicatorColor="@color/rust"
+        app:tabTextColor="@color/ice">
+
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/lowRungTab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/toggle_left_states"
+            android:text="@string/LowRung"
+            app:tabBackground="@drawable/toggle_left_states" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/midRungTab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/MidRung" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/highRungTab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/toggle_right_states"
+            android:text="@string/HighRung"
+            app:tabBackground="@drawable/toggle_right_states" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/traversalRungTab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/TraversalRung" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <TextView
+        android:id="@+id/IDEndgame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/futura_medium_condensed_bt"
+        android:text="@string/EndGameTitle"
+        android:textColor="@drawable/header_states"
+        android:textSize="@dimen/header_text_size"
+        app:layout_constraintStart_toStartOf="@+id/IDEndgameDirections"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/IDEndgameDirections"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/open_sans_italic"
+        android:text="@string/EndgameDirections"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IDEndgame" />
+
+    <TextView
+        android:id="@+id/IDClimbRungDirections"
+        android:layout_width="463dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/open_sans_italic"
+        android:text="@string/ClimbRungDirections"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IDClimbed" />
+
+    <TextView
+        android:id="@+id/IDClimbed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/Climbed"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/ClimbedSwitch"
+        app:layout_constraintStart_toEndOf="@+id/ClimbedSwitch"
+        app:layout_constraintTop_toTopOf="@+id/ClimbedSwitch" />
+
+    <Switch
+        android:id="@+id/ClimbedSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:textColor="@drawable/text_states"
+        android:thumb="@drawable/thumb_states"
+        android:track="@drawable/track_states"
+        app:layout_constraintStart_toStartOf="@+id/IDEndgameDirections"
+        app:layout_constraintTop_toBottomOf="@+id/IDEndgameDirections" />
+
+    <Button
+        android:id="@+id/GenerateQRButton"
+        android:layout_width="560dp"
+        android:layout_height="55dp"
+        android:background="@drawable/button_large_active"
+        android:drawableStart="@drawable/qr"
+        android:drawablePadding="@dimen/bootstrap_alert_paddings"
+        android:paddingLeft="@dimen/generate_qr_button_padding"
+        android:paddingRight="@dimen/generate_qr_button_padding"
+        android:text="@string/GenerateQRCode"
+        android:textColor="@color/ice"
+        android:textSize="@dimen/button_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
