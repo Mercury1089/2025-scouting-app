@@ -9,7 +9,7 @@
     <!-- Titles -->
         <string name="app_name">Scouting App 2022</string>
         <string name="SettingsTitle">SETTINGS</string>
-        <string name="SetupTitle">SETUP</string>
+        <string name="SetupTitle">PRE-MATCH SETUP</string>
         <string name="StartingPositionTitle">STARTING POSITION</string>
         <string name="ClearTitle">CLEAR THIS SCREEN?</string>
         <string name="ExitTitle">EXIT</string>
@@ -37,7 +37,7 @@
         <string name="AllianceColorID">ALLIANCE COLOR:</string>
 
     <!-- Directions -->
-        <string name="SetupDirections">Complete the fields below before the start of each match.</string>
+        <string name="SetupDirections">Complete the fields below <b>before</b> the start of each match.</string>
         <string name="StartButtonDirections">Wait to press START until you hear the charge sound!</string>
         <string name="StartingPositionDirections">Tap on the field diagram below to mark the robot’s starting position.</string>
 
@@ -152,7 +152,7 @@
         <string name="Scanned">Scanned?</string>
         <string name="NextMatch">SET UP NEXT MATCH</string>
     <string name="ToggleInstructions">Tap on the toggle to record if the options are true (on) or false (off).</string>
-        <string name="PreloadedCargo">Preloaded Cargo</string>
+        <string name="PreloadedCargo">Preloaded a Note</string>
         <string name="UpperHub">UPPER HUB</string>
         <string name="LowerHub">LOWER HUB</string>
 </resources>
