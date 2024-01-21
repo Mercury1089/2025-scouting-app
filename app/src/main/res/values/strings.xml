@@ -88,7 +88,7 @@
         <string name="Scored">SCORED</string>
         <string name="Missed">MISSED</string>
         <string name="MiscDirections">Tap on the toggle to mark if the action occurs.</string>
-        <string name="Taxi">Taxi (Robot has left the tarmac)</string>
+        <string name="Leave">Leave (Robot left the starting zone)</string>
         <string name="FellOver">Fell Over</string>
         <string name="TeleopWarning">Teleop is starting soon...</string>
         <string name="TeleopError">Switch to teleop as soon as possible!</string>
@@ -152,7 +152,7 @@
         <string name="Scanned">Scanned?</string>
         <string name="NextMatch">SET UP NEXT MATCH</string>
     <string name="ToggleInstructions">Tap on the toggle to record if the options are true (on) or false (off).</string>
-        <string name="PreloadedCargo">Preloaded a Note</string>
-        <string name="UpperHub">UPPER HUB</string>
-        <string name="LowerHub">LOWER HUB</string>
+        <string name="PreloadNote">Preloaded a Note</string>
+        <string name="Speaker">SPEAKER</string>
+        <string name="Amp">AMP</string>
 </resources>

@@ -34,18 +34,18 @@ public class Auton extends Fragment {
     //Buttons
     private ImageButton pickedUpIncrementButton;
     private ImageButton pickedUpDecrementButton;
-    private ImageButton scoredUpperButton;
-    private ImageButton notScoredUpperButton;
-    private ImageButton missedUpperButton;
-    private ImageButton notMissedUpperButton;
-    private ImageButton scoredLowerButton;
-    private ImageButton notScoredLowerButton;
-    private ImageButton missedLowerButton;
-    private ImageButton notMissedLowerButton;
+    private ImageButton scoredSpeakerButton;
+    private ImageButton notScoredSpeakerButton;
+    private ImageButton missedSpeakerButton;
+    private ImageButton notMissedSpeakerButton;
+    private ImageButton scoredAmpButton;
+    private ImageButton notScoredAmpButton;
+    private ImageButton missedAmpButton;
+    private ImageButton notMissedAmpButton;
     private Button nextButton;
 
     //Switches
-    private Switch taxiSwitch;
+    private Switch leaveSwitch;
     private Switch fellOverSwitch;
 
     //TextViews
@@ -60,22 +60,22 @@ public class Auton extends Fragment {
 
     private TextView scoringID;
     private TextView scoringDescription;
-    private TextView IDUpperHub;
-    private TextView IDLowerHub;
-    private TextView IDScoredUpper;
-    private TextView IDScoredLower;
-    private TextView IDMissedUpper;
-    private TextView IDMissedLower;
+    private TextView IDSpeaker;
+    private TextView IDAmp;
+    private TextView IDScoredSpeaker;
+    private TextView IDScoredAmp;
+    private TextView IDMissedSpeaker;
+    private TextView IDMissedAmp;
 
-    private TextView scoredUpperCounter;
-    private TextView missedUpperCounter;
-    private TextView scoredLowerCounter;
-    private TextView missedLowerCounter;
+    private TextView scoredSpeakerCounter;
+    private TextView missedSpeakerCounter;
+    private TextView scoredAmpCounter;
+    private TextView missedAmpCounter;
 
 
     private TextView miscID;
     private TextView miscDescription;
-    private TextView taxiID;
+    private TextView leaveID;
 
     private TextView fellOverID;
 
@@ -137,31 +137,31 @@ public class Auton extends Fragment {
 
         scoringID = getView().findViewById(R.id.IDScoring);
         scoringDescription = getView().findViewById(R.id.IDScoringDirections);
-        IDUpperHub = getView().findViewById(R.id.IDUpperHub);
-        IDLowerHub = getView().findViewById(R.id.IDLowerHub);
-        IDScoredUpper = getView().findViewById(R.id.IDScoredUpper);
-        IDScoredLower = getView().findViewById(R.id.IDScoredLower);
-        IDMissedUpper = getView().findViewById(R.id.IDMissedUpper);
-        IDMissedLower = getView().findViewById(R.id.IDMissedLower);
+        IDSpeaker = getView().findViewById(R.id.IDUpperHub);
+        IDAmp = getView().findViewById(R.id.IDLowerHub);
+        IDScoredSpeaker = getView().findViewById(R.id.IDScoredUpper);
+        IDScoredAmp = getView().findViewById(R.id.IDScoredLower);
+        IDMissedSpeaker = getView().findViewById(R.id.IDMissedUpper);
+        IDMissedAmp = getView().findViewById(R.id.IDMissedLower);
 
-        scoredUpperButton = getView().findViewById(R.id.scoredUpperButton);
-        scoredLowerButton = getView().findViewById(R.id.scoredLowerButton);
-        notScoredUpperButton = getView().findViewById(R.id.notScoredUpperButton);
-        notScoredLowerButton = getView().findViewById(R.id.notScoredLowerButton);
-        scoredUpperCounter = getView().findViewById(R.id.scoredUpperCounter);
-        scoredLowerCounter = getView().findViewById(R.id.scoredLowerCounter);
+        scoredSpeakerButton = getView().findViewById(R.id.scoredUpperButton);
+        scoredAmpButton = getView().findViewById(R.id.scoredLowerButton);
+        notScoredSpeakerButton = getView().findViewById(R.id.notScoredUpperButton);
+        notScoredAmpButton = getView().findViewById(R.id.notScoredLowerButton);
+        scoredSpeakerCounter = getView().findViewById(R.id.scoredUpperCounter);
+        scoredAmpCounter = getView().findViewById(R.id.scoredLowerCounter);
 
-        missedUpperButton = getView().findViewById(R.id.missedUpperButton);
-        missedLowerButton = getView().findViewById(R.id.missedLowerButton);
-        notMissedUpperButton = getView().findViewById(R.id.notMissedUpperButton);
-        notMissedLowerButton = getView().findViewById(R.id.notMissedLowerButton);
-        missedUpperCounter = getView().findViewById(R.id.missedUpperCounter);
-        missedLowerCounter = getView().findViewById(R.id.missedLowerCounter);
+        missedSpeakerButton = getView().findViewById(R.id.missedUpperButton);
+        missedAmpButton = getView().findViewById(R.id.missedLowerButton);
+        notMissedSpeakerButton = getView().findViewById(R.id.notMissedUpperButton);
+        notMissedAmpButton = getView().findViewById(R.id.notMissedLowerButton);
+        missedSpeakerCounter = getView().findViewById(R.id.missedUpperCounter);
+        missedAmpCounter = getView().findViewById(R.id.missedLowerCounter);
 
         miscID = getView().findViewById(R.id.IDMisc);
         miscDescription = getView().findViewById(R.id.IDMiscDirections);
-        taxiID = getView().findViewById(R.id.IDTaxi);
-        taxiSwitch = getView().findViewById(R.id.TaxiSwitch);
+        leaveID = getView().findViewById(R.id.IDLeave);
+        leaveSwitch = getView().findViewById(R.id.TaxiSwitch);
         fellOverSwitch = getView().findViewById(R.id.FellOverSwitch);
         fellOverID = getView().findViewById(R.id.IDFellOver);
 
@@ -347,20 +347,20 @@ public class Auton extends Fragment {
             }
         });
 
-        scoredUpperButton.setOnClickListener(new View.OnClickListener() {
+        scoredSpeakerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) scoredUpperCounter.getText());
+                int currentCount = Integer.parseInt((String) scoredSpeakerCounter.getText());
                 currentCount++;
                 autonHashMap.put("ScoredUpper", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
 
-        notScoredUpperButton.setOnClickListener(new View.OnClickListener() {
+        notScoredSpeakerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) scoredUpperCounter.getText());
+                int currentCount = Integer.parseInt((String) scoredSpeakerCounter.getText());
                 if (currentCount > 0)
                     currentCount--;
                 autonHashMap.put("ScoredUpper", String.valueOf(currentCount));
@@ -369,40 +369,40 @@ public class Auton extends Fragment {
         });
 
 
-        scoredLowerButton.setOnClickListener(new View.OnClickListener() {
+        scoredAmpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) scoredLowerCounter.getText());
+                int currentCount = Integer.parseInt((String) scoredAmpCounter.getText());
                 currentCount++;
                 autonHashMap.put("ScoredLower", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
 
-        notScoredLowerButton.setOnClickListener(new View.OnClickListener() {
+        notScoredAmpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) scoredLowerCounter.getText());
+                int currentCount = Integer.parseInt((String) scoredAmpCounter.getText());
                 if (currentCount > 0)
                     currentCount--;
                 autonHashMap.put("ScoredLower", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
-        missedUpperButton.setOnClickListener(new View.OnClickListener() {
+        missedSpeakerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) missedUpperCounter.getText());
+                int currentCount = Integer.parseInt((String) missedSpeakerCounter.getText());
                 currentCount++;
                 autonHashMap.put("MissedUpper", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
 
-        notMissedUpperButton.setOnClickListener(new View.OnClickListener() {
+        notMissedSpeakerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) missedUpperCounter.getText());
+                int currentCount = Integer.parseInt((String) missedSpeakerCounter.getText());
                 if (currentCount > 0)
                     currentCount--;
                 autonHashMap.put("MissedUpper", String.valueOf(currentCount));
@@ -410,20 +410,20 @@ public class Auton extends Fragment {
             }
         });
 
-        missedLowerButton.setOnClickListener(new View.OnClickListener() {
+        missedAmpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) missedLowerCounter.getText());
+                int currentCount = Integer.parseInt((String) missedAmpCounter.getText());
                 currentCount++;
                 autonHashMap.put("MissedLower", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
 
-        notMissedLowerButton.setOnClickListener(new View.OnClickListener() {
+        notMissedAmpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) missedLowerCounter.getText());
+                int currentCount = Integer.parseInt((String) missedAmpCounter.getText());
                 if (currentCount > 0)
                     currentCount--;
                 autonHashMap.put("MissedLower", String.valueOf(currentCount));
@@ -431,7 +431,7 @@ public class Auton extends Fragment {
             }
         });
 
-        taxiSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+        leaveSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 autonHashMap.put("Taxi", isChecked ? "1" : "0");
                 updateXMLObjects();
@@ -466,33 +466,33 @@ public class Auton extends Fragment {
     private void scoringButtonsEnabledState(boolean enable){
         scoringID.setEnabled(enable);
         scoringDescription.setEnabled(enable);
-        IDUpperHub.setEnabled(enable);
-        IDLowerHub.setEnabled(enable);
-        IDScoredUpper.setEnabled(enable);
-        IDScoredLower.setEnabled(enable);
-        IDMissedUpper.setEnabled(enable);
-        IDMissedLower.setEnabled(enable);
+        IDSpeaker.setEnabled(enable);
+        IDAmp.setEnabled(enable);
+        IDScoredSpeaker.setEnabled(enable);
+        IDScoredAmp.setEnabled(enable);
+        IDMissedSpeaker.setEnabled(enable);
+        IDMissedAmp.setEnabled(enable);
 
-        scoredUpperButton.setEnabled(enable);
-        scoredLowerButton.setEnabled(enable);
-        notScoredUpperButton.setEnabled(enable);
-        notScoredLowerButton.setEnabled(enable);
-        scoredUpperCounter.setEnabled(enable);
-        scoredLowerCounter.setEnabled(enable);
-        missedUpperCounter.setEnabled(enable);
-        missedLowerCounter.setEnabled(enable);
+        scoredSpeakerButton.setEnabled(enable);
+        scoredAmpButton.setEnabled(enable);
+        notScoredSpeakerButton.setEnabled(enable);
+        notScoredAmpButton.setEnabled(enable);
+        scoredSpeakerCounter.setEnabled(enable);
+        scoredAmpCounter.setEnabled(enable);
+        missedSpeakerCounter.setEnabled(enable);
+        missedAmpCounter.setEnabled(enable);
 
-        missedUpperButton.setEnabled(enable);
-        missedLowerButton.setEnabled(enable);
-        notMissedUpperButton.setEnabled(enable);
-        notMissedLowerButton.setEnabled(enable);
+        missedSpeakerButton.setEnabled(enable);
+        missedAmpButton.setEnabled(enable);
+        notMissedSpeakerButton.setEnabled(enable);
+        notMissedAmpButton.setEnabled(enable);
     }
 
     private void miscButtonsEnabledState(boolean enable){
         miscID.setEnabled(enable);
         miscDescription.setEnabled(enable);
-        taxiSwitch.setEnabled(enable);
-        taxiID.setEnabled(enable);
+        leaveSwitch.setEnabled(enable);
+        leaveID.setEnabled(enable);
         fellOverSwitch.setEnabled(enable);
         fellOverID.setEnabled(enable);
         nextButton.setEnabled(enable);
@@ -504,17 +504,17 @@ public class Auton extends Fragment {
 
         miscID.setEnabled(enable);
         miscDescription.setEnabled(enable);
-        taxiSwitch.setEnabled(enable);
-        taxiID.setEnabled(enable);
+        leaveSwitch.setEnabled(enable);
+        leaveID.setEnabled(enable);
     }
 
     private void updateXMLObjects(){
-        scoredUpperCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredUpper"), 2));
-        scoredLowerCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredLower"), 2));
-        missedUpperCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedUpper"), 2));
-        missedLowerCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedLower"), 2));
+        scoredSpeakerCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredUpper"), 2));
+        scoredAmpCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredLower"), 2));
+        missedSpeakerCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedUpper"), 2));
+        missedAmpCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedLower"), 2));
         pickedUpCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("NumberPickedUp"), 2));
-        taxiSwitch.setChecked(autonHashMap.get("Taxi").equals("1"));
+        leaveSwitch.setChecked(autonHashMap.get("Taxi").equals("1"));
 
         if(setupHashMap.get("FellOver").equals("1")) {
             fellOverSwitch.setChecked(true);
@@ -531,22 +531,22 @@ public class Auton extends Fragment {
                 pickedUpDecrementButton.setEnabled(false);
             else
                 pickedUpDecrementButton.setEnabled(true);
-            if (Integer.parseInt((String)scoredUpperCounter.getText()) <= 0)
-                notScoredUpperButton.setEnabled(false);
+            if (Integer.parseInt((String) scoredSpeakerCounter.getText()) <= 0)
+                notScoredSpeakerButton.setEnabled(false);
             else
-                notScoredUpperButton.setEnabled(true);
-            if (Integer.parseInt((String)scoredLowerCounter.getText()) <= 0)
-                notScoredLowerButton.setEnabled(false);
+                notScoredSpeakerButton.setEnabled(true);
+            if (Integer.parseInt((String) scoredAmpCounter.getText()) <= 0)
+                notScoredAmpButton.setEnabled(false);
             else
-                notScoredLowerButton.setEnabled(true);
-            if (Integer.parseInt((String)missedUpperCounter.getText()) <= 0)
-                notMissedUpperButton.setEnabled(false);
+                notScoredAmpButton.setEnabled(true);
+            if (Integer.parseInt((String) missedSpeakerCounter.getText()) <= 0)
+                notMissedSpeakerButton.setEnabled(false);
             else
-                notMissedUpperButton.setEnabled(true);
-            if (Integer.parseInt((String)missedLowerCounter.getText()) <= 0)
-                notMissedLowerButton.setEnabled(false);
+                notMissedSpeakerButton.setEnabled(true);
+            if (Integer.parseInt((String) missedAmpCounter.getText()) <= 0)
+                notMissedAmpButton.setEnabled(false);
             else
-                notMissedLowerButton.setEnabled(true);
+                notMissedAmpButton.setEnabled(true);
 
         }
     }

@@ -196,12 +196,12 @@
         app:layout_constraintTop_toTopOf="@+id/NoShowSwitch" />
 
     <TextView
-        android:id="@+id/IDPreloadedCargo"
+        android:id="@+id/IDPreloadNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:fontFamily="@font/open_sans"
-        android:text="@string/PreloadedCargo"
+        android:text="@string/PreloadNote"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/label_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/PreloadedCargoSwitch"
