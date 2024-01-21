@@ -97,8 +97,8 @@
         android:text="@string/AlliancePartnersID"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/label_text_size"
-        app:layout_constraintStart_toStartOf="@+id/MissedToggle"
-        app:layout_constraintTop_toBottomOf="@+id/MissedToggle" />
+        app:layout_constraintStart_toStartOf="@+id/IDTeamNumber"
+        app:layout_constraintTop_toBottomOf="@+id/TeamNumberInput" />
 
     <EditText
         android:id="@+id/MatchNumberInput"
@@ -217,8 +217,8 @@
         android:text="@string/AllianceColorID"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/label_text_size"
-        app:layout_constraintStart_toStartOf="@+id/TeamNumberInput"
-        app:layout_constraintTop_toBottomOf="@+id/TeamNumberInput" />
+        app:layout_constraintStart_toStartOf="@+id/IDAlliancePartners"
+        app:layout_constraintTop_toBottomOf="@+id/FirstAlliancePartnerInput" />
 
     <RadioGroup
         android:id="@+id/MissedToggle"
@@ -333,13 +333,13 @@
         android:id="@+id/IDToggleInstructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/open_sans_italic"
         android:text="@string/ToggleInstructions"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/instruction_text_size"
-        app:layout_constraintStart_toStartOf="@+id/FirstAlliancePartnerInput"
-        app:layout_constraintTop_toBottomOf="@+id/FirstAlliancePartnerInput" />
+        app:layout_constraintStart_toStartOf="@+id/IDAllianceColor"
+        app:layout_constraintTop_toBottomOf="@+id/MissedToggle" />
 
     <!-- Left field side buttons -->
 
