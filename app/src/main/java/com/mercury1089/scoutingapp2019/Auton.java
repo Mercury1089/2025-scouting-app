@@ -352,7 +352,7 @@ public class Auton extends Fragment {
             public void onClick(View view) {
                 int currentCount = Integer.parseInt((String) scoredSpeakerCounter.getText());
                 currentCount++;
-                autonHashMap.put("ScoredUpper", String.valueOf(currentCount));
+                autonHashMap.put("scoredSpeaker", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
@@ -363,7 +363,7 @@ public class Auton extends Fragment {
                 int currentCount = Integer.parseInt((String) scoredSpeakerCounter.getText());
                 if (currentCount > 0)
                     currentCount--;
-                autonHashMap.put("ScoredUpper", String.valueOf(currentCount));
+                autonHashMap.put("scoredSpeaker", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
@@ -374,10 +374,11 @@ public class Auton extends Fragment {
             public void onClick(View view) {
                 int currentCount = Integer.parseInt((String) scoredAmpCounter.getText());
                 currentCount++;
-                autonHashMap.put("ScoredLower", String.valueOf(currentCount));
+                autonHashMap.put("ScoredAmp", String.valueOf(currentCount));
                 updateXMLObjects();
             }
-        });
+        }
+        );
 
         notScoredAmpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -385,7 +386,7 @@ public class Auton extends Fragment {
                 int currentCount = Integer.parseInt((String) scoredAmpCounter.getText());
                 if (currentCount > 0)
                     currentCount--;
-                autonHashMap.put("ScoredLower", String.valueOf(currentCount));
+                autonHashMap.put("ScoredAmp", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
@@ -394,7 +395,7 @@ public class Auton extends Fragment {
             public void onClick(View view) {
                 int currentCount = Integer.parseInt((String) missedSpeakerCounter.getText());
                 currentCount++;
-                autonHashMap.put("MissedUpper", String.valueOf(currentCount));
+                autonHashMap.put("MissedSpeaker", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
@@ -405,7 +406,7 @@ public class Auton extends Fragment {
                 int currentCount = Integer.parseInt((String) missedSpeakerCounter.getText());
                 if (currentCount > 0)
                     currentCount--;
-                autonHashMap.put("MissedUpper", String.valueOf(currentCount));
+                autonHashMap.put("MissedSpeaker", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
@@ -415,7 +416,7 @@ public class Auton extends Fragment {
             public void onClick(View view) {
                 int currentCount = Integer.parseInt((String) missedAmpCounter.getText());
                 currentCount++;
-                autonHashMap.put("MissedLower", String.valueOf(currentCount));
+                autonHashMap.put("MissedAmp", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
@@ -426,14 +427,14 @@ public class Auton extends Fragment {
                 int currentCount = Integer.parseInt((String) missedAmpCounter.getText());
                 if (currentCount > 0)
                     currentCount--;
-                autonHashMap.put("MissedLower", String.valueOf(currentCount));
+                autonHashMap.put("MissedAmp", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
 
         leaveSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                autonHashMap.put("Taxi", isChecked ? "1" : "0");
+                autonHashMap.put("Leave", isChecked ? "1" : "0");
                 updateXMLObjects();
             }
         });
@@ -509,12 +510,12 @@ public class Auton extends Fragment {
     }
 
     private void updateXMLObjects(){
-        scoredSpeakerCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredUpper"), 2));
-        scoredAmpCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredLower"), 2));
-        missedSpeakerCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedUpper"), 2));
-        missedAmpCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedLower"), 2));
+        scoredSpeakerCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredSpeaker"), 2));
+        scoredAmpCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredAmp"), 2));
+        missedSpeakerCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedSpeaker"), 2));
+        missedAmpCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedAmp"), 2));
         pickedUpCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("NumberPickedUp"), 2));
-        leaveSwitch.setChecked(autonHashMap.get("Taxi").equals("1"));
+        leaveSwitch.setChecked(autonHashMap.get("Leave").equals("1"));
 
         if(setupHashMap.get("FellOver").equals("1")) {
             fellOverSwitch.setChecked(true);

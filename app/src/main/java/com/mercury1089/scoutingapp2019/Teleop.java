@@ -146,7 +146,7 @@ public class Teleop extends Fragment {
             public void onClick(View view) {
                 int currentCount = Integer.parseInt((String) scoredSpeakerCounter.getText());
                 currentCount++;
-                teleopHashMap.put("ScoredUpper", String.valueOf(currentCount));
+                teleopHashMap.put("ScoredSpeaker", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
@@ -157,7 +157,7 @@ public class Teleop extends Fragment {
                 int currentCount = Integer.parseInt((String) scoredSpeakerCounter.getText());
                 if (currentCount > 0)
                     currentCount--;
-                teleopHashMap.put("ScoredUpper", String.valueOf(currentCount));
+                teleopHashMap.put("ScoredSpeaker", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
@@ -167,7 +167,7 @@ public class Teleop extends Fragment {
             public void onClick(View view) {
                 int currentCount = Integer.parseInt((String) missedSpeakerCounter.getText());
                 currentCount++;
-                teleopHashMap.put("MissedUpper", String.valueOf(currentCount));
+                teleopHashMap.put("MissedSpeaker", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
@@ -178,7 +178,7 @@ public class Teleop extends Fragment {
                 int currentCount = Integer.parseInt((String) missedSpeakerCounter.getText());
                 if (currentCount > 0)
                     currentCount--;
-                teleopHashMap.put("MissedUpper", String.valueOf(currentCount));
+                teleopHashMap.put("MissedSpeaker", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
@@ -188,7 +188,7 @@ public class Teleop extends Fragment {
             public void onClick(View view) {
                 int currentCount = Integer.parseInt((String) scoredAmpCounter.getText());
                 currentCount++;
-                teleopHashMap.put("ScoredLower", String.valueOf(currentCount));
+                teleopHashMap.put("ScoredAmp", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
@@ -199,7 +199,7 @@ public class Teleop extends Fragment {
                 int currentCount = Integer.parseInt((String) scoredAmpCounter.getText());
                 if (currentCount > 0)
                     currentCount--;
-                teleopHashMap.put("ScoredLower", String.valueOf(currentCount));
+                teleopHashMap.put("ScoredAmp", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
@@ -209,7 +209,7 @@ public class Teleop extends Fragment {
             public void onClick(View view) {
                 int currentCount = Integer.parseInt((String) missedAmpCounter.getText());
                 currentCount++;
-                teleopHashMap.put("MissedLower", String.valueOf(currentCount));
+                teleopHashMap.put("MissedAmp", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
@@ -220,7 +220,7 @@ public class Teleop extends Fragment {
                 int currentCount = Integer.parseInt((String) missedAmpCounter.getText());
                 if (currentCount > 0)
                     currentCount--;
-                teleopHashMap.put("MissedLower", String.valueOf(currentCount));
+                teleopHashMap.put("MissedAmp", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
@@ -287,10 +287,10 @@ public class Teleop extends Fragment {
     }
 
     private void updateXMLObjects(){
-        scoredSpeakerCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("ScoredUpper"), 3));
-        missedSpeakerCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("MissedUpper"), 3));
-        scoredAmpCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("ScoredLower"), 3));
-        missedAmpCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("MissedLower"), 3));
+        scoredSpeakerCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("ScoredSpeaker"), 3));
+        missedSpeakerCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("MissedSpeaker"), 3));
+        scoredAmpCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("ScoredAmp"), 3));
+        missedAmpCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("MissedAmp"), 3));
         pickedUpCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("NumberPickedUp"), 3));
 
         if(setupHashMap.get("FellOver").equals("1")) {

@@ -326,20 +326,20 @@ public class HashMapManager{
                 //include all the items that will be in the autonHashMap
                 autonHashMap.put("HashMapName", "Auton");
                 autonHashMap.put("NumberPickedUp", "0");
-                autonHashMap.put("ScoredUpper", "0");
-                autonHashMap.put("ScoredLower", "0");
-                autonHashMap.put("MissedUpper", "0");
-                autonHashMap.put("MissedLower", "0");
-                autonHashMap.put("Taxi", "0");
+                autonHashMap.put("ScoredSpeaker", "0");
+                autonHashMap.put("ScoredAmp", "0");
+                autonHashMap.put("MissedSpeaker", "0");
+                autonHashMap.put("MissedAmp", "0");
+                autonHashMap.put("Leave", "0");
                 break;
             case TELEOP:
                 //include all the items that will be in the teleopHashMap
                 teleopHashMap.put("HashMapName", "Teleop");
                 teleopHashMap.put("NumberPickedUp", "0");
-                teleopHashMap.put("ScoredUpper", "0");
-                teleopHashMap.put("ScoredLower", "0");
-                teleopHashMap.put("MissedUpper", "0");
-                teleopHashMap.put("MissedLower", "0");
+                teleopHashMap.put("ScoredSpeaker", "0");
+                teleopHashMap.put("ScoredAmp", "0");
+                teleopHashMap.put("MissedSpeaker", "0");
+                teleopHashMap.put("MissedAmp", "0");
                 break;
             case CLIMB:
                 //include all the items that will be in the climbHashMap

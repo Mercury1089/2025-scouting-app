@@ -23,27 +23,27 @@ public class QRStringBuilder {
         QRString.append(setup.get("AlliancePartner1")).append(",");
         QRString.append(setup.get("AlliancePartner2")).append(",");
         QRString.append(setup.get("AllianceColor")).append(",");
-        QRString.append(setup.get("PreloadCargo").equals("1") ? "Y" : "N").append(",");
+        QRString.append(setup.get("PreloadNote").equals("1") ? "Y" : "N").append(",");
         QRString.append(setup.get("NoShow").equals("1") ? "Y" : "N").append(",");
         QRString.append(setup.get("FellOver").equals("1") ? "Y" : "N").append(",");
 
-        QRString.append(auton.get("Taxi").equals("1") ? "Y" : "N").append(",");
+        QRString.append(auton.get("Leave").equals("1") ? "Y" : "N").append(",");
         QRString.append(climb.get("Rung")).append(",");
 
 
         // Event Data
         // Auton
         QRString.append("Auton").append(",");
-        QRString.append(auton.get("ScoredUpper")).append(",");
-        QRString.append(auton.get("ScoredLower")).append(",");
-        QRString.append(auton.get("MissedUpper")).append(",");
-        QRString.append(auton.get("MissedLower")).append(",");
+        QRString.append(auton.get("ScoredSpeaker")).append(",");
+        QRString.append(auton.get("ScoredAmp")).append(",");
+        QRString.append(auton.get("MissedSpeaker")).append(",");
+        QRString.append(auton.get("MissedAmp")).append(",");
         // Teleop
         QRString.append("Teleop").append(",");
-        QRString.append(teleop.get("ScoredUpper")).append(",");
-        QRString.append(teleop.get("ScoredLower")).append(",");
-        QRString.append(teleop.get("MissedUpper")).append(",");
-        QRString.append(teleop.get("MissedLower")).append(",");
+        QRString.append(teleop.get("ScoredSpeaker")).append(",");
+        QRString.append(teleop.get("ScoredAmp")).append(",");
+        QRString.append(teleop.get("MissedSpeaker")).append(",");
+        QRString.append(teleop.get("MissedAmp")).append(",");
     }
 
     public static String getQRString(){
