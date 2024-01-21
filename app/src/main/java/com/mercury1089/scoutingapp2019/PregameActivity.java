@@ -189,7 +189,7 @@ public class PregameActivity extends AppCompatActivity {
         noShowSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked)
-                    setupHashMap.put("PreloadCargo", "0");
+                    setupHashMap.put("PreloadNote", "0");
                 preloadSwitch.setEnabled(!isChecked);
                 setupHashMap.put("NoShow", isChecked ? "1" : "0");
                 updateXMLObjects(false);
@@ -200,7 +200,7 @@ public class PregameActivity extends AppCompatActivity {
         preloadSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                setupHashMap.put("PreloadCargo", isChecked ? "1" : "0");
+                setupHashMap.put("PreloadNote", isChecked ? "1" : "0");
                 updateXMLObjects(false);
             }
         });
@@ -549,7 +549,7 @@ public class PregameActivity extends AppCompatActivity {
         if(settingsHashMap.get("Slack").equals("1"))
             slackCenter.setVisibility(View.VISIBLE);
 
-        if (setupHashMap.get("PreloadCargo").equals("1")) {
+        if (setupHashMap.get("PreloadNote").equals("1")) {
             preloadSwitch.setChecked(true);
         } else {
             preloadSwitch.setChecked(false);
