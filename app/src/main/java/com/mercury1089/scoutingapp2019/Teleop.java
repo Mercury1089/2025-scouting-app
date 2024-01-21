@@ -1,23 +1,19 @@
 package com.mercury1089.scoutingapp2019;
 
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.PopupWindow;
 import android.widget.Switch;
 import android.widget.TextView;
-import androidx.constraintlayout.widget.ConstraintLayout;
+
 import androidx.fragment.app.Fragment;
 
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 import java.util.LinkedHashMap;
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class Teleop extends Fragment {
     //HashMaps for sending QR data between screens
@@ -27,14 +23,14 @@ public class Teleop extends Fragment {
     //RadioButtons
     private ImageButton pickedUpIncrementButton;
     private ImageButton pickedUpDecrementButton;
-    private ImageButton scoredUpperButton;
-    private ImageButton notScoredUpperButton;
-    private ImageButton scoredLowerButton;
-    private ImageButton notScoredLowerButton;
-    private ImageButton missedUpperButton;
-    private ImageButton notMissedUpperButton;
-    private ImageButton missedLowerButton;
-    private ImageButton notMissedLowerButton;
+    private ImageButton scoredSpeakerButton;
+    private ImageButton notScoredSpeakerButton;
+    private ImageButton scoredAmpButton;
+    private ImageButton notScoredAmpButton;
+    private ImageButton missedSpeakerButton;
+    private ImageButton notMissedSpeakerButton;
+    private ImageButton missedAmpButton;
+    private ImageButton notMissedAmpButton;
     private Button nextButton;
 
     //Switches
@@ -45,19 +41,19 @@ public class Teleop extends Fragment {
     private TextView possessionDescription;
     private TextView pickedUpID;
     private TextView pickedUpCounter;
-    private TextView IDUpperHub;
-    private TextView IDLowerHub;
-    private TextView IDScoredUpper;
-    private TextView IDScoredLower;
-    private TextView IDMissedUpper;
-    private TextView IDMissedLower;
+    private TextView IDSpeaker;
+    private TextView IDAmp;
+    private TextView IDScoredSpeaker;
+    private TextView IDScoredAmp;
+    private TextView IDMissedSpeaker;
+    private TextView IDMissedAmp;
 
     private TextView scoringID;
     private TextView scoringDescription;
-    private TextView scoredUpperCounter;
-    private TextView scoredLowerCounter;;
-    private TextView missedUpperCounter;
-    private TextView missedLowerCounter;
+    private TextView scoredSpeakerCounter;
+    private TextView scoredAmpCounter;
+    private TextView missedSpeakerCounter;
+    private TextView missedAmpCounter;
 
     private TextView miscID;
     private TextView miscDescription;
@@ -93,24 +89,24 @@ public class Teleop extends Fragment {
 
         scoringID = getView().findViewById(R.id.IDScoring);
         scoringDescription = getView().findViewById(R.id.IDScoringDirections);
-        scoredUpperButton = getView().findViewById(R.id.scoredUpperButton);
-        notScoredUpperButton = getView().findViewById(R.id.notScoredUpperButton);
-        scoredLowerButton = getView().findViewById(R.id.scoredLowerButton);
-        notScoredLowerButton = getView().findViewById(R.id.notScoredLowerButton);
-        missedUpperButton = getView().findViewById(R.id.missedUpperButton);
-        notMissedUpperButton = getView().findViewById(R.id.notMissedUpperButton);
-        missedLowerButton = getView().findViewById(R.id.missedLowerButton);
-        notMissedLowerButton = getView().findViewById(R.id.notMissedLowerButton);
-        scoredUpperCounter = getView().findViewById(R.id.scoredUpperCounter);
-        scoredLowerCounter = getView().findViewById(R.id.scoredLowerCounter);
-        missedUpperCounter = getView().findViewById(R.id.missedUpperCounter);
-        missedLowerCounter = getView().findViewById(R.id.missedLowerCounter);
-        IDUpperHub = getView().findViewById(R.id.IDUpperHub);
-        IDLowerHub = getView().findViewById(R.id.IDLowerHub);
-        IDScoredUpper = getView().findViewById(R.id.IDScoredUpper);
-        IDScoredLower = getView().findViewById(R.id.IDScoredLower);
-        IDMissedUpper = getView().findViewById(R.id.IDMissedUpper);
-        IDMissedLower = getView().findViewById(R.id.IDMissedLower);
+        scoredSpeakerButton = getView().findViewById(R.id.scoredSpeakerButton);
+        notScoredSpeakerButton = getView().findViewById(R.id.notScoredSpeakerButton);
+        scoredAmpButton = getView().findViewById(R.id.scoredAmpButton);
+        notScoredAmpButton = getView().findViewById(R.id.notScoredAmpButton);
+        missedSpeakerButton = getView().findViewById(R.id.missedSpeakerButton);
+        notMissedSpeakerButton = getView().findViewById(R.id.notMissedSpeakerButton);
+        missedAmpButton = getView().findViewById(R.id.missedAmpButton);
+        notMissedAmpButton = getView().findViewById(R.id.notMissedAmpButton);
+        scoredSpeakerCounter = getView().findViewById(R.id.scoredSpeakerCounter);
+        scoredAmpCounter = getView().findViewById(R.id.scoredAmpCounter);
+        missedSpeakerCounter = getView().findViewById(R.id.missedSpeakerCounter);
+        missedAmpCounter = getView().findViewById(R.id.missedAmpCounter);
+        IDSpeaker = getView().findViewById(R.id.IDSpeaker);
+        IDAmp = getView().findViewById(R.id.IDAmp);
+        IDScoredSpeaker = getView().findViewById(R.id.IDScoredSpeaker);
+        IDScoredAmp = getView().findViewById(R.id.IDScoredAmp);
+        IDMissedSpeaker = getView().findViewById(R.id.IDMissedSpeaker);
+        IDMissedAmp = getView().findViewById(R.id.IDMissedAmp);
 
         miscID = getView().findViewById(R.id.IDMisc);
         miscDescription = getView().findViewById(R.id.IDMiscDirections);
@@ -145,20 +141,20 @@ public class Teleop extends Fragment {
             }
         });
 
-        scoredUpperButton.setOnClickListener(new View.OnClickListener() {
+        scoredSpeakerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentCount = Integer.parseInt((String)scoredUpperCounter.getText());
+                int currentCount = Integer.parseInt((String) scoredSpeakerCounter.getText());
                 currentCount++;
                 teleopHashMap.put("ScoredUpper", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
 
-        notScoredUpperButton.setOnClickListener(new View.OnClickListener() {
+        notScoredSpeakerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentCount = Integer.parseInt((String)scoredUpperCounter.getText());
+                int currentCount = Integer.parseInt((String) scoredSpeakerCounter.getText());
                 if (currentCount > 0)
                     currentCount--;
                 teleopHashMap.put("ScoredUpper", String.valueOf(currentCount));
@@ -166,20 +162,20 @@ public class Teleop extends Fragment {
             }
         });
 
-        missedUpperButton.setOnClickListener(new View.OnClickListener() {
+        missedSpeakerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentCount = Integer.parseInt((String)missedUpperCounter.getText());
+                int currentCount = Integer.parseInt((String) missedSpeakerCounter.getText());
                 currentCount++;
                 teleopHashMap.put("MissedUpper", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
 
-        notMissedUpperButton.setOnClickListener(new View.OnClickListener() {
+        notMissedSpeakerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentCount = Integer.parseInt((String)missedUpperCounter.getText());
+                int currentCount = Integer.parseInt((String) missedSpeakerCounter.getText());
                 if (currentCount > 0)
                     currentCount--;
                 teleopHashMap.put("MissedUpper", String.valueOf(currentCount));
@@ -187,20 +183,20 @@ public class Teleop extends Fragment {
             }
         });
 
-        scoredLowerButton.setOnClickListener(new View.OnClickListener() {
+        scoredAmpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentCount = Integer.parseInt((String)scoredLowerCounter.getText());
+                int currentCount = Integer.parseInt((String) scoredAmpCounter.getText());
                 currentCount++;
                 teleopHashMap.put("ScoredLower", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
 
-        notScoredLowerButton.setOnClickListener(new View.OnClickListener() {
+        notScoredAmpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentCount = Integer.parseInt((String)scoredLowerCounter.getText());
+                int currentCount = Integer.parseInt((String) scoredAmpCounter.getText());
                 if (currentCount > 0)
                     currentCount--;
                 teleopHashMap.put("ScoredLower", String.valueOf(currentCount));
@@ -208,20 +204,20 @@ public class Teleop extends Fragment {
             }
         });
 
-        missedLowerButton.setOnClickListener(new View.OnClickListener() {
+        missedAmpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentCount = Integer.parseInt((String)missedLowerCounter.getText());
+                int currentCount = Integer.parseInt((String) missedAmpCounter.getText());
                 currentCount++;
                 teleopHashMap.put("MissedLower", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
 
-        notMissedLowerButton.setOnClickListener(new View.OnClickListener() {
+        notMissedAmpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int currentCount = Integer.parseInt((String)missedLowerCounter.getText());
+                int currentCount = Integer.parseInt((String) missedAmpCounter.getText());
                 if (currentCount > 0)
                     currentCount--;
                 teleopHashMap.put("MissedLower", String.valueOf(currentCount));
@@ -257,26 +253,26 @@ public class Teleop extends Fragment {
     private void scoringButtonsEnabledState(boolean enable){
         scoringID.setEnabled(enable);
         scoringDescription.setEnabled(enable);
-        IDUpperHub.setEnabled(enable);
-        IDLowerHub.setEnabled(enable);
-        IDScoredUpper.setEnabled(enable);
-        IDScoredLower.setEnabled(enable);
-        IDMissedUpper.setEnabled(enable);
-        IDMissedLower.setEnabled(enable);
+        IDSpeaker.setEnabled(enable);
+        IDAmp.setEnabled(enable);
+        IDScoredSpeaker.setEnabled(enable);
+        IDScoredAmp.setEnabled(enable);
+        IDMissedSpeaker.setEnabled(enable);
+        IDMissedAmp.setEnabled(enable);
 
-        scoredUpperButton.setEnabled(enable);
-        notScoredUpperButton.setEnabled(enable);
-        scoredLowerButton.setEnabled(enable);
-        notScoredLowerButton.setEnabled(enable);
-        scoredUpperCounter.setEnabled(enable);
-        scoredLowerCounter.setEnabled(enable);
-        missedUpperCounter.setEnabled(enable);
-        missedLowerCounter.setEnabled(enable);
+        scoredSpeakerButton.setEnabled(enable);
+        notScoredSpeakerButton.setEnabled(enable);
+        scoredAmpButton.setEnabled(enable);
+        notScoredAmpButton.setEnabled(enable);
+        scoredSpeakerCounter.setEnabled(enable);
+        scoredAmpCounter.setEnabled(enable);
+        missedSpeakerCounter.setEnabled(enable);
+        missedAmpCounter.setEnabled(enable);
 
-        missedUpperButton.setEnabled(enable);
-        notMissedUpperButton.setEnabled(enable);
-        missedLowerButton.setEnabled(enable);
-        notMissedLowerButton.setEnabled(enable);
+        missedSpeakerButton.setEnabled(enable);
+        notMissedSpeakerButton.setEnabled(enable);
+        missedAmpButton.setEnabled(enable);
+        notMissedAmpButton.setEnabled(enable);
     }
 
 
@@ -291,10 +287,10 @@ public class Teleop extends Fragment {
     }
 
     private void updateXMLObjects(){
-        scoredUpperCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("ScoredUpper"), 3));
-        missedUpperCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("MissedUpper"), 3));
-        scoredLowerCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("ScoredLower"), 3));
-        missedLowerCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("MissedLower"), 3));
+        scoredSpeakerCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("ScoredUpper"), 3));
+        missedSpeakerCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("MissedUpper"), 3));
+        scoredAmpCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("ScoredLower"), 3));
+        missedAmpCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("MissedLower"), 3));
         pickedUpCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("NumberPickedUp"), 3));
 
         if(setupHashMap.get("FellOver").equals("1")) {
@@ -314,22 +310,22 @@ public class Teleop extends Fragment {
                 pickedUpDecrementButton.setEnabled(false);
             else
                 pickedUpDecrementButton.setEnabled(true);
-            if (Integer.parseInt((String)scoredUpperCounter.getText()) <= 0)
-                notScoredUpperButton.setEnabled(false);
+            if (Integer.parseInt((String) scoredSpeakerCounter.getText()) <= 0)
+                notScoredSpeakerButton.setEnabled(false);
             else
-                notScoredUpperButton.setEnabled(true);
-            if (Integer.parseInt((String)scoredLowerCounter.getText()) <= 0)
-                notScoredLowerButton.setEnabled(false);
+                notScoredSpeakerButton.setEnabled(true);
+            if (Integer.parseInt((String) scoredAmpCounter.getText()) <= 0)
+                notScoredAmpButton.setEnabled(false);
             else
-                notScoredLowerButton.setEnabled(true);
-            if (Integer.parseInt((String)missedUpperCounter.getText()) <= 0)
-                notMissedUpperButton.setEnabled(false);
+                notScoredAmpButton.setEnabled(true);
+            if (Integer.parseInt((String) missedSpeakerCounter.getText()) <= 0)
+                notMissedSpeakerButton.setEnabled(false);
             else
-                notMissedUpperButton.setEnabled(true);
-            if (Integer.parseInt((String)missedLowerCounter.getText()) <= 0)
-                notMissedLowerButton.setEnabled(false);
+                notMissedSpeakerButton.setEnabled(true);
+            if (Integer.parseInt((String) missedAmpCounter.getText()) <= 0)
+                notMissedAmpButton.setEnabled(false);
             else
-                notMissedLowerButton.setEnabled(true);
+                notMissedAmpButton.setEnabled(true);
         }
     }
 
