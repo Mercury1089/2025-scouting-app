@@ -99,7 +99,7 @@
         <string name="Stage2">Stage 2</string>
         <string name="Stage3">Stage 3</string>
         <string name="FellOverOrDied">Fell over/Died</string>
-        <string name="ClimbNext">NEXT: CLIMBING AND QR</string>
+        <string name="ClimbNext">NEXT: STAGE ZONE AND QR</string>
 
     <!-- Climb -->
         <string name="EndgameDirections">Tap on the toggle to mark if the action occurs.</string>
