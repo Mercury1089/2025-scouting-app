@@ -34,9 +34,9 @@
         android:divider="?android:attr/dividerHorizontal"
         android:orientation="horizontal"
         android:showDividers="middle"
-        app:layout_constraintBottom_toBottomOf="@+id/IDMissedTrap"
+        app:layout_constraintBottom_toBottomOf="@+id/IDTrapMissed"
         app:layout_constraintStart_toStartOf="@+id/ScoredTrapToggle"
-        app:layout_constraintTop_toTopOf="@+id/IDMissedTrap">
+        app:layout_constraintTop_toTopOf="@+id/IDTrapMissed">
 
         <ImageButton
             android:id="@+id/notMissedTrapButton"
@@ -83,7 +83,7 @@
         app:layout_constraintTop_toTopOf="@+id/MissedTrapToggle" />
 
     <TextView
-        android:id="@+id/IDMissedTrap"
+        android:id="@+id/IDTrapMissed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -91,11 +91,11 @@
         android:text="@string/Missed"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/button_text_size"
-        app:layout_constraintStart_toStartOf="@+id/IDScoredTrap"
-        app:layout_constraintTop_toBottomOf="@+id/IDScoredTrap" />
+        app:layout_constraintStart_toStartOf="@+id/IDTrapScored"
+        app:layout_constraintTop_toBottomOf="@+id/IDTrapScored" />
 
     <TextView
-        android:id="@+id/IDScoredTrap"
+        android:id="@+id/IDTrapScored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
@@ -114,9 +114,9 @@
         android:divider="?android:attr/dividerHorizontal"
         android:orientation="horizontal"
         android:showDividers="middle"
-        app:layout_constraintBottom_toBottomOf="@+id/IDScoredTrap"
-        app:layout_constraintStart_toEndOf="@+id/IDScoredTrap"
-        app:layout_constraintTop_toTopOf="@+id/IDScoredTrap">
+        app:layout_constraintBottom_toBottomOf="@+id/IDTrapScored"
+        app:layout_constraintStart_toEndOf="@+id/IDTrapScored"
+        app:layout_constraintTop_toTopOf="@+id/IDTrapScored">
 
         <ImageButton
             android:id="@+id/notScoredTrapButton"
@@ -167,7 +167,7 @@
         android:textColor="@drawable/subead_states"
         android:textSize="@dimen/subheader_text_size"
         app:layout_constraintStart_toStartOf="@+id/onstageSwitch"
-        app:layout_constraintTop_toBottomOf="@+id/rungTabs" />
+        app:layout_constraintTop_toBottomOf="@+id/stageTabs" />
 
     <TextView
         android:id="@+id/IDStageZone"
@@ -182,14 +182,14 @@
         app:layout_constraintTop_toBottomOf="@+id/IDEndgameDirections" />
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/rungTabs"
+        android:id="@+id/stageTabs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@color/bg_general"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDClimbRungDirections"
+        app:layout_constraintTop_toBottomOf="@+id/IDOnstageDirections"
         app:tabBackground="@drawable/button_states"
         app:tabIndicatorColor="@color/rust"
         app:tabTextColor="@color/ice">
@@ -244,7 +244,7 @@
         app:layout_constraintTop_toBottomOf="@+id/IDEndgame" />
 
     <TextView
-        android:id="@+id/IDEndgameDirections2"
+        android:id="@+id/IDStageZoneDirections"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -256,7 +256,7 @@
         app:layout_constraintTop_toBottomOf="@+id/IDStageZone" />
 
     <TextView
-        android:id="@+id/IDClimbRungDirections"
+        android:id="@+id/IDOnstageDirections"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -270,7 +270,7 @@
         app:layout_constraintTop_toBottomOf="@+id/onstageSwitch" />
 
     <TextView
-        android:id="@+id/IDClimbed"
+        android:id="@+id/IDOnstage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -283,20 +283,7 @@
         app:layout_constraintTop_toTopOf="@+id/onstageSwitch" />
 
     <TextView
-        android:id="@+id/IDClimbed4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:fontFamily="@font/open_sans"
-        android:text="@string/Onstage"
-        android:textColor="@drawable/text_states"
-        android:textSize="@dimen/label_text_size"
-        app:layout_constraintBottom_toBottomOf="@+id/onstageSwitch"
-        app:layout_constraintStart_toEndOf="@+id/onstageSwitch"
-        app:layout_constraintTop_toTopOf="@+id/onstageSwitch" />
-
-    <TextView
-        android:id="@+id/IDClimbed2"
+        android:id="@+id/IDPark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -331,8 +318,8 @@
         android:textColor="@drawable/text_states"
         android:thumb="@drawable/thumb_states"
         android:track="@drawable/track_states"
-        app:layout_constraintStart_toStartOf="@+id/IDEndgameDirections2"
-        app:layout_constraintTop_toBottomOf="@+id/IDEndgameDirections2" />
+        app:layout_constraintStart_toStartOf="@+id/IDStageZoneDirections"
+        app:layout_constraintTop_toBottomOf="@+id/IDStageZoneDirections" />
 
     <Button
         android:id="@+id/GenerateQRButton"

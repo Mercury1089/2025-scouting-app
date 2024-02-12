@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
@@ -26,33 +27,47 @@ import com.google.zxing.common.BitMatrix;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 import com.mercury1089.scoutingapp2019.utils.QRStringBuilder;
 
-public class Climb extends Fragment {
+import org.w3c.dom.Text;
+
+public class Stage extends Fragment {
     //HashMaps for sending QR data between screens
     private LinkedHashMap<String, String> setupHashMap;
     private LinkedHashMap<String, String> climbHashMap;
 
     //Buttons
+    private ImageButton scoredTrapButton;
+    private ImageButton notScoredTrapButton;
+    private ImageButton missedTrapButton;
+    private ImageButton notMissedTrapButton;
     private Button generateQRButton;
 
     //Switches
-    private Switch climbedSwitch;
+    private Switch parkSwitch;
+    private Switch onstageSwitch;
 
     //TextViews
     private TextView endgameID;
     private TextView endgameDirections;
-    private TextView climbedID;
-    private TextView climbRungDirections;
+    private TextView parkID;
+    private TextView onstageDirections;
+    private TextView onstageID;
+    private TextView trapScoringID;
+    private TextView trapScoringDirections;
+    private TextView trapScoredID;
+    private TextView trapMissedID;
+    private TextView trapScoredCounter;
+    private TextView trapMissedCounter;
 
     //Containers
-    private TabLayout rungTabs;
+    private TabLayout stageTabs;
 
     //other variables
     private ProgressDialog progressDialog;
     private Dialog loading_alert;
     public final static int QRCodeSize = 500;
 
-    public static Climb newInstance() {
-        Climb fragment = new Climb();
+    public static Stage newInstance() {
+        Stage fragment = new Stage();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -72,35 +87,50 @@ public class Climb extends Fragment {
         endgameID = getView().findViewById(R.id.IDEndgame);
         endgameDirections = getView().findViewById(R.id.IDEndgameDirections);
 
-        climbedID = getView().findViewById(R.id.IDClimbed);
-        climbedSwitch = getView().findViewById(R.id.onstageSwitch);
-        climbRungDirections = getView().findViewById(R.id.IDClimbRungDirections);
+        parkID = getView().findViewById(R.id.IDPark);
+        parkSwitch = getView().findViewById(R.id.parkSwitch);
+
+        onstageID = getView().findViewById(R.id.IDOnstage);
+        onstageSwitch = getView().findViewById(R.id.onstageSwitch);
+        onstageDirections = getView().findViewById(R.id.IDOnstageDirections);
+        stageTabs = getView().findViewById(R.id.stageTabs);
+
+        trapScoringID = getView().findViewById(R.id.IDTrapScoring);
+        trapScoredID = getView().findViewById(R.id.IDTrapScored);
+        trapScoredCounter = getView().findViewById(R.id.scoredTrapCounter);
+        trapMissedID = getView().findViewById(R.id.IDTrapMissed);
+        trapMissedCounter = getView().findViewById(R.id.missedTrapCounter);
+
+        scoredTrapButton = getView().findViewById(R.id.scoredTrapButton);
+        notScoredTrapButton = getView().findViewById(R.id.notScoredTrapButton);
+        missedTrapButton = getView().findViewById(R.id.missedTrapButton);
+        notMissedTrapButton = getView().findViewById(R.id.notMissedTrapButton);
 
         generateQRButton = getView().findViewById(R.id.GenerateQRButton);
-        rungTabs = getView().findViewById(R.id.rungTabs);
+
         //Removes tab indicator because climb switch starts out as null
-        rungTabs.setSelectedTabIndicator(null);
+        stageTabs.setSelectedTabIndicator(null);
 
         //set listeners for buttons
-        climbedSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+        onstageSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 climbHashMap.put("Climbed", isChecked ? "1" : "0");
                 //Default option for rung is LOW
                 if (isChecked) {
                     //Sets tab indicator to built-in default
-                    rungTabs.setSelectedTabIndicator(R.drawable.mtrl_tabs_default_indicator);
-                    rungTabs.getTabAt(0).select();
+                    stageTabs.setSelectedTabIndicator(R.drawable.mtrl_tabs_default_indicator);
+                    stageTabs.getTabAt(0).select();
                     climbHashMap.put("Rung", "L");
                 } else {
                     //Removes tab indicator
-                    rungTabs.setSelectedTabIndicator(null);
+                    stageTabs.setSelectedTabIndicator(null);
 
                 }
                 updateXMLObjects();
             }
         });
 
-        rungTabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        stageTabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 String text = (String) tab.getText();
@@ -146,7 +176,7 @@ public class Climb extends Fragment {
                         HashMapManager.putSetupHashMap(setupHashMap);
                         HashMapManager.putClimbHashMap(climbHashMap);
 
-                        Climb.QRRunnable qrRunnable = new Climb.QRRunnable();
+                        Stage.QRRunnable qrRunnable = new Stage.QRRunnable();
                         new Thread(qrRunnable).start();
                         dialog.dismiss();
                     }
@@ -165,7 +195,7 @@ public class Climb extends Fragment {
     private void rungTabsEnabledState(boolean enable) {
         if (!enable)
             climbHashMap.put("Rung", "0");
-        LinearLayout tabStrip = ((LinearLayout)rungTabs.getChildAt(0));
+        LinearLayout tabStrip = ((LinearLayout) stageTabs.getChildAt(0));
         tabStrip.setEnabled(enable);
         for(int i = 0; i < tabStrip.getChildCount(); i++) {
             tabStrip.getChildAt(i).setEnabled(enable);
@@ -174,7 +204,7 @@ public class Climb extends Fragment {
     }
 
     private void climbButtonsEnabledState(boolean enable) {
-        climbRungDirections.setEnabled(enable);
+        onstageDirections.setEnabled(enable);
         //Always want the climbed switch and "climb" text next to switch to be enabled unless fell over/died is checked
         rungTabsEnabledState(enable);
     }
@@ -185,14 +215,14 @@ public class Climb extends Fragment {
         //Directions below title
         endgameDirections.setEnabled(enable);
         //Switch
-        climbedSwitch.setEnabled(enable);
-        climbedID.setEnabled(enable);
+        onstageSwitch.setEnabled(enable);
+        onstageID.setEnabled(enable);
     }
 
     private void updateXMLObjects() {
         if (setupHashMap.get("FellOver").equals("1")) {
             climbButtonsEnabledState(false);
-            climbedSwitch.setChecked(false);
+            onstageSwitch.setChecked(false);
             climbHashMap.put("Rung", "0");
             climbedSwitchEnabledState(false);
         } else if (setupHashMap.get("FellOver").equals("0")) {
@@ -202,10 +232,10 @@ public class Climb extends Fragment {
 
         if (climbHashMap.get("Climbed").equals("0")) {
             climbHashMap.put("Rung", "0");
-            climbedSwitch.setChecked(false);
+            onstageSwitch.setChecked(false);
             climbButtonsEnabledState(false);
         } else if (climbHashMap.get("Climbed").equals("1")) {
-            climbedSwitch.setChecked(true);
+            onstageSwitch.setChecked(true);
             climbButtonsEnabledState(true);
         }
 

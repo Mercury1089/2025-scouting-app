@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/Climb"
-        android:name="com.mercury1089.scoutingapp2019.Climb"
+        android:name="com.mercury1089.scoutingapp2019.Stage"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
