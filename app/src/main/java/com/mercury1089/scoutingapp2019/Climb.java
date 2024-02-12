@@ -3,11 +3,8 @@ package com.mercury1089.scoutingapp2019;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +73,7 @@ public class Climb extends Fragment {
         endgameDirections = getView().findViewById(R.id.IDEndgameDirections);
 
         climbedID = getView().findViewById(R.id.IDClimbed);
-        climbedSwitch = getView().findViewById(R.id.ClimbedSwitch);
+        climbedSwitch = getView().findViewById(R.id.onstageSwitch);
         climbRungDirections = getView().findViewById(R.id.IDClimbRungDirections);
 
         generateQRButton = getView().findViewById(R.id.GenerateQRButton);

@@ -144,16 +144,16 @@ public class Auton extends Fragment {
         IDMissedSpeaker = getView().findViewById(R.id.IDMissedSpeaker);
         IDMissedAmp = getView().findViewById(R.id.IDMissedAmp);
 
-        scoredSpeakerButton = getView().findViewById(R.id.scoredSpeakerButton);
+        scoredSpeakerButton = getView().findViewById(R.id.scoredTrapButton);
         scoredAmpButton = getView().findViewById(R.id.scoredAmpButton);
-        notScoredSpeakerButton = getView().findViewById(R.id.notScoredSpeakerButton);
+        notScoredSpeakerButton = getView().findViewById(R.id.notScoredTrapButton);
         notScoredAmpButton = getView().findViewById(R.id.notScoredAmpButton);
         scoredSpeakerCounter = getView().findViewById(R.id.scoredSpeakerCounter);
         scoredAmpCounter = getView().findViewById(R.id.scoredAmpCounter);
 
-        missedSpeakerButton = getView().findViewById(R.id.missedSpeakerButton);
+        missedSpeakerButton = getView().findViewById(R.id.missedTrapButton);
         missedAmpButton = getView().findViewById(R.id.missedAmpButton);
-        notMissedSpeakerButton = getView().findViewById(R.id.notMissedSpeakerButton);
+        notMissedSpeakerButton = getView().findViewById(R.id.notMissedTrapButton);
         notMissedAmpButton = getView().findViewById(R.id.notMissedAmpButton);
         missedSpeakerCounter = getView().findViewById(R.id.missedSpeakerCounter);
         missedAmpCounter = getView().findViewById(R.id.missedAmpCounter);

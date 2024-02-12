@@ -18,14 +18,14 @@
         <string name="MiscTitle">MISC</string>
         <string name="ControlPanelTitle">CONTROL PANEL</string>
         <string name="ClimbTitle">CLIMB</string>
-        <string name="EndGameTitle">CLIMBING/TRAVERSING</string>
+        <string name="EndGameTitle">POST MATCH</string>
         <string name="QRCodeTitle">DID YOU SCAN YOUR QR CODE?</string>
 
     <!-- Tabs -->
         <string name="Setup">Setup</string>
         <string name="Auton">Auton</string>
         <string name="Teleop">Teleop</string>
-        <string name="Climb">Climb</string>
+        <string name="Stage">Stage</string>
 
 
 <!-- PregameActivity -->
@@ -101,15 +101,17 @@
         <string name="FellOverOrDied">Fell over/Died</string>
         <string name="ClimbNext">NEXT: STAGE ZONE AND QR</string>
 
-    <!-- Climb -->
-        <string name="EndgameDirections">Tap on the toggle to mark if the action occurs.</string>
-        <string name="ClimbRungDirections">Which rung is the robot contacting? If they\'re touching more than one, select the LOWEST rung.</string>
-        <string name="Climbed">Climbed</string>
-        <string name="LowRung">LOW</string>
-        <string name="MidRung">MID</string>
-        <string name="HighRung">HIGH</string>
-        <string name="TraversalRung">TRAVERSAL</string>
-
+    <!-- Stage -->
+        <string name="EndgameDirections">Do not complete this screen until >5 seconds after the buzzer</string>
+        <string name="StageZoneHeader">STAGE ZONE</string>
+        <string name="OnstageDirections">What side of the stage is the robot hanging on?</string>
+        <string name="Park">Park</string>
+        <string name="Onstage">Onstage (Hanging from the chain, off the floor)</string>
+        <string name="LeftStage">LEFT</string>
+        <string name="CenterStage">CENTER</string>
+        <string name="RightStage">RIGHT</string>
+        <string name="TrapScoringHeader">TRAP SCORING</string>
+        <string name="TrapScoringDirections">Tap the + and - buttons to record scored/missed notes.</string>
 
 <!-- Display Popups -->
     <!-- Loading -->

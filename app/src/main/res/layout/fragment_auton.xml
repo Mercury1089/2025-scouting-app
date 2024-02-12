@@ -102,9 +102,9 @@
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/instruction_text_size"
-        app:layout_constraintBottom_toBottomOf="@id/ScoredUpperToggle"
-        app:layout_constraintStart_toEndOf="@id/ScoredUpperToggle"
-        app:layout_constraintTop_toTopOf="@id/ScoredUpperToggle" />
+        app:layout_constraintBottom_toBottomOf="@id/ScoredTrapToggle"
+        app:layout_constraintStart_toEndOf="@id/ScoredTrapToggle"
+        app:layout_constraintTop_toTopOf="@id/ScoredTrapToggle" />
 
     <RadioGroup
         android:id="@+id/ScoredLowerToggle"
@@ -154,13 +154,13 @@
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/instruction_text_size"
-        app:layout_constraintBottom_toBottomOf="@+id/MissedUpperToggle"
-        app:layout_constraintStart_toEndOf="@+id/MissedUpperToggle"
-        app:layout_constraintTop_toTopOf="@+id/MissedUpperToggle"
+        app:layout_constraintBottom_toBottomOf="@+id/MissedTrapToggle"
+        app:layout_constraintStart_toEndOf="@+id/MissedTrapToggle"
+        app:layout_constraintTop_toTopOf="@+id/MissedTrapToggle"
         app:layout_constraintVertical_bias="0.50" />
 
     <RadioGroup
-        android:id="@+id/ScoredUpperToggle"
+        android:id="@+id/ScoredTrapToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -173,7 +173,7 @@
         app:layout_constraintVertical_bias="0.5">
 
         <ImageButton
-            android:id="@+id/notScoredSpeakerButton"
+            android:id="@+id/notScoredTrapButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="wrap_content"
             android:background="@drawable/toggle_left_states"
@@ -184,7 +184,7 @@
             tools:ignore="ContentDescription" />
 
         <ImageButton
-            android:id="@+id/scoredSpeakerButton"
+            android:id="@+id/scoredTrapButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="@dimen/square_toggle_length"
             android:layout_weight="1"
@@ -196,7 +196,7 @@
     </RadioGroup>
 
     <RadioGroup
-        android:id="@+id/MissedUpperToggle"
+        android:id="@+id/MissedTrapToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
@@ -210,7 +210,7 @@
 ">
 
         <ImageButton
-            android:id="@+id/notMissedSpeakerButton"
+            android:id="@+id/notMissedTrapButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="wrap_content"
             android:background="@drawable/toggle_left_states"
@@ -221,7 +221,7 @@
             tools:ignore="ContentDescription" />
 
         <ImageButton
-            android:id="@+id/missedSpeakerButton"
+            android:id="@+id/missedTrapButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="@dimen/square_toggle_length"
             android:layout_weight="1"
@@ -429,7 +429,7 @@
         android:textColor="@drawable/header_states"
         android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDPossession"
-        app:layout_constraintTop_toBottomOf="@+id/MissedUpperToggle" />
+        app:layout_constraintTop_toBottomOf="@+id/MissedTrapToggle" />
 
     <TextView
         android:id="@+id/IDMiscDirections"
@@ -514,7 +514,6 @@
         android:id="@+id/IDScoredSpeaker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:layout_marginTop="28dp"
         android:fontFamily="@font/open_sans"
         android:text="@string/Scored"
@@ -550,13 +549,12 @@
         android:id="@+id/IDSpeaker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/Speaker"
         android:textColor="@drawable/subead_states"
         android:textSize="@dimen/subheader_text_size"
-        app:layout_constraintStart_toStartOf="@+id/leftEdgeBar"
+        app:layout_constraintStart_toStartOf="@+id/IDScoringDirections"
         app:layout_constraintTop_toBottomOf="@+id/IDScoringDirections" />
 
     <TextView

@@ -101,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/toggle_right_states"
-            android:text="@string/Climb"
+            android:text="@string/Stage"
             app:tabBackground="@drawable/toggle_right_states" />
     </com.google.android.material.tabs.TabLayout>
 

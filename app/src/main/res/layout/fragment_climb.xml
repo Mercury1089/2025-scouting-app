@@ -10,11 +10,182 @@
     tools:context=".MatchActivity"
     tools:ignore="ExtraText">
 
+    <TextView
+        android:id="@+id/scoredTrapCounter"
+        android:layout_width="38dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="10dp"
+        android:gravity="center"
+        android:paddingStart="5dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="4dp"
+        android:text="@string/DefaultValue"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/ScoredTrapToggle"
+        app:layout_constraintStart_toEndOf="@+id/ScoredTrapToggle"
+        app:layout_constraintTop_toTopOf="@+id/ScoredTrapToggle" />
+
+    <RadioGroup
+        android:id="@+id/MissedTrapToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:divider="?android:attr/dividerHorizontal"
+        android:orientation="horizontal"
+        android:showDividers="middle"
+        app:layout_constraintBottom_toBottomOf="@+id/IDMissedTrap"
+        app:layout_constraintStart_toStartOf="@+id/ScoredTrapToggle"
+        app:layout_constraintTop_toTopOf="@+id/IDMissedTrap">
+
+        <ImageButton
+            android:id="@+id/notMissedTrapButton"
+            android:layout_width="@dimen/square_toggle_length"
+            android:layout_height="wrap_content"
+            android:background="@drawable/toggle_left_states"
+            android:enabled="true"
+            android:fontFamily="@font/open_sans"
+            android:gravity="center"
+            android:src="@drawable/minus_states"
+            tools:ignore="ContentDescription"
+            tools:layout_editor_absoluteX="44dp"
+            tools:layout_editor_absoluteY="569dp" />
+
+        <ImageButton
+            android:id="@+id/missedTrapButton"
+            android:layout_width="@dimen/square_toggle_length"
+            android:layout_height="@dimen/square_toggle_length"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_right_states"
+            android:enabled="false"
+            android:gravity="center"
+            android:src="@drawable/plus_states"
+            tools:ignore="ContentDescription"
+            tools:layout_editor_absoluteX="105dp"
+            tools:layout_editor_absoluteY="569dp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/missedTrapCounter"
+        android:layout_width="38dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="10dp"
+        android:gravity="center"
+        android:paddingStart="5dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="4dp"
+        android:text="@string/DefaultValue"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/MissedTrapToggle"
+        app:layout_constraintStart_toEndOf="@+id/MissedTrapToggle"
+        app:layout_constraintTop_toTopOf="@+id/MissedTrapToggle" />
+
+    <TextView
+        android:id="@+id/IDMissedTrap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/Missed"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/button_text_size"
+        app:layout_constraintStart_toStartOf="@+id/IDScoredTrap"
+        app:layout_constraintTop_toBottomOf="@+id/IDScoredTrap" />
+
+    <TextView
+        android:id="@+id/IDScoredTrap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/Scored"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/button_text_size"
+        app:layout_constraintStart_toStartOf="@+id/IDTrapDirections"
+        app:layout_constraintTop_toBottomOf="@+id/IDTrapDirections" />
+
+    <RadioGroup
+        android:id="@+id/ScoredTrapToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:divider="?android:attr/dividerHorizontal"
+        android:orientation="horizontal"
+        android:showDividers="middle"
+        app:layout_constraintBottom_toBottomOf="@+id/IDScoredTrap"
+        app:layout_constraintStart_toEndOf="@+id/IDScoredTrap"
+        app:layout_constraintTop_toTopOf="@+id/IDScoredTrap">
+
+        <ImageButton
+            android:id="@+id/notScoredTrapButton"
+            android:layout_width="@dimen/square_toggle_length"
+            android:layout_height="wrap_content"
+            android:background="@drawable/toggle_left_states"
+            android:enabled="true"
+            android:fontFamily="@font/open_sans"
+            android:gravity="center"
+            android:src="@drawable/minus_states"
+            tools:ignore="ContentDescription"
+            tools:layout_editor_absoluteX="44dp"
+            tools:layout_editor_absoluteY="569dp" />
+
+        <ImageButton
+            android:id="@+id/scoredTrapButton"
+            android:layout_width="@dimen/square_toggle_length"
+            android:layout_height="@dimen/square_toggle_length"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_right_states"
+            android:enabled="false"
+            android:gravity="center"
+            android:src="@drawable/plus_states"
+            tools:ignore="ContentDescription"
+            tools:layout_editor_absoluteX="105dp"
+            tools:layout_editor_absoluteY="569dp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/IDTrapDirections"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/open_sans_italic"
+        android:text="@string/TrapScoringDirections"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintStart_toStartOf="@+id/IDTrapScoring"
+        app:layout_constraintTop_toBottomOf="@+id/IDTrapScoring" />
+
+    <TextView
+        android:id="@+id/IDTrapScoring"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/futura_medium_condensed_bt"
+        android:text="@string/TrapScoringHeader"
+        android:textColor="@drawable/subead_states"
+        android:textSize="@dimen/subheader_text_size"
+        app:layout_constraintStart_toStartOf="@+id/onstageSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/rungTabs" />
+
+    <TextView
+        android:id="@+id/IDStageZone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/futura_medium_condensed_bt"
+        android:text="@string/StageZoneHeader"
+        android:textColor="@drawable/subead_states"
+        android:textSize="@dimen/subheader_text_size"
+        app:layout_constraintStart_toStartOf="@+id/IDEndgameDirections"
+        app:layout_constraintTop_toBottomOf="@+id/IDEndgameDirections" />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/rungTabs"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         android:background="@color/bg_general"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,32 +196,27 @@
 
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/lowRungTab"
+            android:id="@+id/leftStageTab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/toggle_left_states"
-            android:text="@string/LowRung"
+            android:text="@string/LeftStage"
             app:tabBackground="@drawable/toggle_left_states" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/midRungTab"
+            android:id="@+id/centerStageTab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/MidRung" />
+            android:text="@string/CenterStage" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/highRungTab"
+            android:id="@+id/rightStageTab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/toggle_right_states"
-            android:text="@string/HighRung"
+            android:text="@string/RightStage"
             app:tabBackground="@drawable/toggle_right_states" />
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/traversalRungTab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/TraversalRung" />
     </com.google.android.material.tabs.TabLayout>
 
     <TextView
@@ -74,23 +240,34 @@
         android:text="@string/EndgameDirections"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/instruction_text_size"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IDEndgame" />
 
     <TextView
-        android:id="@+id/IDClimbRungDirections"
-        android:layout_width="463dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="24dp"
+        android:id="@+id/IDEndgameDirections2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_italic"
-        android:text="@string/ClimbRungDirections"
+        android:text="@string/EndgameDirections"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintStart_toStartOf="@+id/IDStageZone"
+        app:layout_constraintTop_toBottomOf="@+id/IDStageZone" />
+
+    <TextView
+        android:id="@+id/IDClimbRungDirections"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/open_sans_italic"
+        android:text="@string/OnstageDirections"
+        android:textColor="@color/text_disabled"
+        android:textSize="@dimen/instruction_text_size"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IDClimbed" />
+        app:layout_constraintTop_toBottomOf="@+id/onstageSwitch" />
 
     <TextView
         android:id="@+id/IDClimbed"
@@ -98,25 +275,64 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:fontFamily="@font/open_sans"
-        android:text="@string/Climbed"
+        android:text="@string/Onstage"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/label_text_size"
-        app:layout_constraintBottom_toBottomOf="@+id/ClimbedSwitch"
-        app:layout_constraintStart_toEndOf="@+id/ClimbedSwitch"
-        app:layout_constraintTop_toTopOf="@+id/ClimbedSwitch" />
+        app:layout_constraintBottom_toBottomOf="@+id/onstageSwitch"
+        app:layout_constraintStart_toEndOf="@+id/onstageSwitch"
+        app:layout_constraintTop_toTopOf="@+id/onstageSwitch" />
+
+    <TextView
+        android:id="@+id/IDClimbed4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/Onstage"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/onstageSwitch"
+        app:layout_constraintStart_toEndOf="@+id/onstageSwitch"
+        app:layout_constraintTop_toTopOf="@+id/onstageSwitch" />
+
+    <TextView
+        android:id="@+id/IDClimbed2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/Park"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/parkSwitch"
+        app:layout_constraintStart_toEndOf="@+id/parkSwitch"
+        app:layout_constraintTop_toTopOf="@+id/parkSwitch" />
 
     <Switch
-        android:id="@+id/ClimbedSwitch"
+        android:id="@+id/onstageSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:textColor="@drawable/text_states"
         android:thumb="@drawable/thumb_states"
         android:track="@drawable/track_states"
-        app:layout_constraintStart_toStartOf="@+id/IDEndgameDirections"
-        app:layout_constraintTop_toBottomOf="@+id/IDEndgameDirections" />
+        app:layout_constraintStart_toStartOf="@+id/parkSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/parkSwitch" />
+
+    <Switch
+        android:id="@+id/parkSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textColor="@drawable/text_states"
+        android:thumb="@drawable/thumb_states"
+        android:track="@drawable/track_states"
+        app:layout_constraintStart_toStartOf="@+id/IDEndgameDirections2"
+        app:layout_constraintTop_toBottomOf="@+id/IDEndgameDirections2" />
 
     <Button
         android:id="@+id/GenerateQRButton"

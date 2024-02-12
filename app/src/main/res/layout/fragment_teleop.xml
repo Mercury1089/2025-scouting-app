@@ -166,9 +166,9 @@
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/instruction_text_size"
-        app:layout_constraintBottom_toBottomOf="@id/ScoredUpperToggle"
-        app:layout_constraintStart_toEndOf="@id/ScoredUpperToggle"
-        app:layout_constraintTop_toTopOf="@id/ScoredUpperToggle" />
+        app:layout_constraintBottom_toBottomOf="@id/ScoredTrapToggle"
+        app:layout_constraintStart_toEndOf="@id/ScoredTrapToggle"
+        app:layout_constraintTop_toTopOf="@id/ScoredTrapToggle" />
 
     <TextView
         android:id="@+id/missedSpeakerCounter"
@@ -183,12 +183,12 @@
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/instruction_text_size"
-        app:layout_constraintBottom_toBottomOf="@+id/MissedUpperToggle"
-        app:layout_constraintStart_toEndOf="@+id/MissedUpperToggle"
-        app:layout_constraintTop_toTopOf="@+id/MissedUpperToggle" />
+        app:layout_constraintBottom_toBottomOf="@+id/MissedTrapToggle"
+        app:layout_constraintStart_toEndOf="@+id/MissedTrapToggle"
+        app:layout_constraintTop_toTopOf="@+id/MissedTrapToggle" />
 
     <RadioGroup
-        android:id="@+id/ScoredUpperToggle"
+        android:id="@+id/ScoredTrapToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -200,7 +200,7 @@
         app:layout_constraintTop_toTopOf="@+id/IDScoredSpeaker">
 
         <ImageButton
-            android:id="@+id/notScoredSpeakerButton"
+            android:id="@+id/notScoredTrapButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="wrap_content"
             android:background="@drawable/toggle_left_states"
@@ -211,7 +211,7 @@
             tools:ignore="ContentDescription" />
 
         <ImageButton
-            android:id="@+id/scoredSpeakerButton"
+            android:id="@+id/scoredTrapButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="@dimen/square_toggle_length"
             android:layout_weight="1"
@@ -223,7 +223,7 @@
     </RadioGroup>
 
     <RadioGroup
-        android:id="@+id/MissedUpperToggle"
+        android:id="@+id/MissedTrapToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="23dp"
@@ -235,7 +235,7 @@
         app:layout_constraintTop_toTopOf="@+id/IDMissedSpeaker">
 
         <ImageButton
-            android:id="@+id/notMissedSpeakerButton"
+            android:id="@+id/notMissedTrapButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="wrap_content"
             android:background="@drawable/toggle_left_states"
@@ -246,7 +246,7 @@
             tools:ignore="ContentDescription" />
 
         <ImageButton
-            android:id="@+id/missedSpeakerButton"
+            android:id="@+id/missedTrapButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="@dimen/square_toggle_length"
             android:layout_weight="1"
@@ -434,7 +434,7 @@
         android:textColor="@drawable/header_states"
         android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDScoring"
-        app:layout_constraintTop_toBottomOf="@+id/MissedUpperToggle" />
+        app:layout_constraintTop_toBottomOf="@+id/MissedTrapToggle" />
 
     <Switch
         android:id="@+id/FellOverSwitch"
