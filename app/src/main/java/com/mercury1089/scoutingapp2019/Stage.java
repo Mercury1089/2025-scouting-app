@@ -48,6 +48,8 @@ public class Stage extends Fragment {
     //TextViews
     private TextView endgameID;
     private TextView endgameDirections;
+    private TextView stageZoneID;
+    private TextView stageZoneDirections;
     private TextView parkID;
     private TextView onstageDirections;
     private TextView onstageID;
@@ -86,6 +88,8 @@ public class Stage extends Fragment {
         //linking variables to XML elements on the screen
         endgameID = getView().findViewById(R.id.IDEndgame);
         endgameDirections = getView().findViewById(R.id.IDEndgameDirections);
+        stageZoneID = getView().findViewById(R.id.IDStageZone);
+        stageZoneDirections = getView().findViewById(R.id.IDStageZoneDirections)
 
         parkID = getView().findViewById(R.id.IDPark);
         parkSwitch = getView().findViewById(R.id.parkSwitch);
@@ -114,13 +118,13 @@ public class Stage extends Fragment {
         //set listeners for buttons
         onstageSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                climbHashMap.put("Climbed", isChecked ? "1" : "0");
+                climbHashMap.put("Onstage", isChecked ? "1" : "0");
                 //Default option for rung is LOW
                 if (isChecked) {
                     //Sets tab indicator to built-in default
                     stageTabs.setSelectedTabIndicator(R.drawable.mtrl_tabs_default_indicator);
                     stageTabs.getTabAt(0).select();
-                    climbHashMap.put("Rung", "L");
+                    climbHashMap.put("Stage", "L");
                 } else {
                     //Removes tab indicator
                     stageTabs.setSelectedTabIndicator(null);
@@ -134,17 +138,15 @@ public class Stage extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 String text = (String) tab.getText();
-                if (text.equals("LOW"))
-                    climbHashMap.put("Rung", "L");
-                else if (text.equals("MID"))
-                    climbHashMap.put("Rung", "M");
-                else if (text.equals("HIGH"))
-                    climbHashMap.put("Rung", "H");
-                else if (text.equals("TRAVERSAL"))
-                    climbHashMap.put("Rung", "T");
+                if (text.equals(getResources().getString(R.string.LeftStage)))
+                    climbHashMap.put("Stage", "L");
+                else if (text.equals(getResources().getString(R.string.CenterStage)))
+                    climbHashMap.put("Stage", "C");
+                else if (text.equals(getResources().getString(R.string.RightStage)))
+                    climbHashMap.put("Stage", "R");
             }
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) { climbHashMap.put("Rung", "0"); }
+            public void onTabUnselected(TabLayout.Tab tab) { climbHashMap.put("Stage", "N"); }
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
@@ -192,9 +194,9 @@ public class Stage extends Fragment {
         });
     }
 
-    private void rungTabsEnabledState(boolean enable) {
+    private void onstageTabsEnabledState(boolean enable) {
         if (!enable)
-            climbHashMap.put("Rung", "0");
+            climbHashMap.put("Stage", "N");
         LinearLayout tabStrip = ((LinearLayout) stageTabs.getChildAt(0));
         tabStrip.setEnabled(enable);
         for(int i = 0; i < tabStrip.getChildCount(); i++) {
@@ -203,40 +205,45 @@ public class Stage extends Fragment {
         }
     }
 
-    private void climbButtonsEnabledState(boolean enable) {
+    private void onstageButtonsEnabledState(boolean enable) {
         onstageDirections.setEnabled(enable);
         //Always want the climbed switch and "climb" text next to switch to be enabled unless fell over/died is checked
-        rungTabsEnabledState(enable);
+        onstageTabsEnabledState(enable);
     }
 
-    private void climbedSwitchEnabledState(boolean enable) {
+    private void stageZoneEnabledState(boolean enable) {
         //"Climbing/Traversing" title
         endgameID.setEnabled(enable);
         //Directions below title
         endgameDirections.setEnabled(enable);
+        stageZoneID.setEnabled(enable);
+        stageZoneDirections.setEnabled(enable);
+
         //Switch
+        parkSwitch.setEnabled(enable);
+        parkID.setEnabled(enable);
         onstageSwitch.setEnabled(enable);
         onstageID.setEnabled(enable);
     }
 
     private void updateXMLObjects() {
         if (setupHashMap.get("FellOver").equals("1")) {
-            climbButtonsEnabledState(false);
+            onstageButtonsEnabledState(false);
             onstageSwitch.setChecked(false);
             climbHashMap.put("Rung", "0");
-            climbedSwitchEnabledState(false);
+            stageZoneEnabledState(false);
         } else if (setupHashMap.get("FellOver").equals("0")) {
-            climbButtonsEnabledState(true);
-            climbedSwitchEnabledState(true);
+            onstageButtonsEnabledState(true);
+            stageZoneEnabledState(true);
         }
 
         if (climbHashMap.get("Climbed").equals("0")) {
             climbHashMap.put("Rung", "0");
             onstageSwitch.setChecked(false);
-            climbButtonsEnabledState(false);
+            onstageButtonsEnabledState(false);
         } else if (climbHashMap.get("Climbed").equals("1")) {
             onstageSwitch.setChecked(true);
-            climbButtonsEnabledState(true);
+            onstageButtonsEnabledState(true);
         }
 
     }
