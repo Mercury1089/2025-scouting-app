@@ -263,10 +263,10 @@ public class Stage extends Fragment {
     }
 
     private void stageZoneEnabledState(boolean enable) {
-        // "Post Match" title
+        // "Post Match" title and directions
         endgameID.setEnabled(enable);
-        // Text views
         endgameDirections.setEnabled(enable);
+        // Other TextViews
         stageZoneID.setEnabled(enable);
         stageZoneDirections.setEnabled(enable);
         onstageDirections.setEnabled(enable);
@@ -278,6 +278,10 @@ public class Stage extends Fragment {
     }
 
     private void updateXMLObjects() {
+        // Update counters
+        trapScoredCounter.setText(GenUtils.padLeftZeros(climbHashMap.get("ScoredTrap"), 3));
+        trapMissedCounter.setText(GenUtils.padLeftZeros(climbHashMap.get("MissedTrap"), 3));
+
         if (setupHashMap.get("FellOver").equals("1")) {
             stageButtonsEnabledState(false);
             onstageSwitch.setChecked(false);
@@ -290,10 +294,13 @@ public class Stage extends Fragment {
         if (climbHashMap.get("Onstage").equals("0")) {
             climbHashMap.put("Stage", "N");
             onstageSwitch.setChecked(false);
-            stageButtonsEnabledState(false);
+            onstageTabsEnabledState(false);
         } else if (climbHashMap.get("Onstage").equals("1")) {
+            // If robot is onstage, they cannot be parked
+            parkSwitch.setChecked(false);
+            climbHashMap.put("Park", "Y");
             onstageSwitch.setChecked(true);
-            stageButtonsEnabledState(true);
+            onstageTabsEnabledState(true);
         }
 
         if (Integer.parseInt((String) trapScoredCounter.getText()) <= 0)

@@ -352,7 +352,7 @@ public class Auton extends Fragment {
             public void onClick(View view) {
                 int currentCount = Integer.parseInt((String) scoredSpeakerCounter.getText());
                 currentCount++;
-                autonHashMap.put("scoredSpeaker", String.valueOf(currentCount));
+                autonHashMap.put("ScoredSpeaker", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
@@ -363,7 +363,7 @@ public class Auton extends Fragment {
                 int currentCount = Integer.parseInt((String) scoredSpeakerCounter.getText());
                 if (currentCount > 0)
                     currentCount--;
-                autonHashMap.put("scoredSpeaker", String.valueOf(currentCount));
+                autonHashMap.put("ScoredSpeaker", String.valueOf(currentCount));
                 updateXMLObjects();
             }
         });
