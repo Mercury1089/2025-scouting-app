@@ -27,8 +27,6 @@ import com.google.zxing.common.BitMatrix;
 import com.mercury1089.scoutingapp2019.utils.GenUtils;
 import com.mercury1089.scoutingapp2019.utils.QRStringBuilder;
 
-import org.w3c.dom.Text;
-
 public class Stage extends Fragment {
     //HashMaps for sending QR data between screens
     private LinkedHashMap<String, String> setupHashMap;
@@ -89,7 +87,7 @@ public class Stage extends Fragment {
         endgameID = getView().findViewById(R.id.IDEndgame);
         endgameDirections = getView().findViewById(R.id.IDEndgameDirections);
         stageZoneID = getView().findViewById(R.id.IDStageZone);
-        stageZoneDirections = getView().findViewById(R.id.IDStageZoneDirections)
+        stageZoneDirections = getView().findViewById(R.id.IDStageZoneDirections);
 
         parkID = getView().findViewById(R.id.IDPark);
         parkSwitch = getView().findViewById(R.id.parkSwitch);
@@ -116,6 +114,15 @@ public class Stage extends Fragment {
         stageTabs.setSelectedTabIndicator(null);
 
         //set listeners for buttons
+
+        parkSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                climbHashMap.put("Park", isChecked ? "1" : "0");
+                updateXMLObjects();
+            }
+        });
+
         onstageSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 climbHashMap.put("Onstage", isChecked ? "1" : "0");
@@ -150,6 +157,48 @@ public class Stage extends Fragment {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
+            }
+        });
+
+        scoredTrapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int currentCount = Integer.parseInt((String) trapScoredCounter.getText());
+                currentCount++;
+                climbHashMap.put("ScoredTrap", String.valueOf(currentCount));
+                updateXMLObjects();
+            }
+        });
+
+        notScoredTrapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int currentCount = Integer.parseInt((String) trapScoredCounter.getText());
+                if (currentCount > 0)
+                    currentCount--;
+                climbHashMap.put("ScoredTrap", String.valueOf(currentCount));
+                updateXMLObjects();
+            }
+        });
+
+        missedTrapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int currentCount = Integer.parseInt((String) trapMissedCounter.getText());
+                currentCount++;
+                climbHashMap.put("MissedTrap", String.valueOf(currentCount));
+                updateXMLObjects();
+            }
+        });
+
+        notMissedTrapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int currentCount = Integer.parseInt((String) trapMissedCounter.getText());
+                if (currentCount > 0)
+                    currentCount--;
+                climbHashMap.put("MissedTrap", String.valueOf(currentCount));
+                updateXMLObjects();
             }
         });
 
@@ -205,49 +254,57 @@ public class Stage extends Fragment {
         }
     }
 
-    private void onstageButtonsEnabledState(boolean enable) {
-        onstageDirections.setEnabled(enable);
+    private void stageButtonsEnabledState(boolean enable) {
+        parkSwitch.setEnabled(enable);
+        onstageSwitch.setEnabled(enable);
+
         //Always want the climbed switch and "climb" text next to switch to be enabled unless fell over/died is checked
         onstageTabsEnabledState(enable);
     }
 
     private void stageZoneEnabledState(boolean enable) {
-        //"Climbing/Traversing" title
+        // "Post Match" title
         endgameID.setEnabled(enable);
-        //Directions below title
+        // Text views
         endgameDirections.setEnabled(enable);
         stageZoneID.setEnabled(enable);
         stageZoneDirections.setEnabled(enable);
-
-        //Switch
-        parkSwitch.setEnabled(enable);
+        onstageDirections.setEnabled(enable);
         parkID.setEnabled(enable);
-        onstageSwitch.setEnabled(enable);
         onstageID.setEnabled(enable);
+
+        // Buttons
+        stageButtonsEnabledState(enable);
     }
 
     private void updateXMLObjects() {
         if (setupHashMap.get("FellOver").equals("1")) {
-            onstageButtonsEnabledState(false);
+            stageButtonsEnabledState(false);
             onstageSwitch.setChecked(false);
-            climbHashMap.put("Rung", "0");
+            climbHashMap.put("Stage", "N");
             stageZoneEnabledState(false);
         } else if (setupHashMap.get("FellOver").equals("0")) {
-            onstageButtonsEnabledState(true);
             stageZoneEnabledState(true);
         }
 
-        if (climbHashMap.get("Climbed").equals("0")) {
-            climbHashMap.put("Rung", "0");
+        if (climbHashMap.get("Onstage").equals("0")) {
+            climbHashMap.put("Stage", "N");
             onstageSwitch.setChecked(false);
-            onstageButtonsEnabledState(false);
-        } else if (climbHashMap.get("Climbed").equals("1")) {
+            stageButtonsEnabledState(false);
+        } else if (climbHashMap.get("Onstage").equals("1")) {
             onstageSwitch.setChecked(true);
-            onstageButtonsEnabledState(true);
+            stageButtonsEnabledState(true);
         }
 
+        if (Integer.parseInt((String) trapScoredCounter.getText()) <= 0)
+            notScoredTrapButton.setEnabled(false);
+        else
+            notScoredTrapButton.setEnabled(true);
+        if (Integer.parseInt((String) trapMissedCounter.getText()) <= 0)
+            notMissedTrapButton.setEnabled(false);
+        else
+            notMissedTrapButton.setEnabled(true);
     }
-
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
