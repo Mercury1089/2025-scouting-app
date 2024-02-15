@@ -89,12 +89,12 @@ public class Teleop extends Fragment {
 
         scoringID = getView().findViewById(R.id.IDScoring);
         scoringDescription = getView().findViewById(R.id.IDScoringDirections);
-        scoredSpeakerButton = getView().findViewById(R.id.scoredTrapButton);
-        notScoredSpeakerButton = getView().findViewById(R.id.notScoredTrapButton);
+        scoredSpeakerButton = getView().findViewById(R.id.scoredSpeakerButton);
+        notScoredSpeakerButton = getView().findViewById(R.id.notScoredSpeakerButton);
         scoredAmpButton = getView().findViewById(R.id.scoredAmpButton);
         notScoredAmpButton = getView().findViewById(R.id.notScoredAmpButton);
-        missedSpeakerButton = getView().findViewById(R.id.missedTrapButton);
-        notMissedSpeakerButton = getView().findViewById(R.id.notMissedTrapButton);
+        missedSpeakerButton = getView().findViewById(R.id.missedSpeakerButton);
+        notMissedSpeakerButton = getView().findViewById(R.id.notMissedSpeakerButton);
         missedAmpButton = getView().findViewById(R.id.missedAmpButton);
         notMissedAmpButton = getView().findViewById(R.id.notMissedAmpButton);
         scoredSpeakerCounter = getView().findViewById(R.id.scoredSpeakerCounter);

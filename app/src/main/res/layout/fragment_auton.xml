@@ -102,9 +102,9 @@
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/instruction_text_size"
-        app:layout_constraintBottom_toBottomOf="@id/ScoredTrapToggle"
-        app:layout_constraintStart_toEndOf="@id/ScoredTrapToggle"
-        app:layout_constraintTop_toTopOf="@id/ScoredTrapToggle" />
+        app:layout_constraintBottom_toBottomOf="@id/ScoredSpeakerToggle"
+        app:layout_constraintStart_toEndOf="@id/ScoredSpeakerToggle"
+        app:layout_constraintTop_toTopOf="@id/ScoredSpeakerToggle" />
 
     <RadioGroup
         android:id="@+id/ScoredLowerToggle"
@@ -154,13 +154,13 @@
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/instruction_text_size"
-        app:layout_constraintBottom_toBottomOf="@+id/MissedTrapToggle"
-        app:layout_constraintStart_toEndOf="@+id/MissedTrapToggle"
-        app:layout_constraintTop_toTopOf="@+id/MissedTrapToggle"
+        app:layout_constraintBottom_toBottomOf="@+id/MissedSpeakerToggle"
+        app:layout_constraintStart_toEndOf="@+id/MissedSpeakerToggle"
+        app:layout_constraintTop_toTopOf="@+id/MissedSpeakerToggle"
         app:layout_constraintVertical_bias="0.50" />
 
     <RadioGroup
-        android:id="@+id/ScoredTrapToggle"
+        android:id="@+id/ScoredSpeakerToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -173,7 +173,7 @@
         app:layout_constraintVertical_bias="0.5">
 
         <ImageButton
-            android:id="@+id/notScoredTrapButton"
+            android:id="@+id/notScoredSpeakerButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="wrap_content"
             android:background="@drawable/toggle_left_states"
@@ -184,7 +184,7 @@
             tools:ignore="ContentDescription" />
 
         <ImageButton
-            android:id="@+id/scoredTrapButton"
+            android:id="@+id/scoredSpeakerButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="@dimen/square_toggle_length"
             android:layout_weight="1"
@@ -196,7 +196,7 @@
     </RadioGroup>
 
     <RadioGroup
-        android:id="@+id/MissedTrapToggle"
+        android:id="@+id/MissedSpeakerToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
@@ -210,7 +210,7 @@
 ">
 
         <ImageButton
-            android:id="@+id/notMissedTrapButton"
+            android:id="@+id/notMissedSpeakerButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="wrap_content"
             android:background="@drawable/toggle_left_states"
@@ -221,7 +221,7 @@
             tools:ignore="ContentDescription" />
 
         <ImageButton
-            android:id="@+id/missedTrapButton"
+            android:id="@+id/missedSpeakerButton"
             android:layout_width="@dimen/square_toggle_length"
             android:layout_height="@dimen/square_toggle_length"
             android:layout_weight="1"
@@ -266,7 +266,7 @@
         android:id="@+id/TeleopWarning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="684dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/teleop_warning"
         android:fontFamily="@font/open_sans"
         android:gravity="center"
@@ -274,24 +274,25 @@
         android:textColor="@color/bg_general"
         android:textSize="@dimen/label_text_size"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.566"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/IDAutonSeconds1"
+        app:layout_constraintEnd_toStartOf="@+id/rightEdgeBar"
+        app:layout_constraintStart_toEndOf="@+id/leftEdgeBar" />
 
     <TextView
         android:id="@+id/IDAutonSeconds1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
         android:layout_marginTop="740dp"
+        android:layout_marginBottom="10dp"
         android:drawableStart="@drawable/timer"
         android:drawablePadding="@dimen/drawable_padding"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/AutonSeconds"
         android:textColor="@color/sky"
         android:textSize="@dimen/instruction_text_size"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/NextTeleopButton"
+        app:layout_constraintEnd_toStartOf="@+id/rightEdgeBar"
+        app:layout_constraintStart_toEndOf="@+id/leftEdgeBar"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -374,7 +375,7 @@
         android:id="@+id/AutonSeconds"
         android:layout_width="35dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
+        android:layout_marginStart="10dp"
         android:gravity="center"
         android:text="@string/DefaultValue"
         android:textColor="@drawable/text_states"
@@ -429,7 +430,7 @@
         android:textColor="@drawable/header_states"
         android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDPossession"
-        app:layout_constraintTop_toBottomOf="@+id/MissedTrapToggle" />
+        app:layout_constraintTop_toBottomOf="@+id/MissedSpeakerToggle" />
 
     <TextView
         android:id="@+id/IDMiscDirections"
@@ -496,9 +497,9 @@
         android:id="@+id/NextTeleopButton"
         android:layout_width="0dp"
         android:layout_height="55dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/button_next_states"
         android:drawableEnd="@drawable/right_states"
         android:paddingStart="170dp"
@@ -506,9 +507,10 @@
         android:text="@string/TeleopNext"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/button_text_size"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/bottomEdgeBar"
+        app:layout_constraintEnd_toStartOf="@+id/rightEdgeBar"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/leftEdgeBar" />
 
     <TextView
         android:id="@+id/IDScoredSpeaker"
