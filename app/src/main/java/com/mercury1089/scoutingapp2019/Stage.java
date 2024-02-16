@@ -164,7 +164,9 @@ public class Stage extends Fragment {
             @Override
             public void onClick(View view) {
                 int currentCount = Integer.parseInt((String) trapScoredCounter.getText());
-                currentCount++;
+                // A robot cannot score more than 3 notes in their Traps (3 traps, 1 note per trap)
+                if (currentCount < 3)
+                    currentCount++;
                 climbHashMap.put("ScoredTrap", String.valueOf(currentCount));
                 updateXMLObjects();
             }
@@ -307,6 +309,11 @@ public class Stage extends Fragment {
             notScoredTrapButton.setEnabled(false);
         else
             notScoredTrapButton.setEnabled(true);
+        // A robot cannot score more than 3 notes in their Traps (3 traps, 1 note per trap)
+        if (Integer.parseInt((String) trapScoredCounter.getText()) >= 3)
+            scoredTrapButton.setEnabled(false);
+        else
+            scoredTrapButton.setEnabled(true);
         if (Integer.parseInt((String) trapMissedCounter.getText()) <= 0)
             notMissedTrapButton.setEnabled(false);
         else
