@@ -118,7 +118,7 @@ public class Stage extends Fragment {
         parkSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                climbHashMap.put("Park", isChecked ? "1" : "0");
+                climbHashMap.put("Park", isChecked ? "Y" : "N");
                 updateXMLObjects();
             }
         });
@@ -300,7 +300,7 @@ public class Stage extends Fragment {
         } else if (climbHashMap.get("Onstage").equals("1")) {
             // If robot is onstage, they cannot be parked
             parkSwitch.setChecked(false);
-            climbHashMap.put("Park", "Y");
+            climbHashMap.put("Park", "N");
             onstageSwitch.setChecked(true);
             onstageTabsEnabledState(true);
         }
