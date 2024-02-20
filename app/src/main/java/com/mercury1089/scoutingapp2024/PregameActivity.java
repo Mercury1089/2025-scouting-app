@@ -1,6 +1,6 @@
-package com.mercury1089.scoutingapp2019;
+package com.mercury1089.scoutingapp2024;
 
-import com.mercury1089.scoutingapp2019.utils.GenUtils;
+import com.mercury1089.scoutingapp2024.utils.GenUtils;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -12,7 +12,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -33,7 +32,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
-import com.mercury1089.scoutingapp2019.utils.QRStringBuilder;
+import com.mercury1089.scoutingapp2024.utils.QRStringBuilder;
 import java.util.LinkedHashMap;
 
 public class PregameActivity extends AppCompatActivity {

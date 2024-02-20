@@ -1,7 +1,7 @@
-package com.mercury1089.scoutingapp2019;
+package com.mercury1089.scoutingapp2024;
 
 import com.google.android.material.tabs.TabLayout;
-import com.mercury1089.scoutingapp2019.utils.GenUtils;
+import com.mercury1089.scoutingapp2024.utils.GenUtils;
 
 import android.app.Dialog;
 import android.content.Intent;

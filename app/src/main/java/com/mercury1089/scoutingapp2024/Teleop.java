@@ -1,4 +1,4 @@
-package com.mercury1089.scoutingapp2019;
+package com.mercury1089.scoutingapp2024;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.mercury1089.scoutingapp2019.utils.GenUtils;
+import com.mercury1089.scoutingapp2024.utils.GenUtils;
 import java.util.LinkedHashMap;
 
 public class Teleop extends Fragment {

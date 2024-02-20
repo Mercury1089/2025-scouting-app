@@ -1,4 +1,4 @@
-package com.mercury1089.scoutingapp2019.utils;
+package com.mercury1089.scoutingapp2024.utils;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
-import com.mercury1089.scoutingapp2019.R;
+import com.mercury1089.scoutingapp2024.R;
 
 
 public class CustomView extends View {

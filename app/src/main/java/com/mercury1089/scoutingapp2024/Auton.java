@@ -1,4 +1,4 @@
-package com.mercury1089.scoutingapp2019;
+package com.mercury1089.scoutingapp2024;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -24,7 +24,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import java.util.LinkedHashMap;
 import androidx.fragment.app.Fragment;
-import com.mercury1089.scoutingapp2019.utils.GenUtils;
+import com.mercury1089.scoutingapp2024.utils.GenUtils;
 
 public class Auton extends Fragment {
     //HashMaps for sending QR data between screens

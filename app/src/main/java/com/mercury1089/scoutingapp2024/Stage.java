@@ -1,4 +1,4 @@
-package com.mercury1089.scoutingapp2019;
+package com.mercury1089.scoutingapp2024;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -24,8 +24,8 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
-import com.mercury1089.scoutingapp2019.utils.GenUtils;
-import com.mercury1089.scoutingapp2019.utils.QRStringBuilder;
+import com.mercury1089.scoutingapp2024.utils.GenUtils;
+import com.mercury1089.scoutingapp2024.utils.QRStringBuilder;
 
 public class Stage extends Fragment {
     //HashMaps for sending QR data between screens

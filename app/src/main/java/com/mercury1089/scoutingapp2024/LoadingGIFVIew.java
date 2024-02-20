@@ -1,4 +1,4 @@
-package com.mercury1089.scoutingapp2019;
+package com.mercury1089.scoutingapp2024;
 
 import android.content.Context;
 import android.graphics.Canvas;
