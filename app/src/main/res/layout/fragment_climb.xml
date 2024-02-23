@@ -103,8 +103,8 @@
         android:text="@string/Scored"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/button_text_size"
-        app:layout_constraintStart_toStartOf="@+id/IDTrapDirections"
-        app:layout_constraintTop_toBottomOf="@+id/IDTrapDirections" />
+        app:layout_constraintStart_toStartOf="@+id/IDTrapScoringDirections"
+        app:layout_constraintTop_toBottomOf="@+id/IDTrapScoringDirections" />
 
     <RadioGroup
         android:id="@+id/ScoredTrapToggle"
@@ -146,7 +146,7 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/IDTrapDirections"
+        android:id="@+id/IDTrapScoringDirections"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

@@ -98,6 +98,7 @@ public class Stage extends Fragment {
         stageTabs = getView().findViewById(R.id.stageTabs);
 
         trapScoringID = getView().findViewById(R.id.IDTrapScoring);
+        trapScoringDirections = getView().findViewById(R.id.IDTrapScoringDirections);
         trapScoredID = getView().findViewById(R.id.IDTrapScored);
         trapScoredCounter = getView().findViewById(R.id.scoredTrapCounter);
         trapMissedID = getView().findViewById(R.id.IDTrapMissed);
@@ -279,45 +280,63 @@ public class Stage extends Fragment {
         stageButtonsEnabledState(enable);
     }
 
+    private void trapScoringEnabledState(boolean enable) {
+        // "Trap Scoring" header and directions
+        trapScoringID.setEnabled(enable);
+        trapScoringDirections.setEnabled(enable);
+        // Other TextViews
+        trapScoredID.setEnabled(enable);
+        trapMissedID.setEnabled(enable);
+        // Counters
+        trapScoredCounter.setEnabled(enable);
+        trapMissedCounter.setEnabled(enable);
+        // Buttons
+        scoredTrapButton.setEnabled(enable);
+        notScoredTrapButton.setEnabled(enable);
+        missedTrapButton.setEnabled(enable);
+        notMissedTrapButton.setEnabled(enable);
+        onstageID.setEnabled(enable);
+    }
+
+
     private void updateXMLObjects() {
         // Update counters
         trapScoredCounter.setText(GenUtils.padLeftZeros(climbHashMap.get("ScoredTrap"), 3));
         trapMissedCounter.setText(GenUtils.padLeftZeros(climbHashMap.get("MissedTrap"), 3));
 
         if (setupHashMap.get("FellOver").equals("1")) {
-            stageButtonsEnabledState(false);
             onstageSwitch.setChecked(false);
             climbHashMap.put("Stage", "N");
+            stageButtonsEnabledState(false);
             stageZoneEnabledState(false);
+            trapScoringEnabledState(false);
         } else if (setupHashMap.get("FellOver").equals("0")) {
             stageZoneEnabledState(true);
-        }
+            trapScoringEnabledState(true);
+            if (climbHashMap.get("Onstage").equals("0")) {
+                climbHashMap.put("Stage", "N");
+                onstageSwitch.setChecked(false);
+                onstageTabsEnabledState(false);
+            } else if (climbHashMap.get("Onstage").equals("1")) {
+                // If robot is onstage, they cannot be parked
+                parkSwitch.setChecked(false);
+                climbHashMap.put("Park", "N");
+                onstageSwitch.setChecked(true);
+                onstageTabsEnabledState(true);
+            }
 
-        if (climbHashMap.get("Onstage").equals("0")) {
-            climbHashMap.put("Stage", "N");
-            onstageSwitch.setChecked(false);
-            onstageTabsEnabledState(false);
-        } else if (climbHashMap.get("Onstage").equals("1")) {
-            // If robot is onstage, they cannot be parked
-            parkSwitch.setChecked(false);
-            climbHashMap.put("Park", "N");
-            onstageSwitch.setChecked(true);
-            onstageTabsEnabledState(true);
+            if (Integer.parseInt((String) trapScoredCounter.getText()) <= 0)
+                notScoredTrapButton.setEnabled(false);
+            else
+                notScoredTrapButton.setEnabled(true);
+            if (Integer.parseInt((String) trapMissedCounter.getText()) <= 0)
+                notMissedTrapButton.setEnabled(false);
+            else
+                notMissedTrapButton.setEnabled(true);
+            // A robot cannot score more than 3 notes in their Traps (3 traps, 1 note per trap)
+            if (Integer.parseInt((String) trapScoredCounter.getText()) >= 3)
+                scoredTrapButton.setEnabled(false);
         }
-
-        if (Integer.parseInt((String) trapScoredCounter.getText()) <= 0)
-            notScoredTrapButton.setEnabled(false);
-        else
-            notScoredTrapButton.setEnabled(true);
-        // A robot cannot score more than 3 notes in their Traps (3 traps, 1 note per trap)
-        if (Integer.parseInt((String) trapScoredCounter.getText()) >= 3)
-            scoredTrapButton.setEnabled(false);
-        else
-            scoredTrapButton.setEnabled(true);
-        if (Integer.parseInt((String) trapMissedCounter.getText()) <= 0)
-            notMissedTrapButton.setEnabled(false);
-        else
-            notMissedTrapButton.setEnabled(true);
     }
 
     @Override
