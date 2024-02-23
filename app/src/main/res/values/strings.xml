@@ -84,7 +84,7 @@
         <string name="Dropped">DROPPED</string>
         <string name="Plus">+</string>
         <string name="Minus">-</string>
-        <string name="ScoringDirections">Tap the + or - buttons to record scored/missed cargo.</string>
+        <string name="ScoringDirections">Tap the + or - buttons to record scored/missed notes.</string>
         <string name="Scored">SCORED</string>
         <string name="Missed">MISSED</string>
         <string name="MiscDirections">Tap on the toggle to mark if the action occurs.</string>
@@ -95,14 +95,11 @@
         <string name="TeleopNext">NEXT: TELEOP</string>
 
     <!-- Teleop -->
-        <string name="ControlPanelDirections">Tap on the toggle to mark if/when the robot activates either stage.</string>
-        <string name="Stage2">Stage 2</string>
-        <string name="Stage3">Stage 3</string>
         <string name="FellOverOrDied">Fell over/Died</string>
         <string name="ClimbNext">NEXT: STAGE ZONE AND QR</string>
 
     <!-- Stage -->
-        <string name="EndgameDirections">Do not complete this screen until >5 seconds after the buzzer</string>
+        <string name="PostMatchDirections">Do not complete this screen until >5 seconds after the buzzer</string>
         <string name="StageZoneHeader">STAGE ZONE</string>
         <string name="OnstageDirections">What side of the stage is the robot hanging on?</string>
         <string name="Park">Park</string>
