@@ -222,7 +222,7 @@
         android:id="@+id/IDEndgame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/EndGameTitle"
         android:textColor="@drawable/header_states"
