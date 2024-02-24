@@ -126,7 +126,7 @@ public class Stage extends Fragment {
 
         onstageSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                climbHashMap.put("Onstage", isChecked ? "1" : "0");
+                climbHashMap.put("Onstage", isChecked ? "Y" : "N");
                 //Default option for rung is LOW
                 if (isChecked) {
                     //Sets tab indicator to built-in default
@@ -314,16 +314,26 @@ public class Stage extends Fragment {
         } else if (setupHashMap.get("FellOver").equals("0")) {
             stageZoneEnabledState(true);
             trapScoringEnabledState(true);
-            if (climbHashMap.get("Onstage").equals("0")) {
+            if (climbHashMap.get("Onstage").equals("N")) {
                 climbHashMap.put("Stage", "N");
                 onstageSwitch.setChecked(false);
                 onstageTabsEnabledState(false);
-            } else if (climbHashMap.get("Onstage").equals("1")) {
+            } else if (climbHashMap.get("Onstage").equals("Y")) {
                 // If robot is onstage, they cannot be parked
                 parkSwitch.setChecked(false);
+                parkSwitch.setEnabled(false);
+                parkID.setEnabled(false);
                 climbHashMap.put("Park", "N");
+
                 onstageSwitch.setChecked(true);
                 onstageTabsEnabledState(true);
+            }
+            if (climbHashMap.get("Park").equals("Y")) {
+                onstageSwitch.setChecked(false);
+                onstageSwitch.setEnabled(false);
+                onstageID.setEnabled(false);
+                onstageTabsEnabledState(false);
+                climbHashMap.put("Onstage", "N");
             }
 
             if (Integer.parseInt((String) trapScoredCounter.getText()) <= 0)

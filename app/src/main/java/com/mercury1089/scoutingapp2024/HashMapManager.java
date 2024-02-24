@@ -345,7 +345,7 @@ public class HashMapManager{
                 //include all the items that will be in the climbHashMap
                 climbHashMap.put("HashMapName", "Climb");
                 climbHashMap.put("Park", "N");
-                climbHashMap.put("Onstage", "0"); //Value to update climbedSwitch (*NOT PART OF QRSTRING*)
+                climbHashMap.put("Onstage", "N"); //Value to update climbedSwitch (*NOT PART OF QRSTRING*)
                 //If robot didn't climb, value will be "N". Otherwise, it will be "L", "C", or "R"
                 climbHashMap.put("Stage", "N");
                 climbHashMap.put("ScoredTrap", "0");
