@@ -37,12 +37,15 @@
         <entry key="..\:/Users/s102027/AndroidStudioProjects/2024-scouting-app/app/src/main/res/drawable/badge_counter_active.xml" value="0.34814814814814815" />
         <entry key="..\:/Users/s102027/AndroidStudioProjects/2024-scouting-app/app/src/main/res/drawable/badge_counter_default.xml" value="0.34814814814814815" />
         <entry key="..\:/Users/s102027/AndroidStudioProjects/2024-scouting-app/app/src/main/res/drawable/button_large_active.xml" value="0.34814814814814815" />
+        <entry key="..\:/Users/s102027/AndroidStudioProjects/2024-scouting-app/app/src/main/res/drawable/scoring_layout_bg.xml" value="0.8154296875" />
         <entry key="..\:/Users/s102027/AndroidStudioProjects/2024-scouting-app/app/src/main/res/drawable/start_button_symbol_states.xml" value="0.3388888888888889" />
         <entry key="..\:/Users/s102027/AndroidStudioProjects/2024-scouting-app/app/src/main/res/drawable/text_states.xml" value="0.33984375" />
+        <entry key="..\:/Users/s102027/AndroidStudioProjects/2024-scouting-app/app/src/main/res/drawable/toggle_right_disabled.xml" value="0.5947265625" />
+        <entry key="..\:/Users/s102027/AndroidStudioProjects/2024-scouting-app/app/src/main/res/drawable/toggle_right_states.xml" value="0.7626953125" />
         <entry key="..\:/Users/s102027/AndroidStudioProjects/2024-scouting-app/app/src/main/res/layout/activity_match.xml" value="0.23333333333333334" />
         <entry key="..\:/Users/s102027/AndroidStudioProjects/2024-scouting-app/app/src/main/res/layout/activity_pregame.xml" value="0.67" />
         <entry key="..\:/Users/s102027/AndroidStudioProjects/2024-scouting-app/app/src/main/res/layout/activity_settings.xml" value="0.75" />
-        <entry key="..\:/Users/s102027/AndroidStudioProjects/2024-scouting-app/app/src/main/res/layout/fragment_auton.xml" value="1.5" />
+        <entry key="..\:/Users/s102027/AndroidStudioProjects/2024-scouting-app/app/src/main/res/layout/fragment_auton.xml" value="0.75" />
         <entry key="..\:/Users/s102027/AndroidStudioProjects/2024-scouting-app/app/src/main/res/layout/fragment_climb.xml" value="0.9" />
         <entry key="..\:/Users/s102027/AndroidStudioProjects/2024-scouting-app/app/src/main/res/layout/fragment_teleop.xml" value="0.75" />
         <entry key="..\:/Users/satvi/StudioProjects/2022-scouting-app-upgraded/app/src/main/res/layout/activity_match.xml" value="0.358695652173913" />
