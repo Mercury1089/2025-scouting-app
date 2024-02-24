@@ -249,6 +249,7 @@ public class Stage extends Fragment {
     private void onstageTabsEnabledState(boolean enable) {
         if (!enable)
             climbHashMap.put("Stage", "N");
+        stageTabs.setEnabled(enable);
         LinearLayout tabStrip = ((LinearLayout) stageTabs.getChildAt(0));
         tabStrip.setEnabled(enable);
         for(int i = 0; i < tabStrip.getChildCount(); i++) {
