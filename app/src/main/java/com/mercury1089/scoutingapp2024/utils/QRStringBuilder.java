@@ -49,6 +49,8 @@ public class QRStringBuilder {
         QRString.append(teleop.get("MissedAmp")).append(",");
         QRString.append(climb.get("ScoredTrap")).append(",");
         QRString.append(climb.get("MissedTrap")).append(",");
+        // Remove last comma
+        QRString.deleteCharAt(QRString.length()-1);
     }
 
     public static String getQRString(){
