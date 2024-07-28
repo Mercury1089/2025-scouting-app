@@ -5,7 +5,7 @@
     android:gravity="center"
     android:height="30dp">
     <corners android:radius="15dp" />
-    <solid android:color="@color/denim" />
+    <solid android:color="@color/midnight" />
 
     <padding
         android:bottom="4dp"

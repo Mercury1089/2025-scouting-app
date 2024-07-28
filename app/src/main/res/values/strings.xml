@@ -7,7 +7,7 @@
 
 <!-- Headings -->
     <!-- Titles -->
-        <string name="app_name">Scouting App 2022</string>
+        <string name="app_name">Scouting App 2024</string>
         <string name="SettingsTitle">SETTINGS</string>
         <string name="SetupTitle">PRE-MATCH SETUP</string>
         <string name="StartingPositionTitle">STARTING POSITION</string>
@@ -18,14 +18,14 @@
         <string name="MiscTitle">MISC</string>
         <string name="ControlPanelTitle">CONTROL PANEL</string>
         <string name="ClimbTitle">CLIMB</string>
-        <string name="EndGameTitle">CLIMBING/TRAVERSING</string>
+        <string name="EndGameTitle">POST MATCH</string>
         <string name="QRCodeTitle">DID YOU SCAN YOUR QR CODE?</string>
 
     <!-- Tabs -->
         <string name="Setup">Setup</string>
         <string name="Auton">Auton</string>
         <string name="Teleop">Teleop</string>
-        <string name="Climb">Climb</string>
+        <string name="Stage">Stage</string>
 
 
 <!-- PregameActivity -->
@@ -84,7 +84,7 @@
         <string name="Dropped">DROPPED</string>
         <string name="Plus">+</string>
         <string name="Minus">-</string>
-        <string name="ScoringDirections">Tap the + or - buttons to record scored/missed cargo.</string>
+        <string name="ScoringDirections">Tap the + or - buttons to record scored/missed notes.</string>
         <string name="Scored">SCORED</string>
         <string name="Missed">MISSED</string>
         <string name="MiscDirections">Tap on the toggle to mark if the action occurs.</string>
@@ -95,21 +95,20 @@
         <string name="TeleopNext">NEXT: TELEOP</string>
 
     <!-- Teleop -->
-        <string name="ControlPanelDirections">Tap on the toggle to mark if/when the robot activates either stage.</string>
-        <string name="Stage2">Stage 2</string>
-        <string name="Stage3">Stage 3</string>
         <string name="FellOverOrDied">Fell over/Died</string>
-        <string name="ClimbNext">NEXT: CLIMBING AND QR</string>
+        <string name="ClimbNext">NEXT: STAGE ZONE AND QR</string>
 
-    <!-- Climb -->
-        <string name="EndgameDirections">Tap on the toggle to mark if the action occurs.</string>
-        <string name="ClimbRungDirections">Which rung is the robot contacting? If they\'re touching more than one, select the LOWEST rung.</string>
-        <string name="Climbed">Climbed</string>
-        <string name="LowRung">LOW</string>
-        <string name="MidRung">MID</string>
-        <string name="HighRung">HIGH</string>
-        <string name="TraversalRung">TRAVERSAL</string>
-
+    <!-- Stage -->
+        <string name="PostMatchDirections">Do not complete this screen until >5 seconds after the buzzer</string>
+        <string name="StageZoneHeader">STAGE ZONE</string>
+        <string name="OnstageDirections">What side of the stage is the robot hanging on?</string>
+        <string name="Park">Park</string>
+        <string name="Onstage">Onstage (Hanging from the chain, off the floor)</string>
+        <string name="LeftStage">LEFT</string>
+        <string name="CenterStage">CENTER</string>
+        <string name="RightStage">RIGHT</string>
+        <string name="TrapScoringHeader">TRAP SCORING</string>
+        <string name="TrapScoringDirections">Tap the + and - buttons to record scored/missed notes.</string>
 
 <!-- Display Popups -->
     <!-- Loading -->
@@ -148,7 +147,7 @@
         <string name="IDPasswordRequiredConfirm">Password protect app settings?</string>
 
     <!-- Button Text -->
-        <string name="SetupNext">RAPIDLY REACT for Next Match</string>
+        <string name="SetupNext">GET IN TUNE for Next Match</string>
         <string name="Scanned">Scanned?</string>
         <string name="NextMatch">SET UP NEXT MATCH</string>
     <string name="ToggleInstructions">Tap on the toggle to record if the options are true (on) or false (off).</string>

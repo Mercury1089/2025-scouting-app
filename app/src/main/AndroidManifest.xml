@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mercury1089.scoutingapp2019">
+    package="com.mercury1089.scoutingapp2024">
 
     <uses-permission android:name="android.permission.VIBRATE"/>
 
@@ -13,13 +13,13 @@
         android:roundIcon="@mipmap/team_logo_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.mercury1089.scoutingapp2019.SettingsActivity"
+        <activity android:name="com.mercury1089.scoutingapp2024.SettingsActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.mercury1089.scoutingapp2019.PregameActivity"
+        <activity android:name="com.mercury1089.scoutingapp2024.PregameActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.mercury1089.scoutingapp2019.MatchActivity"
+        <activity android:name="com.mercury1089.scoutingapp2024.MatchActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.mercury1089.scoutingapp2019.SplashActivity"
+        <activity android:name="com.mercury1089.scoutingapp2024.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -33,7 +33,9 @@
     <color name="sky"> #8593B0 </color>
     <color name="ocean"> #525F78 </color>
     <color name="night"> #2F3A4F </color>
-    <color name="denim"> #232C3D </color>
+    <color name="midnight"> #232C3D </color>
+    <color name="afterdark">#1C2431</color>
+    <color name="cloudv2">#1ADADEE6</color> <!-- 10% opacity: used for scoring layout backgrounds -->
     <color name="charcoal"> #06090D </color>
 
     <color name="dark_red">#8a0303</color>
