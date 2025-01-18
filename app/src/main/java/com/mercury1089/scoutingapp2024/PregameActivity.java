@@ -36,7 +36,7 @@ import com.mercury1089.scoutingapp2024.utils.QRStringBuilder;
 import java.util.LinkedHashMap;
 
 public class PregameActivity extends AppCompatActivity {
-
+    // Strategy was here
     //Set the default password in HashMapManager.setDefaultValues();
     String password;
 
