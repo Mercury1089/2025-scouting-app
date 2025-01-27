@@ -4,7 +4,12 @@
 
 <resources>
 
-
+    <!-- PRIMARY -->
+    <color name="midnight"> #06090D </color>
+    <color name="melon"> #F48862 </color>
+    <color name="sky"> #8593B0 </color>
+    <color name="cloud"> #DADEE6 </color>
+    <color name="ice"> #F2F2F2 </color>
 
     <color name="light"> @color/bootstrap_dropdown_divider </color>
     <color name="white">#FFFFFF</color>
@@ -24,16 +29,11 @@
     <color name="banana"> #FFD966 </color>
     <color name="fire"> #F72855 </color>
     <color name="juicy_orange"> #f3a183</color>
-    <color name="melon"> #F48862 </color>
     <color name="rust"> #C25027 </color>
     <color name="clay"> #784330 </color>
     <color name="cocoa"> #423029 </color>
-    <color name="ice"> #F2F2F2 </color>
-    <color name="cloud"> #DADEE6 </color>
-    <color name="sky"> #8593B0 </color>
     <color name="ocean"> #525F78 </color>
     <color name="night"> #2F3A4F </color>
-    <color name="midnight"> #232C3D </color>
     <color name="afterdark">#1C2431</color>
     <color name="cloudv2">#1ADADEE6</color> <!-- 10% opacity: used for scoring layout backgrounds -->
     <color name="charcoal"> #06090D </color>
