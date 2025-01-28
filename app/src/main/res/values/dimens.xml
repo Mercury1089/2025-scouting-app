@@ -1,9 +1,17 @@
 <resources>
-    <dimen name="header_text_size">26sp</dimen>
-    <dimen name="subheader_text_size">20dp</dimen>
-    <dimen name="label_text_size">16sp</dimen>
-    <dimen name="button_text_size">16sp</dimen>
-    <dimen name="instruction_text_size">14sp</dimen>
+    <dimen name="header_text_size">30sp</dimen>
+    <dimen name="alt_header_text_size">28sp</dimen>
+    <dimen name="subheader_text_size">20sp</dimen>
+    <dimen name="alt_subheader_text_size">20sp</dimen>
+    <dimen name="instruction_text_size">16sp</dimen>
+    <dimen name="instruction_small_text_size">14sp</dimen>
+    <dimen name="input_label_text_size">16sp</dimen>
+    <dimen name="input_text_text_size">16sp</dimen>
+    <dimen name="toggle_label_text_size">16sp</dimen>
+    <dimen name="counter_label_text_size">16sp</dimen>
+    <dimen name="counter_text_size">18sp</dimen>
+    <dimen name="button_text_size">18sp</dimen>
+
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="speech_bubble_length">320dp</dimen>
     <dimen name="tail_width">24dp</dimen>

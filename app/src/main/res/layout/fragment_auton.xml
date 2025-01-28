@@ -49,7 +49,7 @@
         android:gravity="center"
         android:text="@string/TeleopWarning"
         android:textColor="@color/bg_general"
-        android:textSize="@dimen/label_text_size"
+        android:textSize="@dimen/input_label_text_size"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/IDAutonSeconds1"
         app:layout_constraintEnd_toStartOf="@+id/rightEdgeBar"
@@ -228,7 +228,7 @@
         android:fontFamily="@font/open_sans"
         android:text="@string/Leave"
         android:textColor="@drawable/text_states"
-        android:textSize="@dimen/label_text_size"
+        android:textSize="@dimen/input_label_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/LeaveSwitch"
         app:layout_constraintStart_toEndOf="@+id/LeaveSwitch"
         app:layout_constraintTop_toTopOf="@+id/LeaveSwitch" />
@@ -253,7 +253,7 @@
         android:fontFamily="@font/open_sans"
         android:text="@string/FellOver"
         android:textColor="@drawable/text_states"
-        android:textSize="@dimen/label_text_size"
+        android:textSize="@dimen/input_label_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/FellOverSwitch"
         app:layout_constraintStart_toEndOf="@+id/FellOverSwitch"
         app:layout_constraintTop_toTopOf="@+id/FellOverSwitch" />
