@@ -4,14 +4,36 @@
 
 <resources>
 
+    <!-- PRIMARY -->
+    <color name="midnight"> #06090D </color>
+    <color name="melon"> #F48862 </color>
+    <color name="sky"> #8593B0 </color>
+    <color name="cloud"> #DADEE6 </color>
+    <color name="ice"> #F2F2F2 </color>
 
+    <!-- SECONDARY -->
+    <color name="ocean"> #525F78 </color>
+    <color name="night"> #2F3A4F </color>
+    <color name="afterdark">#1C2431</color>
+    <color name="charcoal"> #06090D </color>
+    <color name="peach"> #FFB999 </color>
+    <color name="pumpkin"> #DB6C45 </color>
+    <color name="rust"> #C25027 </color>
+    <color name="clay"> #784330 </color>
+    <color name="cocoa"> #423029 </color>
 
+    <!-- MISCELLANEOUS -->
+    <color name="electric"> #19ABF2 </color>
+    <color name="fire"> #F72855 </color>
+    <color name="banana"> #FFD966 </color>
+    <color name="black"> #000000 </color>
+    <color name="white"> #FFFFFF </color>
+
+    <!-- Need to check if these are being used -->
     <color name="light"> @color/bootstrap_dropdown_divider </color>
-    <color name="white">#FFFFFF</color>
     <color name="grey"> @color/bootstrap_gray </color>
     <color name="blue">@color/bootstrap_brand_info</color>
     <color name="red"> @color/bootstrap_brand_danger </color>
-    <color name="black">#000000</color>
     <color name="darkgray">#2B2B2E</color>
     <color name="orange"> @android:color/holo_orange_dark </color>
 
@@ -20,23 +42,9 @@
     <color name="bg_scoring_popup">#D806090D</color> <!-- 75% opacity -->
     <color name="bg_clear_confirm_popup">#2F3A4F</color>
 
-    <color name="electric"> #19ABF2 </color>
-    <color name="banana"> #FFD966 </color>
-    <color name="fire"> #F72855 </color>
+
     <color name="juicy_orange"> #f3a183</color>
-    <color name="melon"> #F48862 </color>
-    <color name="rust"> #C25027 </color>
-    <color name="clay"> #784330 </color>
-    <color name="cocoa"> #423029 </color>
-    <color name="ice"> #F2F2F2 </color>
-    <color name="cloud"> #DADEE6 </color>
-    <color name="sky"> #8593B0 </color>
-    <color name="ocean"> #525F78 </color>
-    <color name="night"> #2F3A4F </color>
-    <color name="midnight"> #232C3D </color>
-    <color name="afterdark">#1C2431</color>
     <color name="cloudv2">#1ADADEE6</color> <!-- 10% opacity: used for scoring layout backgrounds -->
-    <color name="charcoal"> #06090D </color>
 
     <color name="dark_red">#8a0303</color>
 
