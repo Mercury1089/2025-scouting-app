@@ -7,6 +7,12 @@ assignees: ''
 
 ---
 
+<!-- Add a label in each of the following categories:
+- Priority: High, Medium, Low 
+- Screen: Prematch, Auton, Teleop, Postmatch
+- Type: Bug, an enhancement, or a new feature
+-->
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
