@@ -44,7 +44,7 @@
     <!-- Button Texts -->
         <string name="Blue">BLUE</string>
         <string name="Red">RED</string>
-        <string name="NoShow">No Show</string>
+        <string name="NoShow">No robot on field</string>
         <string name="Clear">CLEAR</string>
         <string name="Start">START</string>
         <string name="GenerateQRCode">GENERATE QR CODE</string>
@@ -151,7 +151,7 @@
         <string name="Scanned">Scanned?</string>
         <string name="NextMatch">SET UP NEXT MATCH</string>
     <string name="ToggleInstructions">Tap on the toggle to record if the options are true (on) or false (off).</string>
-        <string name="PreloadNote">Preloaded a Note</string>
+        <string name="PreloadNote">Preloaded Coral</string>
         <string name="Speaker">SPEAKER</string>
         <string name="Amp">AMP</string>
 </resources>
