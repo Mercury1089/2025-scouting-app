@@ -48,12 +48,11 @@
         <entry key="..\:/Users/s102027/AndroidStudioProjects/2024-scouting-app/app/src/main/res/layout/fragment_auton.xml" value="0.75" />
         <entry key="..\:/Users/s102027/AndroidStudioProjects/2024-scouting-app/app/src/main/res/layout/fragment_climb.xml" value="0.9" />
         <entry key="..\:/Users/s102027/AndroidStudioProjects/2024-scouting-app/app/src/main/res/layout/fragment_teleop.xml" value="0.75" />
-        <entry key="..\:/Users/s102027/StudioProjects/2025-scouting-app/app/src/main/res/drawable/button_disabled.xml" value="0.28072916666666664" />
-        <entry key="..\:/Users/s102027/StudioProjects/2025-scouting-app/app/src/main/res/drawable/button_large_active.xml" value="0.28072916666666664" />
-        <entry key="..\:/Users/s102027/StudioProjects/2025-scouting-app/app/src/main/res/drawable/button_states.xml" value="0.28072916666666664" />
-        <entry key="..\:/Users/s102027/StudioProjects/2025-scouting-app/app/src/main/res/layout/activity_match.xml" value="0.26458333333333334" />
-        <entry key="..\:/Users/s102027/StudioProjects/2025-scouting-app/app/src/main/res/layout/activity_pregame.xml" value="0.5" />
-        <entry key="..\:/Users/s102712/StudioProjects/2025-scouting-app/app/src/main/res/layout/activity_pregame.xml" value="0.75" />
+        <entry key="..\:/Users/s102027/StudioProjects/2025-scouting-app/app/src/main/res/drawable/button_states.xml" value="0.2796875" />
+        <entry key="..\:/Users/s102027/StudioProjects/2025-scouting-app/app/src/main/res/drawable/pregame_toast_symbol_states.xml" value="0.2796875" />
+        <entry key="..\:/Users/s102027/StudioProjects/2025-scouting-app/app/src/main/res/drawable/start_button_symbol_states.xml" value="0.2796875" />
+        <entry key="..\:/Users/s102027/StudioProjects/2025-scouting-app/app/src/main/res/drawable/start_directions.xml" value="0.2796875" />
+        <entry key="..\:/Users/s102027/StudioProjects/2025-scouting-app/app/src/main/res/layout/activity_pregame.xml" value="0.67" />
         <entry key="..\:/Users/satvi/StudioProjects/2022-scouting-app-upgraded/app/src/main/res/layout/activity_match.xml" value="0.358695652173913" />
         <entry key="..\:/Users/satvi/StudioProjects/2022-scouting-app-upgraded/app/src/main/res/layout/activity_pregame.xml" value="0.358695652173913" />
         <entry key="..\:/Users/satvi/StudioProjects/2024-scouting-app/app/src/main/res/layout/activity_match.xml" value="0.21" />
