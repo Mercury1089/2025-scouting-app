@@ -20,6 +20,7 @@ android {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
+    namespace 'com.mercury1089.scoutingapp2024'
 }
 
 dependencies {
