@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
 
 android {
+    compileSdkVersion 28
     defaultConfig {
-        applicationId "com.mercury1089.scoutingapp2024"
+        applicationId "com.mercury1089.scoutingapp2025"
         minSdkVersion 21
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 28

@@ -1,4 +1,4 @@
-package com.mercury1089.scoutingapp2024;
+package com.mercury1089.scoutingapp2025;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
 import java.util.Timer;
 import java.util.TimerTask;
 

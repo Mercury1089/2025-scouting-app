@@ -1,8 +1,8 @@
-package com.mercury1089.scoutingapp2024.utils;
+package com.mercury1089.scoutingapp2025.utils;
 
 import android.content.Context;
 
-import com.mercury1089.scoutingapp2024.HashMapManager;
+import com.mercury1089.scoutingapp2025.HashMapManager;
 
 import java.util.LinkedHashMap;
 

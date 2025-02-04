@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/Auton"
-        android:name="com.mercury1089.scoutingapp2024.Auton"
+        android:name="com.mercury1089.scoutingapp2025.Auton"
         android:layout_width="599dp"
         android:layout_height="893dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/Teleop"
-        android:name="com.mercury1089.scoutingapp2024.Teleop"
+        android:name="com.mercury1089.scoutingapp2025.Teleop"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/Climb"
-        android:name="com.mercury1089.scoutingapp2024.Stage"
+        android:name="com.mercury1089.scoutingapp2025.Stage"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -12,13 +12,13 @@
         android:roundIcon="@mipmap/team_logo_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.mercury1089.scoutingapp2024.SettingsActivity"
+        <activity android:name="com.mercury1089.scoutingapp2025.SettingsActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.mercury1089.scoutingapp2024.PregameActivity"
+        <activity android:name="com.mercury1089.scoutingapp2025.PregameActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.mercury1089.scoutingapp2024.MatchActivity"
+        <activity android:name="com.mercury1089.scoutingapp2025.MatchActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.mercury1089.scoutingapp2024.SplashActivity"
+        <activity android:name="com.mercury1089.scoutingapp2025.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

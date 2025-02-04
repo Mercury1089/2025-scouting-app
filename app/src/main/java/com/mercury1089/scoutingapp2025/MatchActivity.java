@@ -1,7 +1,7 @@
-package com.mercury1089.scoutingapp2024;
+package com.mercury1089.scoutingapp2025;
 
 import com.google.android.material.tabs.TabLayout;
-import com.mercury1089.scoutingapp2024.utils.GenUtils;
+import com.mercury1089.scoutingapp2025.utils.GenUtils;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+
 import java.util.LinkedHashMap;
 
 public class MatchActivity extends AppCompatActivity {
@@ -53,6 +54,7 @@ public class MatchActivity extends AppCompatActivity {
     //back button
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         Dialog dialog = new Dialog(MatchActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.exit_confirm_popup);

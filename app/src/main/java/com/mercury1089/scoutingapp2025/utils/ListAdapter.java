@@ -1,4 +1,4 @@
-package com.mercury1089.scoutingapp2024.utils;
+package com.mercury1089.scoutingapp2025.utils;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -16,9 +16,9 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
-import com.mercury1089.scoutingapp2024.R;
-import com.mercury1089.scoutingapp2024.SettingsActivity;
-import static com.mercury1089.scoutingapp2024.utils.GenUtils.padLeftZeros;
+import com.mercury1089.scoutingapp2025.R;
+import com.mercury1089.scoutingapp2025.SettingsActivity;
+import static com.mercury1089.scoutingapp2025.utils.GenUtils.padLeftZeros;
 
 public class ListAdapter extends BaseAdapter {
     SettingsActivity context;
