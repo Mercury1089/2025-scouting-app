@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 35
     defaultConfig {
         applicationId "com.mercury1089.scoutingapp2025"
         minSdkVersion 21
         //noinspection ExpiredTargetSdkVersion
-        targetSdkVersion 28
+        targetSdkVersion 35
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -36,13 +36,12 @@ dependencies {
     var2
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.beardedhen:androidbootstrap:2.3.2'
-    implementation 'com.journeyapps:zxing-android-embedded:3.0.2@aar'
     implementation 'com.google.zxing:core:3.4.0'
     implementation 'com.google.zxing:javase:3.4.0'
     implementation 'com.github.markushi:circlebutton:1.1'
-    implementation 'androidx.fragment:fragment:1.8.5'
+    implementation 'androidx.fragment:fragment:1.1.0'
 
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
 }
