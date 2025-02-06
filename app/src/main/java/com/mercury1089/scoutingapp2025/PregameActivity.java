@@ -12,6 +12,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -35,6 +36,7 @@ import com.google.zxing.common.BitMatrix;
 import com.mercury1089.scoutingapp2025.utils.QRStringBuilder;
 
 import java.util.LinkedHashMap;
+import java.util.logging.Logger;
 
 public class PregameActivity extends AppCompatActivity {
     // Strategy was here
@@ -55,6 +57,7 @@ public class PregameActivity extends AppCompatActivity {
     private EditText teamNumberInput;
     private EditText firstAlliancePartnerInput;
     private EditText secondAlliancePartnerInput;
+    private TextView startDirectionsToast;
 
     //Switches
     private Switch noShowSwitch;
@@ -102,6 +105,7 @@ public class PregameActivity extends AppCompatActivity {
         clearButton = findViewById(R.id.ClearButton);
         startButton = findViewById(R.id.StartButton);
         settingsButton = findViewById(R.id.SettingsButton);
+        startDirectionsToast = findViewById(R.id.IDStartDirections);
 
         rooster = MediaPlayer.create(PregameActivity.this, R.raw.sound);
 
@@ -495,34 +499,27 @@ public class PregameActivity extends AppCompatActivity {
     - Validate text field input and toggle values to make sure it is safe (and necessary) to
     - move into the MatchActivity
      */
-    private void startButtonCheck() {
-        if(scouterNameInput.getText().length() > 0 &&
+    private boolean readyToStart() {
+        return scouterNameInput.getText().length() > 0 &&
                 matchNumberInput.getText().length() > 0 &&
                 teamNumberInput.getText().length() > 0 &&
                 firstAlliancePartnerInput.getText().length() > 0 &&
                 secondAlliancePartnerInput.getText().length() > 0 &&
                 (blueButton.isSelected() || redButton.isSelected()) &&
-                ((setupHashMap.get("NoShow").equals("0")) || setupHashMap.get("NoShow").equals("1")))
-                startButton.setEnabled(true);
-        else
-            startButton.setEnabled(false);
+                (setupHashMap.get("NoShow").equals("0") || setupHashMap.get("NoShow").equals("1"));
     }
-
     /*
     - Check to see if there's any values that need to be cleared
     - (if nothing is filled out, clear button should be disabled)
      */
-    private void clearButtonCheck() {
-        if(scouterNameInput.getText().length() > 0 ||
+    private boolean canClearInputs() {
+        return scouterNameInput.getText().length() > 0 ||
                 matchNumberInput.getText().length() > 0 ||
                 teamNumberInput.getText().length() > 0 ||
                 noShowSwitch.isChecked() ||
                 firstAlliancePartnerInput.getText().length() > 0 ||
                 secondAlliancePartnerInput.getText().length() > 0 ||
-                blueButton.isSelected() || redButton.isSelected())
-            clearButton.setEnabled(true);
-        else
-            clearButton.setEnabled(false);
+                blueButton.isSelected() || redButton.isSelected();
     }
 
     /*
@@ -531,6 +528,9 @@ public class PregameActivity extends AppCompatActivity {
         - It updates hashmaps and the visual appearance of Views
      */
     private void updateXMLObjects(boolean updateText){
+        boolean readyToStart = readyToStart();
+        boolean canClear = canClearInputs();
+
         /*
         - updateText should only be true if you want to reset the basic info fields to the stored hashmap values
             - e.g. if you're returning from SettingsActivity or if you used the "Clear" button
@@ -549,13 +549,9 @@ public class PregameActivity extends AppCompatActivity {
         if(settingsHashMap.get("Slack").equals("1"))
             slackCenter.setVisibility(View.VISIBLE);
 
-        if (setupHashMap.get("PreloadNote").equals("1")) {
-            preloadSwitch.setChecked(true);
-        } else {
-            preloadSwitch.setChecked(false);
-        }
+        preloadSwitch.setChecked(setupHashMap.get("PreloadNote").equals("1"));
 
-        if(setupHashMap.get("NoShow").equals("1")) {
+        if (setupHashMap.get("NoShow").equals("1")) {
             noShowSwitch.setChecked(true);
 
             startButton.setPadding(185, 0, 185, 0);
@@ -569,9 +565,9 @@ public class PregameActivity extends AppCompatActivity {
             isQRButton = false;
         }
 
-
-        startButtonCheck();
-        clearButtonCheck();
+        startButton.setEnabled(readyToStart || isQRButton);
+        startDirectionsToast.setEnabled(readyToStart && !isQRButton);
+        clearButton.setEnabled(canClear);
     }
 
     //QR Generation
