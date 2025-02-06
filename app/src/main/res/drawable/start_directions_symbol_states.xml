@@ -2,8 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!--  Non focused states -->
     <item android:state_enabled="false"
-        android:drawable="@drawable/pregame_toast_symbol_disabled" />
+        android:drawable="@drawable/start_directions_symbol_disabled" />
     <!--  Focused states -->
-    <item android:drawable="@drawable/pregame_toast_symbol_disabled" />
+    <item android:drawable="@drawable/start_directions_symbol" />
 
 </selector>

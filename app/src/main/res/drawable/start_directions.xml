@@ -5,7 +5,7 @@
     android:gravity="center"
     android:height="30dp"
     android:width="100dp">
-    <solid android:color="@color/banana" />
+    <solid android:color="@drawable/start_directions_bg_color_states" />
     <corners android:radius="50dp" />
     <padding
         android:bottom="4dp"

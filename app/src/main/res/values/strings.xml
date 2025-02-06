@@ -38,7 +38,7 @@
 
     <!-- Directions -->
         <string name="SetupDirections">Complete the fields below <b>before</b> the start of each match.</string>
-        <string name="StartButtonDirections">Wait to press START until you hear the charge sound!</string>
+        <string name="StartButtonDirections">Press START when you hear the charge sound!</string>
         <string name="StartingPositionDirections">Tap on the field diagram below to mark the robot’s starting position.</string>
 
     <!-- Button Texts -->
