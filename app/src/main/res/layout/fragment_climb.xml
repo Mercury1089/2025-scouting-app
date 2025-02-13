@@ -164,7 +164,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/TrapScoringHeader"
-        android:textColor="@drawable/subead_states"
+        android:textColor="@drawable/text_subead_states"
         android:textSize="@dimen/subheader_text_size"
         app:layout_constraintStart_toStartOf="@+id/onstageSwitch"
         app:layout_constraintTop_toBottomOf="@+id/stageTabs" />
@@ -176,7 +176,7 @@
         android:layout_marginTop="25dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/StageZoneHeader"
-        android:textColor="@drawable/subead_states"
+        android:textColor="@drawable/text_subead_states"
         android:textSize="@dimen/subheader_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDEndgameDirections"
         app:layout_constraintTop_toBottomOf="@+id/IDEndgameDirections" />
@@ -225,7 +225,7 @@
         android:layout_marginTop="5dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/EndGameTitle"
-        android:textColor="@drawable/header_states"
+        android:textColor="@drawable/text_header_states"
         android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDEndgameDirections"
         app:layout_constraintTop_toTopOf="parent" />

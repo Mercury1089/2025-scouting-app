@@ -14,7 +14,7 @@
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:gravity="center_horizontal"
         android:text="@string/SetupNextMatchID"
-        android:textColor="@drawable/header_states"
+        android:textColor="@drawable/text_header_states"
         android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

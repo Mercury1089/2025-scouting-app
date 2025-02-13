@@ -5,12 +5,15 @@
     <dimen name="alt_subheader_text_size">20sp</dimen>
     <dimen name="instruction_text_size">16sp</dimen>
     <dimen name="instruction_small_text_size">14sp</dimen>
+    <dimen name="button_text_size">18sp</dimen>
+
     <dimen name="input_label_text_size">16sp</dimen>
     <dimen name="input_text_text_size">16sp</dimen>
     <dimen name="toggle_label_text_size">16sp</dimen>
     <dimen name="counter_label_text_size">16sp</dimen>
     <dimen name="counter_text_size">18sp</dimen>
-    <dimen name="button_text_size">18sp</dimen>
+    <dimen name="auton_countdown_label_text_size">18sp</dimen>
+    <dimen name="warning_text">18sp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="speech_bubble_length">320dp</dimen>

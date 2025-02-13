@@ -80,7 +80,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/PossessionTitle"
-        android:textColor="@drawable/header_states"
+        android:textColor="@drawable/text_header_states"
         android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toEndOf="@+id/leftEdgeBar"
         app:layout_constraintTop_toBottomOf="@+id/topEdgeBar" />
@@ -103,7 +103,7 @@
         android:layout_marginTop="15dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/ScoringTitle"
-        android:textColor="@drawable/header_states"
+        android:textColor="@drawable/text_header_states"
         android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDPossession"
         app:layout_constraintTop_toBottomOf="@+id/PickedUpToggle" />
@@ -204,7 +204,7 @@
         android:layout_marginTop="15dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/MiscTitle"
-        android:textColor="@drawable/header_states"
+        android:textColor="@drawable/text_header_states"
         android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDPossession"
         app:layout_constraintTop_toBottomOf="@+id/speakerLayout" />
@@ -319,7 +319,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/futura_medium_condensed_bt"
             android:text="@string/Speaker"
-            android:textColor="@drawable/subead_states"
+            android:textColor="@drawable/text_subead_states"
             android:textSize="@dimen/subheader_text_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -473,7 +473,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/futura_medium_condensed_bt"
             android:text="@string/Amp"
-            android:textColor="@drawable/subead_states"
+            android:textColor="@drawable/text_subead_states"
             android:textSize="@dimen/subheader_text_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
