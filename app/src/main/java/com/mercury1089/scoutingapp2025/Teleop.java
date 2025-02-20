@@ -90,23 +90,23 @@ public class Teleop extends Fragment {
 
         scoringID = getView().findViewById(R.id.IDScoring);
         scoringDescription = getView().findViewById(R.id.IDScoringDirections);
-        scoredSpeakerButton = getView().findViewById(R.id.scoredSpeakerButton);
-        notScoredSpeakerButton = getView().findViewById(R.id.notScoredSpeakerButton);
+        scoredSpeakerButton = getView().findViewById(R.id.scoredL4Button);
+        notScoredSpeakerButton = getView().findViewById(R.id.notScoredL4Button);
         scoredAmpButton = getView().findViewById(R.id.scoredAmpButton);
         notScoredAmpButton = getView().findViewById(R.id.notScoredAmpButton);
-        missedSpeakerButton = getView().findViewById(R.id.missedSpeakerButton);
-        notMissedSpeakerButton = getView().findViewById(R.id.notMissedSpeakerButton);
+        missedSpeakerButton = getView().findViewById(R.id.missedL4Button);
+        notMissedSpeakerButton = getView().findViewById(R.id.notMissedL4Button);
         missedAmpButton = getView().findViewById(R.id.missedAmpButton);
         notMissedAmpButton = getView().findViewById(R.id.notMissedAmpButton);
-        scoredSpeakerCounter = getView().findViewById(R.id.scoredSpeakerCounter);
+        scoredSpeakerCounter = getView().findViewById(R.id.L4ScoredCounter);
         scoredAmpCounter = getView().findViewById(R.id.scoredAmpCounter);
-        missedSpeakerCounter = getView().findViewById(R.id.missedSpeakerCounter);
+        missedSpeakerCounter = getView().findViewById(R.id.L4MissedCounter);
         missedAmpCounter = getView().findViewById(R.id.missedAmpCounter);
-        IDSpeaker = getView().findViewById(R.id.IDSpeaker);
+        IDSpeaker = getView().findViewById(R.id.IDCoral);
         IDAmp = getView().findViewById(R.id.IDAmp);
-        IDScoredSpeaker = getView().findViewById(R.id.IDScoredSpeaker);
+        IDScoredSpeaker = getView().findViewById(R.id.IDL4Scored);
         IDScoredAmp = getView().findViewById(R.id.IDScoredAmp);
-        IDMissedSpeaker = getView().findViewById(R.id.IDMissedSpeaker);
+        IDMissedSpeaker = getView().findViewById(R.id.IDL4Missed);
         IDMissedAmp = getView().findViewById(R.id.IDMissedAmp);
 
         miscID = getView().findViewById(R.id.IDMisc);

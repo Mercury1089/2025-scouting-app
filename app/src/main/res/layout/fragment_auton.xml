@@ -10,6 +10,556 @@
     android:padding="@dimen/padding"
     tools:context=".MatchActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/coralLayout"
+        android:layout_width="294dp"
+        android:layout_height="549dp"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintStart_toStartOf="@+id/IDPossessionDirections"
+        app:layout_constraintTop_toBottomOf="@+id/IDPossessionDirections">
+
+        <TextView
+            android:id="@+id/IDCoral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_medium_condensed_bt"
+            android:text="@string/Coral"
+            android:textColor="@drawable/text_subead_states"
+            android:textSize="@dimen/alt_header_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/IDReef"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_medium_condensed_bt"
+            android:text="@string/Reef"
+            android:textColor="@color/melon"
+            android:textSize="@dimen/alt_subheader_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/IDCoral"
+            app:layout_constraintStart_toStartOf="@+id/IDCoral"
+            app:layout_constraintTop_toBottomOf="@+id/IDCoral" />
+
+        <RadioGroup
+            android:id="@+id/L4ScoredButtonGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:divider="?android:attr/dividerHorizontal"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            app:layout_constraintStart_toEndOf="@+id/IDL4Scored"
+            app:layout_constraintTop_toBottomOf="@+id/IDReef">
+
+            <ImageButton
+                android:id="@+id/notScoredL4Button"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toggle_left_states"
+                android:enabled="true"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/scoredL4Button"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_right_states"
+                android:enabled="false"
+                android:gravity="center"
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/L4MissedButtonGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:divider="?android:attr/dividerHorizontal"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            app:layout_constraintStart_toEndOf="@id/IDL4Missed"
+            app:layout_constraintTop_toBottomOf="@+id/L4ScoredButtonGroup">
+
+            <ImageButton
+                android:id="@+id/notMissedL4Button"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toggle_left_states"
+                android:enabled="true"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/missedL4Button"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_right_states"
+                android:enabled="false"
+                android:gravity="center"
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/IDL4Scored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/Scored"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_label_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/L4ScoredButtonGroup"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/L4ScoredButtonGroup" />
+
+        <TextView
+            android:id="@+id/L4ScoredCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:paddingStart="5dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="4dp"
+            android:text="@string/DefaultValue"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/L4ScoredButtonGroup"
+            app:layout_constraintStart_toEndOf="@+id/L4ScoredButtonGroup"
+            app:layout_constraintTop_toTopOf="@+id/L4ScoredButtonGroup" />
+
+        <TextView
+            android:id="@+id/IDL4Missed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/Missed"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_label_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/L4MissedButtonGroup"
+            app:layout_constraintStart_toStartOf="@+id/IDL4Scored"
+            app:layout_constraintTop_toTopOf="@+id/L4MissedButtonGroup" />
+
+        <TextView
+            android:id="@+id/L4MissedCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:paddingStart="5dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="4dp"
+            android:text="@string/DefaultValue"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/instruction_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/L4MissedButtonGroup"
+            app:layout_constraintStart_toEndOf="@+id/L4MissedButtonGroup"
+            app:layout_constraintTop_toTopOf="@+id/L4MissedButtonGroup" />
+
+        <RadioGroup
+            android:id="@+id/L3ScoredButtonGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:divider="?android:attr/dividerHorizontal"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            app:layout_constraintStart_toEndOf="@+id/IDL3Scored"
+            app:layout_constraintTop_toBottomOf="@+id/L4MissedButtonGroup">
+
+            <ImageButton
+                android:id="@+id/notScoredL3Button"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toggle_left_states"
+                android:enabled="true"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/scoredL3Button"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_right_states"
+                android:enabled="false"
+                android:gravity="center"
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/L3MissedButtonGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:divider="?android:attr/dividerHorizontal"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            app:layout_constraintStart_toEndOf="@id/IDL3Missed"
+            app:layout_constraintTop_toBottomOf="@+id/L3ScoredButtonGroup">
+
+            <ImageButton
+                android:id="@+id/notMissedL3Button"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toggle_left_states"
+                android:enabled="true"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/missedL3Button"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_right_states"
+                android:enabled="false"
+                android:gravity="center"
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/IDL3Scored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/Scored"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_label_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/L3ScoredButtonGroup"
+            app:layout_constraintStart_toStartOf="@+id/IDL4Missed"
+            app:layout_constraintTop_toTopOf="@id/L3ScoredButtonGroup" />
+
+        <TextView
+            android:id="@+id/L3ScoredCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:paddingStart="5dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="4dp"
+            android:text="@string/DefaultValue"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/L3ScoredButtonGroup"
+            app:layout_constraintStart_toEndOf="@+id/L3ScoredButtonGroup"
+            app:layout_constraintTop_toTopOf="@+id/L3ScoredButtonGroup" />
+
+        <TextView
+            android:id="@+id/IDL3Missed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/Missed"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_label_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/L3MissedButtonGroup"
+            app:layout_constraintStart_toStartOf="@+id/IDL3Scored"
+            app:layout_constraintTop_toTopOf="@+id/L3MissedButtonGroup" />
+
+        <TextView
+            android:id="@+id/L3MissedCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:paddingStart="5dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="4dp"
+            android:text="@string/DefaultValue"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/instruction_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/L3MissedButtonGroup"
+            app:layout_constraintStart_toEndOf="@+id/L3MissedButtonGroup"
+            app:layout_constraintTop_toTopOf="@+id/L3MissedButtonGroup" />
+
+        <RadioGroup
+            android:id="@+id/L2ScoredButtonGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:divider="?android:attr/dividerHorizontal"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            app:layout_constraintStart_toEndOf="@+id/IDL2Scored"
+            app:layout_constraintTop_toBottomOf="@+id/L3MissedButtonGroup">
+
+            <ImageButton
+                android:id="@+id/notScoredL2Button"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toggle_left_states"
+                android:enabled="true"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/scoredL2Button"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_right_states"
+                android:enabled="false"
+                android:gravity="center"
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/L2MissedButtonGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:divider="?android:attr/dividerHorizontal"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            app:layout_constraintStart_toEndOf="@id/IDL2Missed"
+            app:layout_constraintTop_toBottomOf="@+id/L2ScoredButtonGroup">
+
+            <ImageButton
+                android:id="@+id/notMissedL2Button"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toggle_left_states"
+                android:enabled="true"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/missedL2Button"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_right_states"
+                android:enabled="false"
+                android:gravity="center"
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/IDL2Scored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/Scored"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_label_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/L2ScoredButtonGroup"
+            app:layout_constraintStart_toStartOf="@id/IDL3Missed"
+            app:layout_constraintTop_toTopOf="@id/L2ScoredButtonGroup" />
+
+        <TextView
+            android:id="@+id/L2ScoredCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:paddingStart="5dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="4dp"
+            android:text="@string/DefaultValue"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/L2ScoredButtonGroup"
+            app:layout_constraintStart_toEndOf="@+id/L2ScoredButtonGroup"
+            app:layout_constraintTop_toTopOf="@+id/L2ScoredButtonGroup" />
+
+        <TextView
+            android:id="@+id/IDL2Missed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/Missed"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_label_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/L2MissedButtonGroup"
+            app:layout_constraintStart_toStartOf="@+id/IDL2Scored"
+            app:layout_constraintTop_toTopOf="@+id/L2MissedButtonGroup" />
+
+        <TextView
+            android:id="@+id/L2MissedCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:paddingStart="5dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="4dp"
+            android:text="@string/DefaultValue"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/instruction_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/L2MissedButtonGroup"
+            app:layout_constraintStart_toEndOf="@+id/L2MissedButtonGroup"
+            app:layout_constraintTop_toTopOf="@+id/L2MissedButtonGroup" />
+
+        <RadioGroup
+            android:id="@+id/L1ScoredButtonGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:divider="?android:attr/dividerHorizontal"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            app:layout_constraintStart_toEndOf="@+id/IDL1Scored"
+            app:layout_constraintTop_toBottomOf="@+id/L2MissedButtonGroup">
+
+            <ImageButton
+                android:id="@+id/notScoredL1Button"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toggle_left_states"
+                android:enabled="true"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/scoredL1Button"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_right_states"
+                android:enabled="false"
+                android:gravity="center"
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/L1MissedButtonGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:divider="?android:attr/dividerHorizontal"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            app:layout_constraintStart_toEndOf="@id/IDL1Missed"
+            app:layout_constraintTop_toBottomOf="@+id/L1ScoredButtonGroup">
+
+            <ImageButton
+                android:id="@+id/notMissedL1Button"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toggle_left_states"
+                android:enabled="true"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/missedL1Button"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_right_states"
+                android:enabled="false"
+                android:gravity="center"
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/IDL1Scored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/Scored"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_label_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/L1ScoredButtonGroup"
+            app:layout_constraintStart_toStartOf="@id/IDL2Missed"
+            app:layout_constraintTop_toTopOf="@id/L1ScoredButtonGroup" />
+
+        <TextView
+            android:id="@+id/L1ScoredCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:paddingStart="5dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="4dp"
+            android:text="@string/DefaultValue"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/L1ScoredButtonGroup"
+            app:layout_constraintStart_toEndOf="@+id/L1ScoredButtonGroup"
+            app:layout_constraintTop_toTopOf="@+id/L1ScoredButtonGroup" />
+
+        <TextView
+            android:id="@+id/IDL1Missed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/Missed"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_label_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/L1MissedButtonGroup"
+            app:layout_constraintStart_toStartOf="@+id/IDL1Scored"
+            app:layout_constraintTop_toTopOf="@+id/L1MissedButtonGroup" />
+
+        <TextView
+            android:id="@+id/L1MissedCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:paddingStart="5dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="4dp"
+            android:text="@string/DefaultValue"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/instruction_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/L1MissedButtonGroup"
+            app:layout_constraintStart_toEndOf="@+id/L1MissedButtonGroup"
+            app:layout_constraintTop_toTopOf="@+id/L1MissedButtonGroup" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <ImageView
         android:id="@+id/rightEdgeBar"
         android:layout_width="5dp"
@@ -73,80 +623,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/IDPossession"
+        android:id="@+id/IDPossessionDirections"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/futura_medium_condensed_bt"
-        android:text="@string/PossessionTitle"
-        android:textColor="@drawable/text_header_states"
-        android:textSize="@dimen/header_text_size"
-        app:layout_constraintStart_toEndOf="@+id/leftEdgeBar"
-        app:layout_constraintTop_toBottomOf="@+id/topEdgeBar" />
-
-    <TextView
-        android:id="@+id/IDPossessionDirections"
-        android:layout_width="492dp"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/open_sans_italic"
         android:text="@string/PossessionDirections"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/instruction_text_size"
-        app:layout_constraintStart_toStartOf="@+id/IDPossession"
-        app:layout_constraintTop_toBottomOf="@+id/IDPossession" />
-
-    <TextView
-        android:id="@+id/IDScoring"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/futura_medium_condensed_bt"
-        android:text="@string/ScoringTitle"
-        android:textColor="@drawable/text_header_states"
-        android:textSize="@dimen/header_text_size"
-        app:layout_constraintStart_toStartOf="@+id/IDPossession"
-        app:layout_constraintTop_toBottomOf="@+id/PickedUpToggle" />
-
-    <TextView
-        android:id="@+id/IDScoringDirections"
-        android:layout_width="506dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/open_sans_italic"
-        android:text="@string/ScoringDirections"
-        android:textColor="@drawable/text_states"
-        android:textSize="@dimen/instruction_text_size"
-        app:layout_constraintStart_toStartOf="@+id/IDPossession"
-        app:layout_constraintTop_toBottomOf="@+id/IDScoring" />
-
-    <TextView
-        android:id="@+id/IDPickedUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/open_sans"
-        android:text="@string/PickedUp"
-        android:textColor="@drawable/text_states"
-        android:textSize="@dimen/button_text_size"
-        app:layout_constraintStart_toStartOf="@+id/IDPossession"
-        app:layout_constraintTop_toBottomOf="@+id/IDPossessionDirections" />
-
-    <TextView
-        android:id="@+id/PickedUpCounter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:gravity="center"
-        android:paddingStart="5dp"
-        android:paddingTop="4dp"
-        android:paddingEnd="5dp"
-        android:paddingBottom="4dp"
-        android:text="@string/DefaultValue"
-        android:textColor="@drawable/text_states"
-        android:textSize="@dimen/instruction_text_size"
-        app:layout_constraintBottom_toBottomOf="@+id/IDPickedUp"
-        app:layout_constraintStart_toEndOf="@+id/PickedUpToggle"
-        app:layout_constraintTop_toTopOf="@+id/IDPickedUp" />
+        app:layout_constraintEnd_toStartOf="@+id/rightEdgeBar"
+        app:layout_constraintStart_toEndOf="@+id/leftEdgeBar"
+        app:layout_constraintTop_toBottomOf="@+id/topEdgeBar" />
 
     <TextView
         android:id="@+id/AutonSeconds"
@@ -161,53 +648,16 @@
         app:layout_constraintStart_toEndOf="@+id/IDAutonSeconds1"
         app:layout_constraintTop_toTopOf="@+id/IDAutonSeconds1" />
 
-    <RadioGroup
-        android:id="@+id/PickedUpToggle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:divider="?android:attr/dividerHorizontal"
-        android:orientation="horizontal"
-        android:showDividers="middle"
-        app:layout_constraintBottom_toBottomOf="@+id/IDPickedUp"
-        app:layout_constraintStart_toEndOf="@+id/IDPickedUp"
-        app:layout_constraintTop_toTopOf="@+id/IDPickedUp">
-
-        <ImageButton
-            android:id="@+id/NotPickedUpButton"
-            android:layout_width="@dimen/square_toggle_length"
-            android:layout_height="@dimen/square_toggle_length"
-            android:background="@drawable/toggle_left_states"
-            android:enabled="true"
-            android:fontFamily="@font/open_sans"
-            android:gravity="center"
-            android:src="@drawable/minus_states"
-            tools:ignore="ContentDescription" />
-
-        <ImageButton
-            android:id="@+id/PickedUpButton"
-            android:layout_width="@dimen/square_toggle_length"
-            android:layout_height="@dimen/square_toggle_length"
-            android:background="@drawable/toggle_right_states"
-            android:enabled="false"
-            android:gravity="center"
-            android:src="@drawable/plus_states"
-            tools:ignore="ContentDescription" />
-
-        <!-- android:button="@drawable/button_rounded_corners" -->
-    </RadioGroup>
-
     <TextView
         android:id="@+id/IDMisc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/MiscTitle"
         android:textColor="@drawable/text_header_states"
         android:textSize="@dimen/header_text_size"
-        app:layout_constraintStart_toStartOf="@+id/IDPossession"
-        app:layout_constraintTop_toBottomOf="@+id/speakerLayout" />
+        tools:layout_editor_absoluteX="61dp"
+        tools:layout_editor_absoluteY="979dp" />
 
     <TextView
         android:id="@+id/IDMiscDirections"
@@ -299,313 +749,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.925" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/speakerLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/scoring_layout_bg"
-        android:paddingStart="10dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="5dp"
-        android:paddingBottom="10dp"
-        app:layout_constraintStart_toStartOf="@+id/IDScoringDirections"
-        app:layout_constraintTop_toBottomOf="@+id/IDScoringDirections">
-
-        <TextView
-            android:id="@+id/IDSpeaker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/futura_medium_condensed_bt"
-            android:text="@string/Speaker"
-            android:textColor="@drawable/text_subead_states"
-            android:textSize="@dimen/subheader_text_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/missedSpeakerCounter"
-            android:layout_width="38dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="5dp"
-            android:gravity="center"
-            android:paddingStart="5dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="5dp"
-            android:paddingBottom="4dp"
-            android:text="@string/DefaultValue"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/MissedSpeakerToggle"
-            app:layout_constraintStart_toEndOf="@+id/MissedSpeakerToggle"
-            app:layout_constraintTop_toTopOf="@+id/MissedSpeakerToggle" />
-
-        <RadioGroup
-            android:id="@+id/ScoredSpeakerToggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:divider="?android:attr/dividerHorizontal"
-            android:orientation="horizontal"
-            android:showDividers="middle"
-            app:layout_constraintBottom_toBottomOf="@id/IDScoredSpeaker"
-            app:layout_constraintStart_toEndOf="@id/IDScoredSpeaker"
-            app:layout_constraintTop_toTopOf="@id/IDScoredSpeaker">
-
-            <ImageButton
-                android:id="@+id/notScoredSpeakerButton"
-                android:layout_width="@dimen/square_toggle_length"
-                android:layout_height="wrap_content"
-                android:background="@drawable/toggle_left_states"
-                android:enabled="true"
-                android:fontFamily="@font/open_sans"
-                android:gravity="center"
-                android:src="@drawable/minus_states"
-                tools:ignore="ContentDescription" />
-
-            <ImageButton
-                android:id="@+id/scoredSpeakerButton"
-                android:layout_width="@dimen/square_toggle_length"
-                android:layout_height="@dimen/square_toggle_length"
-                android:layout_weight="1"
-                android:background="@drawable/toggle_right_states"
-                android:enabled="false"
-                android:gravity="center"
-                android:src="@drawable/plus_states"
-                tools:ignore="ContentDescription" />
-        </RadioGroup>
-
-        <RadioGroup
-            android:id="@+id/MissedSpeakerToggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="21dp"
-            android:divider="?android:attr/dividerHorizontal"
-            android:orientation="horizontal"
-            android:showDividers="middle"
-            app:layout_constraintBottom_toBottomOf="@id/IDMissedSpeaker"
-            app:layout_constraintStart_toEndOf="@id/IDMissedSpeaker"
-            app:layout_constraintTop_toTopOf="@id/IDMissedSpeaker">
-
-            <ImageButton
-                android:id="@+id/notMissedSpeakerButton"
-                android:layout_width="@dimen/square_toggle_length"
-                android:layout_height="wrap_content"
-                android:background="@drawable/toggle_left_states"
-                android:enabled="true"
-                android:fontFamily="@font/open_sans"
-                android:gravity="center"
-                android:src="@drawable/minus_states"
-                tools:ignore="ContentDescription" />
-
-            <ImageButton
-                android:id="@+id/missedSpeakerButton"
-                android:layout_width="@dimen/square_toggle_length"
-                android:layout_height="@dimen/square_toggle_length"
-                android:layout_weight="1"
-                android:background="@drawable/toggle_right_states"
-                android:enabled="false"
-                android:gravity="center"
-                android:src="@drawable/plus_states"
-                tools:ignore="ContentDescription" />
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/IDScoredSpeaker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:fontFamily="@font/open_sans"
-            android:text="@string/Scored"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/button_text_size"
-            app:layout_constraintStart_toStartOf="@+id/IDSpeaker"
-            app:layout_constraintTop_toBottomOf="@+id/IDSpeaker" />
-
-        <TextView
-            android:id="@+id/scoredSpeakerCounter"
-            android:layout_width="38dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="5dp"
-            android:gravity="center"
-            android:paddingStart="5dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="5dp"
-            android:paddingBottom="4dp"
-            android:text="@string/DefaultValue"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/ScoredSpeakerToggle"
-            app:layout_constraintStart_toEndOf="@+id/ScoredSpeakerToggle"
-            app:layout_constraintTop_toTopOf="@+id/ScoredSpeakerToggle" />
-
-        <TextView
-            android:id="@+id/IDMissedSpeaker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:fontFamily="@font/open_sans"
-            android:text="@string/Missed"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/button_text_size"
-            app:layout_constraintStart_toStartOf="@+id/IDScoredSpeaker"
-            app:layout_constraintTop_toBottomOf="@+id/IDScoredSpeaker" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ampLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:background="@drawable/scoring_layout_bg"
-        android:paddingStart="10dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="5dp"
-        android:paddingBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/speakerLayout"
-        app:layout_constraintStart_toEndOf="@+id/speakerLayout"
-        app:layout_constraintTop_toTopOf="@+id/speakerLayout">
-
-        <TextView
-            android:id="@+id/IDAmp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/futura_medium_condensed_bt"
-            android:text="@string/Amp"
-            android:textColor="@drawable/text_subead_states"
-            android:textSize="@dimen/subheader_text_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/IDScoredAmp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:fontFamily="@font/open_sans"
-            android:text="@string/Scored"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/button_text_size"
-            app:layout_constraintStart_toStartOf="@+id/IDAmp"
-            app:layout_constraintTop_toBottomOf="@+id/IDAmp" />
-
-        <TextView
-            android:id="@+id/missedAmpCounter"
-            android:layout_width="38dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="5dp"
-            android:gravity="center"
-            android:paddingStart="5dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="5dp"
-            android:paddingBottom="4dp"
-            android:text="@string/DefaultValue"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/MissedLowerToggle"
-            app:layout_constraintStart_toEndOf="@+id/MissedLowerToggle"
-            app:layout_constraintTop_toTopOf="@+id/MissedLowerToggle" />
-
-        <RadioGroup
-            android:id="@+id/MissedLowerToggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="21dp"
-            android:divider="?android:attr/dividerHorizontal"
-            android:orientation="horizontal"
-            android:showDividers="middle"
-            app:layout_constraintBottom_toBottomOf="@+id/IDMissedAmp"
-            app:layout_constraintStart_toEndOf="@+id/IDMissedAmp"
-            app:layout_constraintTop_toTopOf="@+id/IDMissedAmp">
-
-            <ImageButton
-                android:id="@+id/notMissedAmpButton"
-                android:layout_width="@dimen/square_toggle_length"
-                android:layout_height="wrap_content"
-                android:background="@drawable/toggle_left_states"
-                android:enabled="true"
-                android:fontFamily="@font/open_sans"
-                android:gravity="center"
-                android:src="@drawable/minus_states"
-                tools:ignore="ContentDescription" />
-
-            <ImageButton
-                android:id="@+id/missedAmpButton"
-                android:layout_width="@dimen/square_toggle_length"
-                android:layout_height="@dimen/square_toggle_length"
-                android:layout_weight="1"
-                android:background="@drawable/toggle_right_states"
-                android:enabled="false"
-                android:gravity="center"
-                android:src="@drawable/plus_states"
-                tools:ignore="ContentDescription" />
-
-        </RadioGroup>
-
-        <RadioGroup
-            android:id="@+id/ScoredLowerToggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:divider="?android:attr/dividerHorizontal"
-            android:orientation="horizontal"
-            android:showDividers="middle"
-            app:layout_constraintBottom_toBottomOf="@+id/IDScoredAmp"
-            app:layout_constraintStart_toEndOf="@+id/IDScoredAmp"
-            app:layout_constraintTop_toTopOf="@+id/IDScoredAmp">
-
-            <ImageButton
-                android:id="@+id/notScoredAmpButton"
-                android:layout_width="@dimen/square_toggle_length"
-                android:layout_height="wrap_content"
-                android:background="@drawable/toggle_left_states"
-                android:enabled="true"
-                android:fontFamily="@font/open_sans"
-                android:gravity="center"
-                android:src="@drawable/minus_states"
-                tools:ignore="ContentDescription" />
-
-            <ImageButton
-                android:id="@+id/scoredAmpButton"
-                android:layout_width="@dimen/square_toggle_length"
-                android:layout_height="@dimen/square_toggle_length"
-                android:layout_weight="1"
-                android:background="@drawable/toggle_right_states"
-                android:enabled="false"
-                android:gravity="center"
-                android:src="@drawable/plus_states"
-                tools:ignore="ContentDescription" />
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/scoredAmpCounter"
-            android:layout_width="38dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="5dp"
-            android:gravity="center"
-            android:paddingStart="5dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="5dp"
-            android:paddingBottom="4dp"
-            android:text="@string/DefaultValue"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/ScoredLowerToggle"
-            app:layout_constraintStart_toEndOf="@+id/ScoredLowerToggle"
-            app:layout_constraintTop_toTopOf="@+id/ScoredLowerToggle" />
-
-        <TextView
-            android:id="@+id/IDMissedAmp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:fontFamily="@font/open_sans"
-            android:text="@string/Missed"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/button_text_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/IDScoredAmp" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

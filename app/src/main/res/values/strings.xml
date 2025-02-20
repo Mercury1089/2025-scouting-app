@@ -80,6 +80,7 @@
     <!-- Auton -->
         <string name="AutonSeconds">AUTON SECONDS REMAINING</string>
         <string name="PossessionDirections">Tap the + and - buttons to increase or decrease the counter for each option.</string>
+        <string name="Reef">REEF</string>
         <string name="PickedUp">PICKED UP</string>
         <string name="Dropped">DROPPED</string>
         <string name="Plus">+</string>
@@ -152,6 +153,6 @@
         <string name="NextMatch">SET UP NEXT MATCH</string>
     <string name="ToggleInstructions">Tap on the toggle to record if the options are true (on) or false (off).</string>
         <string name="PreloadNote">Preloaded Coral</string>
-        <string name="Speaker">SPEAKER</string>
+        <string name="Coral">CORAL</string>
         <string name="Amp">AMP</string>
 </resources>
