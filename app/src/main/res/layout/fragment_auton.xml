@@ -12,12 +12,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/coralLayout"
-        android:layout_width="294dp"
+        android:layout_width="wrap_content"
         android:layout_height="549dp"
-        android:paddingStart="10dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="5dp"
-        android:paddingBottom="10dp"
         app:layout_constraintStart_toStartOf="@+id/IDPossessionDirections"
         app:layout_constraintTop_toBottomOf="@+id/IDPossessionDirections">
 
@@ -34,6 +30,54 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/IDL4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_medium_condensed_bt"
+            android:text="@string/L4"
+            android:textColor="@drawable/text_subead_states"
+            android:textSize="@dimen/alt_header_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/IDL4Missed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/IDL4Scored" />
+
+        <TextView
+            android:id="@+id/IDL3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_medium_condensed_bt"
+            android:text="@string/L3"
+            android:textColor="@drawable/text_subead_states"
+            android:textSize="@dimen/alt_header_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/IDL3Missed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/IDL3Scored" />
+
+        <TextView
+            android:id="@+id/IDL2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_medium_condensed_bt"
+            android:text="@string/L2"
+            android:textColor="@drawable/text_subead_states"
+            android:textSize="@dimen/alt_header_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/IDL2Missed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/IDL2Scored" />
+
+        <TextView
+            android:id="@+id/IDL6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_medium_condensed_bt"
+            android:text="@string/L1"
+            android:textColor="@drawable/text_subead_states"
+            android:textSize="@dimen/alt_header_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/IDL1Missed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/IDL1Scored" />
+
+        <TextView
             android:id="@+id/IDReef"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,8 +85,8 @@
             android:text="@string/Reef"
             android:textColor="@color/melon"
             android:textSize="@dimen/alt_subheader_text_size"
-            app:layout_constraintEnd_toEndOf="@+id/IDCoral"
-            app:layout_constraintStart_toStartOf="@+id/IDCoral"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/IDCoral" />
 
         <RadioGroup
@@ -119,13 +163,13 @@
             android:id="@+id/IDL4Scored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="30dp"
             android:fontFamily="@font/open_sans"
             android:text="@string/Scored"
             android:textColor="@drawable/text_states"
             android:textSize="@dimen/counter_label_text_size"
             app:layout_constraintBottom_toBottomOf="@id/L4ScoredButtonGroup"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/IDL4"
             app:layout_constraintTop_toTopOf="@id/L4ScoredButtonGroup" />
 
         <TextView

@@ -88,6 +88,10 @@
         <string name="ScoringDirections">Tap the + or - buttons to record scored/missed notes.</string>
         <string name="Scored">SCORED</string>
         <string name="Missed">MISSED</string>
+        <string name="L4">L4</string>
+        <string name="L3">L3</string>
+        <string name="L2">L2</string>
+        <string name="L1">L1</string>
         <string name="MiscDirections">Tap on the toggle to mark if the action occurs.</string>
         <string name="Leave">Leave (Robot left the starting zone)</string>
         <string name="FellOver">Fell Over</string>
