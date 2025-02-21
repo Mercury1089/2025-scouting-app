@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace 'com.mercury1089.scoutingapp2025'
     compileSdkVersion 35
     defaultConfig {
         applicationId "com.mercury1089.scoutingapp2025"
