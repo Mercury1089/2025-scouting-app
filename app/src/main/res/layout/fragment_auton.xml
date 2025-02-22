@@ -325,7 +325,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/coralLayout"
         android:layout_width="wrap_content"
-        android:layout_height="549dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@+id/IDPossessionDirections"
         app:layout_constraintTop_toBottomOf="@+id/IDPossessionDirections">
 
@@ -915,6 +915,295 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ProcessorNetLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/algaeLayout"
+        app:layout_constraintTop_toBottomOf="@+id/algaeLayout">
+
+        <TextView
+            android:id="@+id/IDProcessor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_medium_condensed_bt"
+            android:text="@string/Processor"
+            android:textColor="@color/melon"
+            android:textSize="@dimen/alt_subheader_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/IDAlgae" />
+
+        <RadioGroup
+            android:id="@+id/ProcessorScoredButtonGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:divider="?android:attr/dividerHorizontal"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            app:layout_constraintEnd_toStartOf="@+id/ProcessorScoredCounter"
+            app:layout_constraintTop_toBottomOf="@+id/IDProcessor">
+
+            <ImageButton
+                android:id="@+id/notScoredProcessorButton"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toggle_left_states"
+                android:enabled="true"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/scoredProcessorButton"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_right_states"
+                android:enabled="false"
+                android:gravity="center"
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/ProcessorMissedButtonGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:divider="?android:attr/dividerHorizontal"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            app:layout_constraintEnd_toEndOf="@+id/ProcessorScoredButtonGroup"
+            app:layout_constraintStart_toStartOf="@+id/L4ScoredButtonGroup"
+            app:layout_constraintTop_toBottomOf="@+id/ProcessorScoredButtonGroup">
+
+            <ImageButton
+                android:id="@+id/notMissedProcessorButton"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toggle_left_states"
+                android:enabled="true"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/missedProcessorButton"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_right_states"
+                android:enabled="false"
+                android:gravity="center"
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/IDProcessorScored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/Scored"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_label_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/ProcessorScoredButtonGroup"
+            app:layout_constraintEnd_toStartOf="@+id/ProcessorScoredButtonGroup"
+            app:layout_constraintTop_toTopOf="@id/ProcessorScoredButtonGroup"
+            app:layout_constraintVertical_bias="0.666" />
+
+        <TextView
+            android:id="@+id/ProcessorScoredCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingStart="5dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="4dp"
+            android:text="@string/DefaultValue"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/ProcessorScoredButtonGroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ProcessorScoredButtonGroup" />
+
+        <TextView
+            android:id="@+id/IDProcessorMissed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/Missed"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_label_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/ProcessorMissedButtonGroup"
+            app:layout_constraintEnd_toEndOf="@+id/IDProcessorScored"
+            app:layout_constraintTop_toTopOf="@+id/ProcessorMissedButtonGroup" />
+
+        <TextView
+            android:id="@+id/ProcessorMissedCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingStart="5dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="4dp"
+            android:text="@string/DefaultValue"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/instruction_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/ProcessorMissedButtonGroup"
+            app:layout_constraintEnd_toEndOf="@+id/ProcessorScoredCounter"
+            app:layout_constraintTop_toTopOf="@+id/ProcessorMissedButtonGroup" />
+
+        <TextView
+            android:id="@+id/IDNet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/futura_medium_condensed_bt"
+            android:text="@string/Net"
+            android:textColor="@color/melon"
+            android:textSize="@dimen/alt_subheader_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ProcessorMissedButtonGroup" />
+
+        <TextView
+            android:id="@+id/IDNetScored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/Scored"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_label_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/NetScoredButtonGroup"
+            app:layout_constraintEnd_toStartOf="@+id/NetScoredButtonGroup"
+            app:layout_constraintTop_toTopOf="@+id/NetScoredButtonGroup" />
+
+        <TextView
+            android:id="@+id/processorScoredCounter2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="11dp"
+            android:gravity="center"
+            android:paddingStart="5dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="4dp"
+            android:text="@string/DefaultValue"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/NetScoredButtonGroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/NetScoredButtonGroup" />
+
+        <TextView
+            android:id="@+id/processorMissedCounter2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingStart="5dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="4dp"
+            android:text="@string/DefaultValue"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/instruction_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/processorScoredCounter2"
+            app:layout_constraintTop_toTopOf="@+id/NetMissedButtonGroup" />
+
+        <TextView
+            android:id="@+id/IDNetMissed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/Missed"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_label_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/IDNetScored"
+            app:layout_constraintTop_toTopOf="@+id/NetMissedButtonGroup" />
+
+        <RadioGroup
+            android:id="@+id/NetScoredButtonGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:divider="?android:attr/dividerHorizontal"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            app:layout_constraintEnd_toStartOf="@+id/processorScoredCounter2"
+            app:layout_constraintTop_toBottomOf="@+id/IDNet">
+
+            <ImageButton
+                android:id="@+id/notScoredNetButton"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toggle_left_states"
+                android:enabled="true"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/scoredNetButton"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_right_states"
+                android:enabled="false"
+                android:gravity="center"
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/NetMissedButtonGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:divider="?android:attr/dividerHorizontal"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            app:layout_constraintEnd_toEndOf="@+id/NetScoredButtonGroup"
+            app:layout_constraintTop_toBottomOf="@+id/NetScoredButtonGroup">
+
+            <ImageButton
+                android:id="@+id/notMissedNetButton"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toggle_left_states"
+                android:enabled="true"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/missedNetButton"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_right_states"
+                android:enabled="false"
+                android:gravity="center"
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
+        </RadioGroup>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <ImageView
         android:id="@+id/rightEdgeBar"
         android:layout_width="5dp"
@@ -1104,293 +1393,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.925" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ProcessorNetLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/algaeLayout"
-        app:layout_constraintTop_toBottomOf="@+id/algaeLayout">
-
-        <TextView
-            android:id="@+id/IDProcessor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/futura_medium_condensed_bt"
-            android:text="@string/Processor"
-            android:textColor="@color/melon"
-            android:textSize="@dimen/alt_subheader_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/IDAlgae" />
-
-        <RadioGroup
-            android:id="@+id/ProcessorScoredButtonGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:divider="?android:attr/dividerHorizontal"
-            android:orientation="horizontal"
-            android:showDividers="middle"
-            app:layout_constraintEnd_toStartOf="@+id/ProcessorScoredCounter"
-            app:layout_constraintTop_toBottomOf="@+id/IDProcessor">
-
-            <ImageButton
-                android:id="@+id/notScoredProcessorButton"
-                android:layout_width="@dimen/square_toggle_length"
-                android:layout_height="wrap_content"
-                android:background="@drawable/toggle_left_states"
-                android:enabled="true"
-                android:fontFamily="@font/open_sans"
-                android:gravity="center"
-                android:src="@drawable/minus_states"
-                tools:ignore="ContentDescription" />
-
-            <ImageButton
-                android:id="@+id/scoredProcessorButton"
-                android:layout_width="@dimen/square_toggle_length"
-                android:layout_height="@dimen/square_toggle_length"
-                android:layout_weight="1"
-                android:background="@drawable/toggle_right_states"
-                android:enabled="false"
-                android:gravity="center"
-                android:src="@drawable/plus_states"
-                tools:ignore="ContentDescription" />
-        </RadioGroup>
-
-        <RadioGroup
-            android:id="@+id/ProcessorMissedButtonGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:divider="?android:attr/dividerHorizontal"
-            android:orientation="horizontal"
-            android:showDividers="middle"
-            app:layout_constraintEnd_toEndOf="@+id/ProcessorScoredButtonGroup"
-            app:layout_constraintStart_toStartOf="@+id/L4ScoredButtonGroup"
-            app:layout_constraintTop_toBottomOf="@+id/ProcessorScoredButtonGroup">
-
-            <ImageButton
-                android:id="@+id/notMissedProcessorButton"
-                android:layout_width="@dimen/square_toggle_length"
-                android:layout_height="wrap_content"
-                android:background="@drawable/toggle_left_states"
-                android:enabled="true"
-                android:fontFamily="@font/open_sans"
-                android:gravity="center"
-                android:src="@drawable/minus_states"
-                tools:ignore="ContentDescription" />
-
-            <ImageButton
-                android:id="@+id/missedProcessorButton"
-                android:layout_width="@dimen/square_toggle_length"
-                android:layout_height="@dimen/square_toggle_length"
-                android:layout_weight="1"
-                android:background="@drawable/toggle_right_states"
-                android:enabled="false"
-                android:gravity="center"
-                android:src="@drawable/plus_states"
-                tools:ignore="ContentDescription" />
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/IDProcessorScored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:fontFamily="@font/open_sans"
-            android:text="@string/Scored"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/counter_label_text_size"
-            app:layout_constraintBottom_toBottomOf="@id/ProcessorScoredButtonGroup"
-            app:layout_constraintEnd_toStartOf="@+id/ProcessorScoredButtonGroup"
-            app:layout_constraintTop_toTopOf="@id/ProcessorScoredButtonGroup"
-            app:layout_constraintVertical_bias="0.666" />
-
-        <TextView
-            android:id="@+id/ProcessorScoredCounter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingStart="5dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="5dp"
-            android:paddingBottom="4dp"
-            android:text="@string/DefaultValue"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/counter_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/ProcessorScoredButtonGroup"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/ProcessorScoredButtonGroup" />
-
-        <TextView
-            android:id="@+id/IDProcessorMissed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/open_sans"
-            android:text="@string/Missed"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/counter_label_text_size"
-            app:layout_constraintBottom_toBottomOf="@id/ProcessorMissedButtonGroup"
-            app:layout_constraintEnd_toEndOf="@+id/IDProcessorScored"
-            app:layout_constraintTop_toTopOf="@+id/ProcessorMissedButtonGroup" />
-
-        <TextView
-            android:id="@+id/ProcessorMissedCounter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingStart="5dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="5dp"
-            android:paddingBottom="4dp"
-            android:text="@string/DefaultValue"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/ProcessorMissedButtonGroup"
-            app:layout_constraintEnd_toEndOf="@+id/ProcessorScoredCounter"
-            app:layout_constraintTop_toTopOf="@+id/ProcessorMissedButtonGroup" />
-
-        <TextView
-            android:id="@+id/IDNet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/futura_medium_condensed_bt"
-            android:text="@string/Net"
-            android:textColor="@color/melon"
-            android:textSize="@dimen/alt_subheader_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ProcessorMissedButtonGroup" />
-
-        <TextView
-            android:id="@+id/IDNetScored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/open_sans"
-            android:text="@string/Scored"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/counter_label_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/NetScoredButtonGroup"
-            app:layout_constraintTop_toTopOf="@+id/NetScoredButtonGroup"
-            tools:layout_editor_absoluteX="74dp" />
-
-        <TextView
-            android:id="@+id/processorScoredCounter2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="11dp"
-            android:gravity="center"
-            android:paddingStart="5dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="5dp"
-            android:paddingBottom="4dp"
-            android:text="@string/DefaultValue"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/counter_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/NetScoredButtonGroup"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/NetScoredButtonGroup" />
-
-        <TextView
-            android:id="@+id/processorMissedCounter2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingStart="5dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="5dp"
-            android:paddingBottom="4dp"
-            android:text="@string/DefaultValue"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/processorScoredCounter2"
-            app:layout_constraintTop_toTopOf="@+id/NetMissedButtonGroup" />
-
-        <TextView
-            android:id="@+id/IDNetMissed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/open_sans"
-            android:text="@string/Missed"
-            android:textColor="@drawable/text_states"
-            android:textSize="@dimen/counter_label_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/NetMissedButtonGroup"
-            app:layout_constraintTop_toTopOf="@+id/NetMissedButtonGroup"
-            tools:layout_editor_absoluteX="74dp" />
-
-        <RadioGroup
-            android:id="@+id/NetScoredButtonGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:divider="?android:attr/dividerHorizontal"
-            android:orientation="horizontal"
-            android:showDividers="middle"
-            app:layout_constraintEnd_toStartOf="@+id/processorScoredCounter2"
-            app:layout_constraintTop_toBottomOf="@+id/IDNet">
-
-            <ImageButton
-                android:id="@+id/notScoredNetButton"
-                android:layout_width="@dimen/square_toggle_length"
-                android:layout_height="wrap_content"
-                android:background="@drawable/toggle_left_states"
-                android:enabled="true"
-                android:fontFamily="@font/open_sans"
-                android:gravity="center"
-                android:src="@drawable/minus_states"
-                tools:ignore="ContentDescription" />
-
-            <ImageButton
-                android:id="@+id/scoredNetButton"
-                android:layout_width="@dimen/square_toggle_length"
-                android:layout_height="@dimen/square_toggle_length"
-                android:layout_weight="1"
-                android:background="@drawable/toggle_right_states"
-                android:enabled="false"
-                android:gravity="center"
-                android:src="@drawable/plus_states"
-                tools:ignore="ContentDescription" />
-        </RadioGroup>
-
-        <RadioGroup
-            android:id="@+id/NetMissedButtonGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:divider="?android:attr/dividerHorizontal"
-            android:orientation="horizontal"
-            android:showDividers="middle"
-            app:layout_constraintEnd_toEndOf="@+id/NetScoredButtonGroup"
-            app:layout_constraintTop_toBottomOf="@+id/NetScoredButtonGroup">
-
-            <ImageButton
-                android:id="@+id/notMissedNetButton"
-                android:layout_width="@dimen/square_toggle_length"
-                android:layout_height="wrap_content"
-                android:background="@drawable/toggle_left_states"
-                android:enabled="true"
-                android:fontFamily="@font/open_sans"
-                android:gravity="center"
-                android:src="@drawable/minus_states"
-                tools:ignore="ContentDescription" />
-
-            <ImageButton
-                android:id="@+id/missedNetButton"
-                android:layout_width="@dimen/square_toggle_length"
-                android:layout_height="@dimen/square_toggle_length"
-                android:layout_weight="1"
-                android:background="@drawable/toggle_right_states"
-                android:enabled="false"
-                android:gravity="center"
-                android:src="@drawable/plus_states"
-                tools:ignore="ContentDescription" />
-        </RadioGroup>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
