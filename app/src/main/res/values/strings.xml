@@ -90,6 +90,8 @@
         <string name="ScoringDirections">Tap the + or - buttons to record scored/missed notes.</string>
         <string name="Scored">SCORED</string>
         <string name="Missed">MISSED</string>
+        <string name="Removed">REMOVED</string>
+        <string name="Attempted">ATTEMPTED</string>
         <string name="L4">L4</string>
         <string name="L3">L3</string>
         <string name="L2">L2</string>
