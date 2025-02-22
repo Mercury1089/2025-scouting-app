@@ -83,6 +83,8 @@
         <string name="Reef">REEF</string>
         <string name="Algae">ALGAE</string>
         <string name="Dealgaefying">REEF DEALGAEFYING</string>
+        <string name="Processor">PROCESSOR</string>
+        <string name="Net">NET</string>
         <string name="PickedUp">PICKED UP</string>
         <string name="Dropped">DROPPED</string>
         <string name="Plus">+</string>
