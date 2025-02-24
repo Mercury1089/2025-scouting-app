@@ -15,7 +15,7 @@
         <string name="ExitTitle">EXIT</string>
         <string name="PossessionTitle">POSSESSION</string>
         <string name="ScoringTitle">SCORING</string>
-        <string name="MiscTitle">MISC</string>
+        <string name="RobotTitle">Robot</string>
         <string name="ControlPanelTitle">CONTROL PANEL</string>
         <string name="ClimbTitle">CLIMB</string>
         <string name="EndGameTitle">POST MATCH</string>
@@ -98,8 +98,8 @@
         <string name="L3">L3</string>
         <string name="L2">L2</string>
         <string name="L1">L1</string>
-        <string name="MiscDirections">Tap on the toggle to mark if the action occurs.</string>
-        <string name="Leave">Leave (Robot left the starting zone)</string>
+        <string name="MiscDirections">Tap on the toggle if the action happens.</string>
+        <string name="Leave">Leave</string>
         <string name="FellOver">Fell Over</string>
         <string name="TeleopWarning">Teleop is starting soon...</string>
         <string name="TeleopError">Switch to teleop as soon as possible!</string>

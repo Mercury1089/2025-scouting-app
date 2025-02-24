@@ -509,7 +509,7 @@ public class Auton extends Fragment {
         leaveID.setEnabled(enable);
     }
 
-    private void updateXMLObjects(){
+    public void updateXMLObjects(){
         scoredSpeakerCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredSpeaker"), 2));
         scoredAmpCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredAmp"), 2));
         missedSpeakerCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedSpeaker"), 2));

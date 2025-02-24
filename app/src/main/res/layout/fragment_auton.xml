@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+S
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -916,7 +917,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ProcessorNetLayout"
+        android:id="@+id/processorNetLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -1067,7 +1068,6 @@
             android:id="@+id/IDNet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:fontFamily="@font/futura_medium_condensed_bt"
             android:text="@string/Net"
             android:textColor="@color/melon"
@@ -1090,7 +1090,7 @@
             app:layout_constraintTop_toTopOf="@+id/NetScoredButtonGroup" />
 
         <TextView
-            android:id="@+id/processorScoredCounter2"
+            android:id="@+id/netScoredCounter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="11dp"
@@ -1107,7 +1107,7 @@
             app:layout_constraintTop_toTopOf="@+id/NetScoredButtonGroup" />
 
         <TextView
-            android:id="@+id/processorMissedCounter2"
+            android:id="@+id/netMissedCounter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -1119,7 +1119,7 @@
             android:textColor="@drawable/text_states"
             android:textSize="@dimen/instruction_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/processorScoredCounter2"
+            app:layout_constraintEnd_toEndOf="@+id/netScoredCounter"
             app:layout_constraintTop_toTopOf="@+id/NetMissedButtonGroup" />
 
         <TextView
@@ -1143,7 +1143,7 @@
             android:divider="?android:attr/dividerHorizontal"
             android:orientation="horizontal"
             android:showDividers="middle"
-            app:layout_constraintEnd_toStartOf="@+id/processorScoredCounter2"
+            app:layout_constraintEnd_toStartOf="@+id/netScoredCounter"
             app:layout_constraintTop_toBottomOf="@+id/IDNet">
 
             <ImageButton
@@ -1204,6 +1204,181 @@
         </RadioGroup>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/coralPossessionLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/coralLayout"
+        app:layout_constraintTop_toBottomOf="@+id/coralLayout">
+
+        <TextView
+            android:id="@+id/IDCoralPossession"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_medium_condensed_bt"
+            android:text="@string/PossessionTitle"
+            android:textColor="@color/melon"
+            android:textSize="@dimen/alt_subheader_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/IDAlgae" />
+
+        <TextView
+            android:id="@+id/IDCoralPossessed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/PickedUp"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_label_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/CoralPossessedButtonGroup"
+            app:layout_constraintEnd_toStartOf="@+id/CoralPossessedButtonGroup"
+            app:layout_constraintTop_toTopOf="@+id/CoralPossessedButtonGroup" />
+
+        <RadioGroup
+            android:id="@+id/CoralPossessedButtonGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:divider="?android:attr/dividerHorizontal"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            app:layout_constraintEnd_toStartOf="@+id/coralPossessedCounter"
+            app:layout_constraintTop_toBottomOf="@+id/IDCoralPossession">
+
+            <ImageButton
+                android:id="@+id/notPossessedCoralButton"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toggle_left_states"
+                android:enabled="true"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/possessedCoralButton"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_right_states"
+                android:enabled="false"
+                android:gravity="center"
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/coralPossessedCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingStart="5dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="4dp"
+            android:text="@string/DefaultValue"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/CoralPossessedButtonGroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/CoralPossessedButtonGroup" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/algaePossesssionLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/processorNetLayout"
+        app:layout_constraintTop_toBottomOf="@+id/processorNetLayout">
+
+        <TextView
+            android:id="@+id/IDAlgaePossession"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/futura_medium_condensed_bt"
+            android:text="@string/PossessionTitle"
+            android:textColor="@color/melon"
+            android:textSize="@dimen/alt_subheader_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/IDAlgae" />
+
+        <TextView
+            android:id="@+id/IDAlgaePossessed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/PickedUp"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_label_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/AlgaePossessedButtonGroup"
+            app:layout_constraintEnd_toStartOf="@+id/AlgaePossessedButtonGroup"
+            app:layout_constraintTop_toTopOf="@+id/AlgaePossessedButtonGroup" />
+
+        <RadioGroup
+            android:id="@+id/AlgaePossessedButtonGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:divider="?android:attr/dividerHorizontal"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            app:layout_constraintEnd_toStartOf="@+id/algaePossessedCounter"
+            app:layout_constraintTop_toBottomOf="@+id/IDAlgaePossession">
+
+            <ImageButton
+                android:id="@+id/notPossessedAlgaeButton"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toggle_left_states"
+                android:enabled="true"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:src="@drawable/minus_states"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/possessedAlgaeButton"
+                android:layout_width="@dimen/square_toggle_length"
+                android:layout_height="@dimen/square_toggle_length"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_right_states"
+                android:enabled="false"
+                android:gravity="center"
+                android:src="@drawable/plus_states"
+                tools:ignore="ContentDescription" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/algaePossessedCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingStart="5dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="4dp"
+            android:text="@string/DefaultValue"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/counter_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/AlgaePossessedButtonGroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/AlgaePossessedButtonGroup"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <ImageView
         android:id="@+id/rightEdgeBar"
         android:layout_width="5dp"
@@ -1237,7 +1412,6 @@
         android:id="@+id/TeleopWarning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
         android:background="@drawable/teleop_warning"
         android:fontFamily="@font/open_sans"
         android:gravity="center"
@@ -1245,9 +1419,9 @@
         android:textColor="@color/bg_general"
         android:textSize="@dimen/input_label_text_size"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/IDAutonSeconds1"
         app:layout_constraintEnd_toStartOf="@+id/rightEdgeBar"
-        app:layout_constraintStart_toEndOf="@+id/leftEdgeBar" />
+        app:layout_constraintStart_toEndOf="@+id/leftEdgeBar"
+        app:layout_constraintTop_toTopOf="@+id/IDPossessionDirections" />
 
     <TextView
         android:id="@+id/IDAutonSeconds1"
@@ -1293,26 +1467,16 @@
         app:layout_constraintTop_toTopOf="@+id/IDAutonSeconds1" />
 
     <TextView
-        android:id="@+id/IDMisc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/futura_medium_condensed_bt"
-        android:text="@string/MiscTitle"
-        android:textColor="@drawable/text_header_states"
-        android:textSize="@dimen/header_text_size"
-        tools:layout_editor_absoluteX="61dp"
-        tools:layout_editor_absoluteY="979dp" />
-
-    <TextView
         android:id="@+id/IDMiscDirections"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_italic"
         android:text="@string/MiscDirections"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/instruction_text_size"
-        app:layout_constraintStart_toStartOf="@+id/IDMisc"
-        app:layout_constraintTop_toBottomOf="@+id/IDMisc" />
+        app:layout_constraintStart_toStartOf="@+id/coralLayout"
+        app:layout_constraintTop_toBottomOf="@+id/coralPossessionLayout" />
 
     <TextView
         android:id="@+id/IDLeave"
@@ -1333,10 +1497,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:thumb="@drawable/thumb_states"
         android:track="@drawable/track_states"
-        app:layout_constraintStart_toStartOf="@+id/IDMisc"
+        app:layout_constraintStart_toStartOf="@+id/IDMiscDirections"
         app:layout_constraintTop_toBottomOf="@+id/IDMiscDirections" />
 
     <TextView
