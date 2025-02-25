@@ -35,7 +35,7 @@ public class Auton extends Fragment implements UpdateListener {
     private LinkedHashMap<String, String> autonHashMap;
 
     // Instructions
-    private TextView autonDirectionsID;
+    private TextView scoringDirectionsID;
 
     // Coral Scoring - Reef
     private TextView coralID;
@@ -150,8 +150,39 @@ public class Auton extends Fragment implements UpdateListener {
         secondsRemaining = getView().findViewById(R.id.AutonSeconds);
         teleopWarning = getView().findViewById(R.id.TeleopWarning);
 
-        possessionID = getView().findViewById(R.id.IDPossession);
-        possessionDescription = getView().findViewById(R.id.IDPossessionDirections);
+        scoringDirectionsID = getView().findViewById(R.id.IDPossessionDirections);
+        coralID = getView().findViewById(R.id.IDCoral);
+        reefID = getView().findViewById(R.id.IDReef);
+        L4ReefID = getView().findViewById(R.id.IDL4Coral);
+        L3ReefID = getView().findViewById(R.id.IDL3Coral);
+        L2ReefID = getView().findViewById(R.id.IDL2Coral);
+        L1ReefID = getView().findViewById(R.id.IDL1Coral);
+        scoredL4Button = getView().findViewById(R.id.scoredL4Button);
+        notScoredL4Button = getView().findViewById(R.id.notScoredL4Button);
+        missedL4Button = getView().findViewById(R.id.missedL4Button);
+        notMissedL4Button = getView().findViewById(R.id.notMissedL4Button);
+        scoredL3Button = getView().findViewById(R.id.scoredL3Button);
+        notScoredL3Button = getView().findViewById(R.id.notScoredL3Button);
+        missedL3Button = getView().findViewById(R.id.missedL3Button);
+        notMissedL3Button = getView().findViewById(R.id.notMissedL3Button);
+        scoredL2Button = getView().findViewById(R.id.scoredL2Button);
+        notScoredL2Button = getView().findViewById(R.id.notScoredL2Button);
+        missedL2Button = getView().findViewById(R.id.missedL2Button);
+        notMissedL2Button = getView().findViewById(R.id.notMissedL2Button);
+        scoredL1Button = getView().findViewById(R.id.scoredL1Button);
+        notScoredL1Button = getView().findViewById(R.id.notScoredL1Button);
+        missedL1Button = getView().findViewById(R.id.missedL1Button);
+        notMissedL1Button = getView().findViewById(R.id.notMissedL1Button);
+
+        scoredL4Counter = getView().findViewById(R.id.L4ScoredCounter);
+        missedL4Counter = getView().findViewById(R.id.L4MissedCounter);
+        scoredL3Counter = getView().findViewById(R.id.L3ScoredCounter);
+        missedL3Counter = getView().findViewById(R.id.L3MissedCounter);
+        scoredL2Counter = getView().findViewById(R.id.L2ScoredCounter);
+        missedL2Counter = getView().findViewById(R.id.L2MissedCounter);
+        scoredL1Counter = getView().findViewById(R.id.L1ScoredCounter);
+        missedL1Counter = getView().findViewById(R.id.L1MissedCounter);
+
         pickedUpID = getView().findViewById(R.id.IDPickedUp);
         pickedUpIncrementButton = getView().findViewById(R.id.PickedUpButton);
         pickedUpDecrementButton = getView().findViewById(R.id.NotPickedUpButton);
