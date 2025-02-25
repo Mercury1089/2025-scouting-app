@@ -105,6 +105,9 @@ public class Auton extends Fragment implements UpdateListener {
     private Switch leaveSwitch;
     private Switch fellOverSwitch;
 
+    // Next button
+    private Button nextButton;
+
     // Auton timer views
     private TextView timerID;
     private TextView secondsRemaining;
@@ -259,6 +262,8 @@ public class Auton extends Fragment implements UpdateListener {
         bottomEdgeBar = getView().findViewById(R.id.bottomEdgeBar);
         leftEdgeBar = getView().findViewById(R.id.leftEdgeBar);
         rightEdgeBar = getView().findViewById(R.id.rightEdgeBar);
+
+        nextButton = getView().findViewById(R.id.NextTeleopButton);
 
         //get HashMap data (fill with defaults if empty or null)
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETUP);
@@ -417,90 +422,44 @@ public class Auton extends Fragment implements UpdateListener {
         pickedUpCoralButton.setOnClickListener(new NumericalDataInputListener(pickedUpCoralCounter, autonHashMap, "CoralPickedUp", true, this));
         notPickedUpCoralButton.setOnClickListener(new NumericalDataInputListener(pickedUpCoralCounter, autonHashMap, "CoralPickedUp", false, this));
 
-        scoredSpeakerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) scoredSpeakerCounter.getText());
-                currentCount++;
-                autonHashMap.put("ScoredSpeaker", String.valueOf(currentCount));
-                updateXMLObjects();
-            }
-        });
+        scoredL4Button.setOnClickListener(new NumericalDataInputListener(scoredL4Counter, autonHashMap, "ScoredCoralL4", true, this));
+        notScoredL4Button.setOnClickListener(new NumericalDataInputListener(scoredL4Counter, autonHashMap, "ScoredCoralL4", false, this));
+        scoredL3Button.setOnClickListener(new NumericalDataInputListener(scoredL3Counter, autonHashMap, "ScoredCoralL3", true, this));
+        notScoredL3Button.setOnClickListener(new NumericalDataInputListener(scoredL3Counter, autonHashMap, "ScoredCoralL3", false, this));
+        scoredL2Button.setOnClickListener(new NumericalDataInputListener(scoredL2Counter, autonHashMap, "ScoredCoralL2", true, this));
+        notScoredL2Button.setOnClickListener(new NumericalDataInputListener(scoredL2Counter, autonHashMap, "ScoredCoralL2", false, this));
+        scoredL1Button.setOnClickListener(new NumericalDataInputListener(scoredL1Counter, autonHashMap, "ScoredCoralL1", true, this));
+        notScoredL1Button.setOnClickListener(new NumericalDataInputListener(scoredL1Counter, autonHashMap, "ScoredCoralL1", false, this));
 
-        notScoredSpeakerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) scoredSpeakerCounter.getText());
-                if (currentCount > 0)
-                    currentCount--;
-                autonHashMap.put("ScoredSpeaker", String.valueOf(currentCount));
-                updateXMLObjects();
-            }
-        });
+        missedL4Button.setOnClickListener(new NumericalDataInputListener(missedL4Counter, autonHashMap, "MissedCoralL4", true, this));
+        notMissedL4Button.setOnClickListener(new NumericalDataInputListener(missedL4Counter, autonHashMap, "MissedCoralL4", false, this));
+        missedL3Button.setOnClickListener(new NumericalDataInputListener(missedL3Counter, autonHashMap, "MissedCoralL3", true, this));
+        notMissedL3Button.setOnClickListener(new NumericalDataInputListener(missedL3Counter, autonHashMap, "MissedCoralL3", false, this));
+        missedL2Button.setOnClickListener(new NumericalDataInputListener(missedL2Counter, autonHashMap, "MissedCoralL2", true, this));
+        notMissedL2Button.setOnClickListener(new NumericalDataInputListener(missedL2Counter, autonHashMap, "MissedCoralL2", false, this));
+        missedL1Button.setOnClickListener(new NumericalDataInputListener(missedL1Counter, autonHashMap, "MissedCoralL1", true, this));
+        notMissedL1Button.setOnClickListener(new NumericalDataInputListener(missedL1Counter, autonHashMap, "MissedCoralL1", false, this));
 
+        removedL3Button.setOnClickListener(new NumericalDataInputListener(removedL3Counter, autonHashMap, "RemovedAlgaeL3", true, this));
+        notRemovedL3Button.setOnClickListener(new NumericalDataInputListener(removedL3Counter, autonHashMap, "RemovedAlgaeL3", false, this));
+        removedL2Button.setOnClickListener(new NumericalDataInputListener(removedL2Counter, autonHashMap, "RemovedAlgaeL2", true, this));
+        notRemovedL2Button.setOnClickListener(new NumericalDataInputListener(removedL2Counter, autonHashMap, "RemovedAlgaeL2", false, this));
 
-        scoredAmpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) scoredAmpCounter.getText());
-                currentCount++;
-                autonHashMap.put("ScoredAmp", String.valueOf(currentCount));
-                updateXMLObjects();
-            }
-        }
-        );
+        attemptedL3Button.setOnClickListener(new NumericalDataInputListener(attemptedL3Counter, autonHashMap, "AttemptedAlgaeL3", true, this));
+        notAttemptedL3Button.setOnClickListener(new NumericalDataInputListener(attemptedL3Counter, autonHashMap, "AttemptedAlgaeL3", false, this));
+        attemptedL2Button.setOnClickListener(new NumericalDataInputListener(attemptedL2Counter, autonHashMap, "AttemptedAlgaeL2", true, this));
+        notAttemptedL2Button.setOnClickListener(new NumericalDataInputListener(attemptedL2Counter, autonHashMap, "AttemptedAlgaeL2", false, this));
 
-        notScoredAmpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) scoredAmpCounter.getText());
-                if (currentCount > 0)
-                    currentCount--;
-                autonHashMap.put("ScoredAmp", String.valueOf(currentCount));
-                updateXMLObjects();
-            }
-        });
-        missedSpeakerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) missedSpeakerCounter.getText());
-                currentCount++;
-                autonHashMap.put("MissedSpeaker", String.valueOf(currentCount));
-                updateXMLObjects();
-            }
-        });
+        scoredProcessorButton.setOnClickListener(new NumericalDataInputListener(scoredProcessorCounter, autonHashMap, "ScoredAlgaeProcessor", true, this));
+        notScoredProcessorButton.setOnClickListener(new NumericalDataInputListener(scoredProcessorCounter, autonHashMap, "ScoredAlgaeProcessor", false, this));
+        missedProcessorButton.setOnClickListener(new NumericalDataInputListener(missedProcessorCounter, autonHashMap, "MissedAlgaeProcessor", true, this));
+        notMissedProcessorButton.setOnClickListener(new NumericalDataInputListener(missedProcessorCounter, autonHashMap, "MissedAlgaeProcessor", false, this));
 
-        notMissedSpeakerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) missedSpeakerCounter.getText());
-                if (currentCount > 0)
-                    currentCount--;
-                autonHashMap.put("MissedSpeaker", String.valueOf(currentCount));
-                updateXMLObjects();
-            }
-        });
+        scoredNetButton.setOnClickListener(new NumericalDataInputListener(scoredNetCounter, autonHashMap, "ScoredAlgaeNet", true, this));
+        notScoredNetButton.setOnClickListener(new NumericalDataInputListener(scoredNetCounter, autonHashMap, "ScoredAlgaeNet", false, this));
+        missedNetButton.setOnClickListener(new NumericalDataInputListener(missedNetCounter, autonHashMap, "MissedAlgaeNet", true, this));
+        notMissedNetButton.setOnClickListener(new NumericalDataInputListener(missedNetCounter, autonHashMap, "MissedAlgaeNet", false, this));
 
-        missedAmpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) missedAmpCounter.getText());
-                currentCount++;
-                autonHashMap.put("MissedAmp", String.valueOf(currentCount));
-                updateXMLObjects();
-            }
-        });
-
-        notMissedAmpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) missedAmpCounter.getText());
-                if (currentCount > 0)
-                    currentCount--;
-                autonHashMap.put("MissedAmp", String.valueOf(currentCount));
-                updateXMLObjects();
-            }
-        });
 
         leaveSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
