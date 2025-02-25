@@ -34,7 +34,65 @@ public class Auton extends Fragment implements UpdateListener {
     private LinkedHashMap<String, String> setupHashMap;
     private LinkedHashMap<String, String> autonHashMap;
 
-    //Buttons
+    // Coral Scoring - Reef
+    private TextView coralID;
+    private TextView reefID;
+    private TextView L4ReefID, L3ReefID, L2ReefID, L1ReefID;
+    private TextView scoredL4ID, missedL4ID;
+    private TextView scoredL3ID, missedL3ID;
+    private TextView getScoredL2ID, missedL2ID;
+    private TextView scoredL1ID, missedL1ID;
+    private ImageButton scoredL4Button, notScoredL4Button;
+    private ImageButton missedL4Button, notMissedL4Button;
+    private ImageButton scoredL3Button, notScoredL3Button;
+    private ImageButton missedL3Button, notMissedL3Button;
+
+    private ImageButton scoredL2Button, notScoredL2Button;
+    private ImageButton missedL2Button, notMissedL2Button;
+
+    private ImageButton scoredL1Button, notScoredL1Button;
+    private ImageButton missedL1Button, notMissedL1Button;
+    private TextView scoredL4Counter, missedL4Counter;
+    private TextView scoredL3Counter, missedL3Counter;
+    private TextView scoredL2Counter, missedL2Counter;
+    private TextView scoredL1Counter, missedL1Counter;
+
+    // Algae Scoring - Reef Dealgaefying
+    private TextView algaeID;
+    private TextView dealgaefyingID;
+    private TextView L3AlgaeID, L2AlgaeID;
+    private TextView removedL3ID, attemptedL3ID;
+    private TextView removedL2ID, attemptedL2ID;
+    private ImageButton removedL3Button, notRemovedL3Button;
+    private ImageButton attemptedL3Button, notAttemptedL3Button;
+    private ImageButton removedL2Button, notRemovedL2Button;
+    private ImageButton attemptedL2Button, notAttemptedL2Button;
+    private TextView removedL3Counter, attemptedL3Counter;
+    private TextView removedL2Counter, attemptedL2Counter;
+
+    // Algae - Processor
+    private TextView processorID;
+    private TextView scoredProcessorID, missedProcessorID;
+    private ImageButton scoredProcessorButton, notScoredProcessorButton;
+    private ImageButton missedProcessorButton, notMissedProcessorButton;
+    private TextView scoredProcessorCounter, missedProcessorCounter;
+
+    // Algae - Net
+    private TextView netID;
+    private TextView scoredNetID, missedNetID;
+    private ImageButton scoredNetButton, notScoredNetButton;
+    private ImageButton missedNetButton, notMissedNetButton;
+    private TextView scoredNetCounter, missedNetCounter;
+
+    // Possession
+    private TextView pickedUpCoralID;
+    private ImageButton pickedUpCoralButton, notPickedUpCoralButton;
+    private TextView pickedUpCoralCounter;
+    private TextView pickedUpAlgaeID;
+    private ImageButton pickedUpAlgaeButton, notPickedUpAlgaeButton;
+    private TextView pickedUpAlgaeCounter;
+
+
     private ImageButton pickedUpIncrementButton;
     private ImageButton pickedUpDecrementButton;
     private ImageButton scoredSpeakerButton;

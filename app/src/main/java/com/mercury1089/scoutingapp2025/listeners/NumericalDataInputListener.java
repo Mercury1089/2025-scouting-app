@@ -19,7 +19,7 @@ public class NumericalDataInputListener implements View.OnClickListener {
         this.counterView = counterView;
         this.map = map;
         this.key = key;
-        this.add = add;
+        this.add = add; // If add = false, subtract
         this.listener = listener;
     }
     @Override
