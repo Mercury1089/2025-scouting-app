@@ -34,6 +34,9 @@ public class Auton extends Fragment implements UpdateListener {
     private LinkedHashMap<String, String> setupHashMap;
     private LinkedHashMap<String, String> autonHashMap;
 
+    // Instructions
+    private TextView autonDirectionsID;
+
     // Coral Scoring - Reef
     private TextView coralID;
     private TextView reefID;
@@ -92,55 +95,17 @@ public class Auton extends Fragment implements UpdateListener {
     private ImageButton pickedUpAlgaeButton, notPickedUpAlgaeButton;
     private TextView pickedUpAlgaeCounter;
 
-
-    private ImageButton pickedUpIncrementButton;
-    private ImageButton pickedUpDecrementButton;
-    private ImageButton scoredSpeakerButton;
-    private ImageButton notScoredSpeakerButton;
-    private ImageButton missedSpeakerButton;
-    private ImageButton notMissedSpeakerButton;
-    private ImageButton scoredAmpButton;
-    private ImageButton notScoredAmpButton;
-    private ImageButton missedAmpButton;
-    private ImageButton notMissedAmpButton;
-    private Button nextButton;
-
-    //Switches
+    // Robot toggle options
+    private TextView miscInstructionsID;
     private Switch leaveSwitch;
     private Switch fellOverSwitch;
 
-    //TextViews
+    // Auton timer views
     private TextView timerID;
     private TextView secondsRemaining;
     private TextView teleopWarning;
 
-    private TextView possessionID;
-    private TextView possessionDescription;
-    private TextView pickedUpID;
-    private TextView pickedUpCounter;
-
-    private TextView scoringID;
-    private TextView scoringDescription;
-    private TextView IDSpeaker;
-    private TextView IDAmp;
-    private TextView IDScoredSpeaker;
-    private TextView IDScoredAmp;
-    private TextView IDMissedSpeaker;
-    private TextView IDMissedAmp;
-
-    private TextView scoredSpeakerCounter;
-    private TextView missedSpeakerCounter;
-    private TextView scoredAmpCounter;
-    private TextView missedAmpCounter;
-
-
-    private TextView miscID;
-    private TextView miscDescription;
-    private TextView leaveID;
-
-    private TextView fellOverID;
-
-    //ImageViews
+    // Auton border image views
     private ImageView topEdgeBar;
     private ImageView bottomEdgeBar;
     private ImageView leftEdgeBar;
@@ -150,10 +115,6 @@ public class Auton extends Fragment implements UpdateListener {
     private static CountDownTimer timer;
     private boolean firstTime = true;
     private boolean running = true;
-    private int scoredUpper;
-    private int scoredLower;
-    private int missedUpper;
-    private int missedLower;
     private ValueAnimator teleopButtonAnimation;
     private AnimatorSet animatorSet;
 
