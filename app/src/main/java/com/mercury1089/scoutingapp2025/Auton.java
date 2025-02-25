@@ -414,26 +414,8 @@ public class Auton extends Fragment implements UpdateListener {
         }
 
         //set listeners for buttons and fill the hashmap with data
-
-        pickedUpIncrementButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view){
-                int currentCount = Integer.parseInt((String)pickedUpCounter.getText());
-                currentCount++;
-                autonHashMap.put("NumberPickedUp", String.valueOf(currentCount));
-                updateXMLObjects();
-            }
-        });
-
-        pickedUpDecrementButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view){
-                int currentCount = Integer.parseInt((String)pickedUpCounter.getText());
-                if(currentCount > 0)
-                    pickedUpDecrementButton.setEnabled(false);
-                currentCount--;
-                autonHashMap.put("NumberPickedUp", String.valueOf(currentCount));
-                updateXMLObjects();
-            }
-        });
+        pickedUpCoralButton.setOnClickListener(new NumericalDataInputListener(pickedUpCoralCounter, autonHashMap, "CoralPickedUp", true, this));
+        notPickedUpCoralButton.setOnClickListener(new NumericalDataInputListener(pickedUpCoralCounter, autonHashMap, "CoralPickedUp", false, this));
 
         scoredSpeakerButton.setOnClickListener(new View.OnClickListener() {
             @Override
