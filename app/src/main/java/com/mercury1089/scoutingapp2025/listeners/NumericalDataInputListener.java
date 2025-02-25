@@ -25,7 +25,7 @@ public class NumericalDataInputListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         int currentCount = Integer.parseInt((String) counterView.getText());
-        currentCount += add ? 1 : -1;
+            currentCount += add ? 1 : (currentCount  > 0 ? -1 : 0);
         map.put(key, String.valueOf(currentCount));
         listener.onUpdate();
     }
