@@ -5,22 +5,28 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class NumericalDataInputListener implements View.OnClickListener {
     private final TextView counterView;
-    private ConcurrentHashMap<String, String> map;
+    private HashMap<String, String> map;
     private final String key;
-    public NumericalDataInputListener(TextView counterView, ConcurrentHashMap<String, String> map, String key) {
+    private final boolean add;
+    private final UpdateListener listener;
+    public NumericalDataInputListener(TextView counterView, LinkedHashMap<String, String> map, String key, boolean add, UpdateListener listener) {
         this.counterView = counterView;
         this.map = map;
         this.key = key;
+        this.add = add;
+        this.listener = listener;
     }
     @Override
     public void onClick(View v) {
         int currentCount = Integer.parseInt((String) counterView.getText());
-        currentCount++;
+        currentCount += add ? 1 : -1;
         map.put(key, String.valueOf(currentCount));
-        updateXMLObjects();
+        listener.onUpdate();
     }
 }

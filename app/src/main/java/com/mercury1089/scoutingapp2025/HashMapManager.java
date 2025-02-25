@@ -34,7 +34,7 @@ public class HashMapManager{
     * Used to access the setup HashMap from an activity
     *
      */
-    public HashMapManager(){
+    private HashMapManager(){
         // Nothing to see here
     }
 

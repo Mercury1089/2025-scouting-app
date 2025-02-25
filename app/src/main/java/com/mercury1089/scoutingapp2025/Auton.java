@@ -24,9 +24,12 @@ import android.widget.Switch;
 import android.widget.TextView;
 import java.util.LinkedHashMap;
 import androidx.fragment.app.Fragment;
+
+import com.mercury1089.scoutingapp2025.listeners.NumericalDataInputListener;
+import com.mercury1089.scoutingapp2025.listeners.UpdateListener;
 import com.mercury1089.scoutingapp2025.utils.GenUtils;
 
-public class Auton extends Fragment {
+public class Auton extends Fragment implements UpdateListener {
     //HashMaps for sending QR data between screens
     private LinkedHashMap<String, String> setupHashMap;
     private LinkedHashMap<String, String> autonHashMap;
@@ -592,5 +595,10 @@ public class Auton extends Fragment {
         super.onStop();
         running = false;
         timer.cancel();
+    }
+
+    @Override
+    public void onUpdate() {
+        updateXMLObjects();
     }
 }
