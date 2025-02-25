@@ -325,11 +325,29 @@ public class HashMapManager{
             case AUTON:
                 //include all the items that will be in the autonHashMap
                 autonHashMap.put("HashMapName", "Auton");
-                autonHashMap.put("NumberPickedUp", "0");
-                autonHashMap.put("ScoredSpeaker", "0");
-                autonHashMap.put("ScoredAmp", "0");
-                autonHashMap.put("MissedSpeaker", "0");
-                autonHashMap.put("MissedAmp", "0");
+                autonHashMap.put("CoralPickedUp", "0");
+                autonHashMap.put("AlgaePickedUp", "0");
+
+                autonHashMap.put("ScoredCoralL4", "0");
+                autonHashMap.put("ScoredCoralL3", "0");
+                autonHashMap.put("ScoredCoralL2", "0");
+                autonHashMap.put("ScoredCoralL1", "0");
+
+                autonHashMap.put("MissedCoralL4", "0");
+                autonHashMap.put("MissedCoralL3", "0");
+                autonHashMap.put("MissedCoralL2", "0");
+                autonHashMap.put("MissedCoralL1", "0");
+
+                autonHashMap.put("RemovedAlgaeL3", "0");
+                autonHashMap.put("RemovedAlgaeL2", "0");
+                autonHashMap.put("AttemptedAlgaeL3", "0");
+                autonHashMap.put("AttemptedAlgaeL2", "0");
+
+                autonHashMap.put("ScoredAlgaeProcessor", "0");
+                autonHashMap.put("MissedAlgaeProcessor", "0");
+                autonHashMap.put("ScoredAlgaeNet", "0");
+                autonHashMap.put("MissedAlgaeNet", "0");
+
                 autonHashMap.put("Leave", "0");
                 break;
             case TELEOP:
