@@ -623,11 +623,6 @@ private void miscButtonsEnabledState(boolean enable){
         scoredNetCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredAlgaeNet"), 3));
         missedNetCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedAlgaeNet"), 3));
 
-        scoredSpeakerCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredSpeaker"), 2));
-        scoredAmpCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredAmp"), 2));
-        missedSpeakerCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedSpeaker"), 2));
-        missedAmpCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedAmp"), 2));
-        pickedUpCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("NumberPickedUp"), 2));
         leaveSwitch.setChecked(autonHashMap.get("Leave").equals("1"));
 
         if(setupHashMap.get("FellOver").equals("1")) {
@@ -641,27 +636,29 @@ private void miscButtonsEnabledState(boolean enable){
             nextButton.setText(R.string.TeleopNext);
             allButtonsEnabledState(true);
             // Disables decrement buttons if counter is at 0
-            if(Integer.parseInt((String)pickedUpCounter.getText()) <= 0)
-                pickedUpDecrementButton.setEnabled(false);
-            else
-                pickedUpDecrementButton.setEnabled(true);
-            if (Integer.parseInt((String) scoredSpeakerCounter.getText()) <= 0)
-                notScoredSpeakerButton.setEnabled(false);
-            else
-                notScoredSpeakerButton.setEnabled(true);
-            if (Integer.parseInt((String) scoredAmpCounter.getText()) <= 0)
-                notScoredAmpButton.setEnabled(false);
-            else
-                notScoredAmpButton.setEnabled(true);
-            if (Integer.parseInt((String) missedSpeakerCounter.getText()) <= 0)
-                notMissedSpeakerButton.setEnabled(false);
-            else
-                notMissedSpeakerButton.setEnabled(true);
-            if (Integer.parseInt((String) missedAmpCounter.getText()) <= 0)
-                notMissedAmpButton.setEnabled(false);
-            else
-                notMissedAmpButton.setEnabled(true);
+            // There's totally a better way to do this without the redundancy
+            notPickedUpCoralButton.setEnabled(Integer.parseInt(pickedUpCoralCounter.getText().toString()) > 0);
+            notPickedUpAlgaeButton.setEnabled(Integer.parseInt(pickedUpAlgaeCounter.getText().toString()) > 0);
+            notScoredL4Button.setEnabled(Integer.parseInt(scoredL4Counter.getText().toString()) > 0);
+            notScoredL3Button.setEnabled(Integer.parseInt(scoredL3Counter.getText().toString()) > 0);
+            notScoredL2Button.setEnabled(Integer.parseInt(scoredL2Counter.getText().toString()) > 0);
+            notScoredL1Button.setEnabled(Integer.parseInt(scoredL1Counter.getText().toString()) > 0);
 
+            notMissedL4Button.setEnabled(Integer.parseInt(missedL4Counter.getText().toString()) > 0);
+            notMissedL3Button.setEnabled(Integer.parseInt(missedL3Counter.getText().toString()) > 0);
+            notMissedL2Button.setEnabled(Integer.parseInt(missedL2Counter.getText().toString()) > 0);
+            notMissedL1Button.setEnabled(Integer.parseInt(missedL1Counter.getText().toString()) > 0);
+
+            notRemovedL3Button.setEnabled(Integer.parseInt(removedL3Counter.getText().toString()) > 0);
+            notRemovedL2Button.setEnabled(Integer.parseInt(removedL2Counter.getText().toString()) > 0);
+            notAttemptedL3Button.setEnabled(Integer.parseInt(attemptedL3Counter.getText().toString()) > 0);
+            notAttemptedL2Button.setEnabled(Integer.parseInt(attemptedL2Counter.getText().toString()) > 0);
+
+            notScoredProcessorButton.setEnabled(Integer.parseInt(scoredProcessorCounter.getText().toString()) > 0);
+            notMissedProcessorButton.setEnabled(Integer.parseInt(missedProcessorCounter.getText().toString()) > 0);
+
+            notScoredNetButton.setEnabled(Integer.parseInt(scoredNetCounter.getText().toString()) > 0);
+            notMissedNetButton.setEnabled(Integer.parseInt(missedNetCounter.getText().toString()) > 0);
         }
     }
 
