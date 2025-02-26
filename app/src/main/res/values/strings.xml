@@ -18,7 +18,7 @@
         <string name="RobotTitle">Robot</string>
         <string name="ControlPanelTitle">CONTROL PANEL</string>
         <string name="ClimbTitle">CLIMB</string>
-        <string name="EndGameTitle">POST MATCH</string>
+        <string name="EndGameTitle">POST - MATCH</string>
         <string name="QRCodeTitle">DID YOU SCAN YOUR QR CODE?</string>
 
     <!-- Tabs -->
@@ -91,7 +91,7 @@
         <string name="Minus">-</string>
         <string name="ScoringDirections">Tap the + or - buttons to record scored/missed notes.</string>
         <string name="Scored">SCORED</string>
-        <string name="Missed">MISSED</string>
+        <string name="Missed">MISSED</string>=
         <string name="Removed">REMOVED</string>
         <string name="Attempted">ATTEMPTED</string>
         <string name="L4">L4</string>
@@ -99,7 +99,9 @@
         <string name="L2">L2</string>
         <string name="L1">L1</string>
         <string name="MiscDirections">Tap on the toggle if the action happens.</string>
-        <string name="Leave">Leave</string>
+        <string name="Leave">Leave</string
+        <string name="MiscDirections">Turn the toggle on if the action happens.</string>
+        <string name="Leave">Leave (Robot left the starting zone)</string>
         <string name="FellOver">Fell Over</string>
         <string name="TeleopWarning">Teleop is starting soon...</string>
         <string name="TeleopError">Switch to teleop as soon as possible!</string>
@@ -111,12 +113,12 @@
 
     <!-- Stage -->
         <string name="PostMatchDirections">Do not complete this screen until >5 seconds after the buzzer</string>
-        <string name="StageZoneHeader">STAGE ZONE</string>
-        <string name="OnstageDirections">What side of the stage is the robot hanging on?</string>
+        <string name="BargeZoneHeader">BARGE ZONE</string>
+        <string name="HangedDirections">What position is the cage in?</string>
         <string name="Park">Park</string>
-        <string name="Onstage">Onstage (Hanging from the chain, off the floor)</string>
-        <string name="LeftStage">LEFT</string>
-        <string name="CenterStage">CENTER</string>
+        <string name="Hanged">Hang</string>
+        <string name="Deep">DEEP</string>
+        <string name="Shallow">SHALLOW</string>
         <string name="RightStage">RIGHT</string>
         <string name="TrapScoringHeader">TRAP SCORING</string>
         <string name="TrapScoringDirections">Tap the + and - buttons to record scored/missed notes.</string>
