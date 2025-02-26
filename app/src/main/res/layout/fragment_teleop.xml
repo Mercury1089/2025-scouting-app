@@ -21,9 +21,9 @@
         android:paddingTop="10dp"
         android:paddingEnd="5dp"
         android:paddingBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/speakerLayout"
-        app:layout_constraintStart_toEndOf="@+id/speakerLayout"
-        app:layout_constraintTop_toTopOf="@+id/speakerLayout">
+        app:layout_constraintBottom_toBottomOf="@+id/coralLayout"
+        app:layout_constraintStart_toEndOf="@+id/coralLayout"
+        app:layout_constraintTop_toTopOf="@+id/coralLayout">
 
         <TextView
             android:id="@+id/IDAmp"
@@ -167,7 +167,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/speakerLayout"
+        android:id="@+id/coralLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -180,18 +180,18 @@
         app:layout_constraintTop_toBottomOf="@+id/IDScoringDirections">
 
         <TextView
-            android:id="@+id/IDSpeaker"
+            android:id="@+id/IDCoral"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/futura_medium_condensed_bt"
-            android:text="@string/Speaker"
+            android:text="@string/Coral"
             android:textColor="@drawable/text_subead_states"
             android:textSize="@dimen/subheader_text_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/missedSpeakerCounter"
+            android:id="@+id/L4MissedCounter"
             android:layout_width="38dp"
             android:layout_height="35dp"
             android:layout_marginStart="5dp"
@@ -203,24 +203,24 @@
             android:text="@string/DefaultValue"
             android:textColor="@drawable/text_states"
             android:textSize="@dimen/instruction_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/MissedSpeakerToggle"
-            app:layout_constraintStart_toEndOf="@+id/MissedSpeakerToggle"
-            app:layout_constraintTop_toTopOf="@+id/MissedSpeakerToggle" />
+            app:layout_constraintBottom_toBottomOf="@+id/L4MissedButtonGroup"
+            app:layout_constraintStart_toEndOf="@+id/L4MissedButtonGroup"
+            app:layout_constraintTop_toTopOf="@+id/L4MissedButtonGroup" />
 
         <RadioGroup
-            android:id="@+id/ScoredSpeakerToggle"
+            android:id="@+id/L4ScoredButtonGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:divider="?android:attr/dividerHorizontal"
             android:orientation="horizontal"
             android:showDividers="middle"
-            app:layout_constraintBottom_toBottomOf="@id/IDScoredSpeaker"
-            app:layout_constraintStart_toEndOf="@id/IDScoredSpeaker"
-            app:layout_constraintTop_toTopOf="@id/IDScoredSpeaker">
+            app:layout_constraintBottom_toBottomOf="@id/IDL4Scored"
+            app:layout_constraintStart_toEndOf="@id/IDL4Scored"
+            app:layout_constraintTop_toTopOf="@id/IDL4Scored">
 
             <ImageButton
-                android:id="@+id/notScoredSpeakerButton"
+                android:id="@+id/notScoredL4Button"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="wrap_content"
                 android:background="@drawable/toggle_left_states"
@@ -231,7 +231,7 @@
                 tools:ignore="ContentDescription" />
 
             <ImageButton
-                android:id="@+id/scoredSpeakerButton"
+                android:id="@+id/scoredL4Button"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:layout_weight="1"
@@ -243,19 +243,19 @@
         </RadioGroup>
 
         <RadioGroup
-            android:id="@+id/MissedSpeakerToggle"
+            android:id="@+id/L4MissedButtonGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="21dp"
             android:divider="?android:attr/dividerHorizontal"
             android:orientation="horizontal"
             android:showDividers="middle"
-            app:layout_constraintBottom_toBottomOf="@id/IDMissedSpeaker"
-            app:layout_constraintStart_toEndOf="@id/IDMissedSpeaker"
-            app:layout_constraintTop_toTopOf="@id/IDMissedSpeaker">
+            app:layout_constraintBottom_toBottomOf="@id/IDL4Missed"
+            app:layout_constraintStart_toEndOf="@id/IDL4Missed"
+            app:layout_constraintTop_toTopOf="@id/IDL4Missed">
 
             <ImageButton
-                android:id="@+id/notMissedSpeakerButton"
+                android:id="@+id/notMissedL4Button"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="wrap_content"
                 android:background="@drawable/toggle_left_states"
@@ -266,7 +266,7 @@
                 tools:ignore="ContentDescription" />
 
             <ImageButton
-                android:id="@+id/missedSpeakerButton"
+                android:id="@+id/missedL4Button"
                 android:layout_width="@dimen/square_toggle_length"
                 android:layout_height="@dimen/square_toggle_length"
                 android:layout_weight="1"
@@ -278,7 +278,7 @@
         </RadioGroup>
 
         <TextView
-            android:id="@+id/IDScoredSpeaker"
+            android:id="@+id/IDL4Scored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
@@ -286,11 +286,11 @@
             android:text="@string/Scored"
             android:textColor="@drawable/text_states"
             android:textSize="@dimen/button_text_size"
-            app:layout_constraintStart_toStartOf="@+id/IDSpeaker"
-            app:layout_constraintTop_toBottomOf="@+id/IDSpeaker" />
+            app:layout_constraintStart_toStartOf="@+id/IDCoral"
+            app:layout_constraintTop_toBottomOf="@+id/IDCoral" />
 
         <TextView
-            android:id="@+id/scoredSpeakerCounter"
+            android:id="@+id/L4ScoredCounter"
             android:layout_width="38dp"
             android:layout_height="35dp"
             android:layout_marginStart="5dp"
@@ -302,12 +302,12 @@
             android:text="@string/DefaultValue"
             android:textColor="@drawable/text_states"
             android:textSize="@dimen/instruction_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/ScoredSpeakerToggle"
-            app:layout_constraintStart_toEndOf="@+id/ScoredSpeakerToggle"
-            app:layout_constraintTop_toTopOf="@+id/ScoredSpeakerToggle" />
+            app:layout_constraintBottom_toBottomOf="@+id/L4ScoredButtonGroup"
+            app:layout_constraintStart_toEndOf="@+id/L4ScoredButtonGroup"
+            app:layout_constraintTop_toTopOf="@+id/L4ScoredButtonGroup" />
 
         <TextView
-            android:id="@+id/IDMissedSpeaker"
+            android:id="@+id/IDL4Missed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -315,8 +315,8 @@
             android:text="@string/Missed"
             android:textColor="@drawable/text_states"
             android:textSize="@dimen/button_text_size"
-            app:layout_constraintStart_toStartOf="@+id/IDScoredSpeaker"
-            app:layout_constraintTop_toBottomOf="@+id/IDScoredSpeaker" />
+            app:layout_constraintStart_toStartOf="@+id/IDL4Scored"
+            app:layout_constraintTop_toBottomOf="@+id/IDL4Scored" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -455,11 +455,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
-        android:text="@string/MiscTitle"
+        android:text="@string/RobotTitle"
         android:textColor="@drawable/text_header_states"
         android:textSize="@dimen/header_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDScoring"
-        app:layout_constraintTop_toBottomOf="@+id/speakerLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/coralLayout" />
 
     <Switch
         android:id="@+id/FellOverSwitch"

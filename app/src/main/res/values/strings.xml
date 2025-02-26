@@ -15,7 +15,7 @@
         <string name="ExitTitle">EXIT</string>
         <string name="PossessionTitle">POSSESSION</string>
         <string name="ScoringTitle">SCORING</string>
-        <string name="MiscTitle">MISC</string>
+        <string name="RobotTitle">Robot</string>
         <string name="ControlPanelTitle">CONTROL PANEL</string>
         <string name="ClimbTitle">CLIMB</string>
         <string name="EndGameTitle">POST - MATCH</string>
@@ -80,13 +80,26 @@
     <!-- Auton -->
         <string name="AutonSeconds">AUTON SECONDS REMAINING</string>
         <string name="PossessionDirections">Tap the + and - buttons to increase or decrease the counter for each option.</string>
+        <string name="Reef">REEF</string>
+        <string name="Algae">ALGAE</string>
+        <string name="Dealgaefying">REEF DEALGAEFYING</string>
+        <string name="Processor">PROCESSOR</string>
+        <string name="Net">NET</string>
         <string name="PickedUp">PICKED UP</string>
         <string name="Dropped">DROPPED</string>
         <string name="Plus">+</string>
         <string name="Minus">-</string>
         <string name="ScoringDirections">Tap the + or - buttons to record scored/missed notes.</string>
         <string name="Scored">SCORED</string>
-        <string name="Missed">MISSED</string>
+        <string name="Missed">MISSED</string>=
+        <string name="Removed">REMOVED</string>
+        <string name="Attempted">ATTEMPTED</string>
+        <string name="L4">L4</string>
+        <string name="L3">L3</string>
+        <string name="L2">L2</string>
+        <string name="L1">L1</string>
+        <string name="MiscDirections">Tap on the toggle if the action happens.</string>
+        <string name="Leave">Leave</string
         <string name="MiscDirections">Turn the toggle on if the action happens.</string>
         <string name="Leave">Leave (Robot left the starting zone)</string>
         <string name="FellOver">Fell Over</string>
@@ -152,6 +165,6 @@
         <string name="NextMatch">SET UP NEXT MATCH</string>
     <string name="ToggleInstructions">Tap on the toggle to record if the options are true (on) or false (off).</string>
         <string name="PreloadNote">Preloaded Coral</string>
-        <string name="Speaker">SPEAKER</string>
+        <string name="Coral">CORAL</string>
         <string name="Amp">AMP</string>
 </resources>
