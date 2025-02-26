@@ -142,7 +142,7 @@ public class Auton extends Fragment implements UpdateListener {
         context = (MatchActivity) getActivity();
         View inflated = null;
         try {
-            inflater.inflate(R.layout.fragment_auton, container, false);
+            inflated = inflater.inflate(R.layout.fragment_auton, container, false);
         } catch (InflateException e) {
             Log.d("Oncreateview", "ERROR");
             throw e;
@@ -165,6 +165,16 @@ public class Auton extends Fragment implements UpdateListener {
         L3ReefID = getView().findViewById(R.id.IDL3Coral);
         L2ReefID = getView().findViewById(R.id.IDL2Coral);
         L1ReefID = getView().findViewById(R.id.IDL1Coral);
+
+        scoredL4ID = getView().findViewById(R.id.IDL4Scored);
+        scoredL3ID = getView().findViewById(R.id.IDL3Scored);
+        scoredL2ID = getView().findViewById(R.id.IDL2Scored);
+        scoredL1ID = getView().findViewById(R.id.IDL1Scored);
+
+        missedL4ID = getView().findViewById(R.id.IDL4Missed);
+        missedL3ID = getView().findViewById(R.id.IDL3Missed);
+        missedL2ID = getView().findViewById(R.id.IDL2Missed);
+        missedL1ID = getView().findViewById(R.id.IDL1Missed);
 
         scoredL4Button = getView().findViewById(R.id.scoredL4Button);
         notScoredL4Button = getView().findViewById(R.id.notScoredL4Button);
@@ -197,6 +207,9 @@ public class Auton extends Fragment implements UpdateListener {
 
         algaeID = getView().findViewById(R.id.IDAlgae);
         dealgaefyingID = getView().findViewById(R.id.IDDealgaefying);
+        L3AlgaeID = getView().findViewById(R.id.IDL3Algae);
+        L2AlgaeID = getView().findViewById(R.id.IDL2Algae);
+
         L3AlgaeID = getView().findViewById(R.id.IDL3Algae);
         L2AlgaeID = getView().findViewById(R.id.IDL2Algae);
 
