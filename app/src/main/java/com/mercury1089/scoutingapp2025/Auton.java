@@ -484,43 +484,111 @@ public class Auton extends Fragment implements UpdateListener {
     }
 
     private void possessionButtonsEnabledState(boolean enable){
-        possessionID.setEnabled(enable);
-        possessionDescription.setEnabled(enable);
+        possessionCoralID.setEnabled(enable);
+        pickedUpCoralID.setEnabled(enable);
+        pickedUpCoralButton.setEnabled(enable);
+        notPickedUpAlgaeButton.setEnabled(enable);
+        pickedUpCoralCounter.setEnabled(enable);
 
-        pickedUpID.setEnabled(enable);
-        pickedUpIncrementButton.setEnabled(enable);
-        pickedUpDecrementButton.setEnabled(enable);
-        pickedUpCounter.setEnabled(enable);
+        possessionAlgaeID.setEnabled(enable);
+        pickedUpAlgaeID.setEnabled(enable);
+        pickedUpAlgaeButton.setEnabled(enable);
+        notPickedUpAlgaeButton.setEnabled(enable);
+        pickedUpAlgaeCounter.setEnabled(enable);
     }
 
     private void scoringButtonsEnabledState(boolean enable){
-        scoringID.setEnabled(enable);
-        scoringDescription.setEnabled(enable);
-        IDSpeaker.setEnabled(enable);
-        IDAmp.setEnabled(enable);
-        IDScoredSpeaker.setEnabled(enable);
-        IDScoredAmp.setEnabled(enable);
-        IDMissedSpeaker.setEnabled(enable);
-        IDMissedAmp.setEnabled(enable);
+        coralID.setEnabled(enable);
+        reefID.setEnabled(enable);
+        L4ReefID.setEnabled(enable);
+        L3ReefID.setEnabled(enable);
+        L2ReefID.setEnabled(enable);
+        L1ReefID.setEnabled(enable);
 
-        scoredSpeakerButton.setEnabled(enable);
-        scoredAmpButton.setEnabled(enable);
-        notScoredSpeakerButton.setEnabled(enable);
-        notScoredAmpButton.setEnabled(enable);
-        scoredSpeakerCounter.setEnabled(enable);
-        scoredAmpCounter.setEnabled(enable);
-        missedSpeakerCounter.setEnabled(enable);
-        missedAmpCounter.setEnabled(enable);
+        scoredL4ID.setEnabled(enable);
+        scoredL4Button.setEnabled(enable);
+        notScoredL4Button.setEnabled(enable);
+        scoredL4Counter.setEnabled(enable);
 
-        missedSpeakerButton.setEnabled(enable);
-        missedAmpButton.setEnabled(enable);
-        notMissedSpeakerButton.setEnabled(enable);
-        notMissedAmpButton.setEnabled(enable);
-    }
+        missedL4ID.setEnabled(enable);
+        missedL4Button.setEnabled(enable);
+        notMissedL4Button.setEnabled(enable);
+        missedL4Counter.setEnabled(enable);
 
-    private void miscButtonsEnabledState(boolean enable){
-        miscID.setEnabled(enable);
-        miscDescription.setEnabled(enable);
+        scoredL3ID.setEnabled(enable);
+        scoredL3Button.setEnabled(enable);
+        notScoredL3Button.setEnabled(enable);
+        scoredL3Counter.setEnabled(enable);
+
+        missedL3ID.setEnabled(enable);
+        missedL3Button.setEnabled(enable);
+        notMissedL3Button.setEnabled(enable);
+        missedL3Counter.setEnabled(enable);
+
+        scoredL2ID.setEnabled(enable);
+        scoredL2Button.setEnabled(enable);
+        notScoredL2Button.setEnabled(enable);
+        scoredL2Counter.setEnabled(enable);
+
+        missedL2ID.setEnabled(enable);
+        missedL2Button.setEnabled(enable);
+        notMissedL2Button.setEnabled(enable);
+        missedL2Counter.setEnabled(enable);
+
+        scoredL1ID.setEnabled(enable);
+        scoredL1Button.setEnabled(enable);
+        notScoredL1Button.setEnabled(enable);
+        scoredL1Counter.setEnabled(enable);
+
+        missedL1ID.setEnabled(enable);
+        missedL1Button.setEnabled(enable);
+        notMissedL1Button.setEnabled(enable);
+        missedL1Counter.setEnabled(enable);
+
+        algaeID.setEnabled(enable);
+        dealgaefyingID.setEnabled(enable);
+
+        removedL3ID.setEnabled(enable);
+        removedL3Button.setEnabled(enable);
+        notRemovedL3Button.setEnabled(enable);
+        removedL3Counter.setEnabled(enable);
+
+        removedL2ID.setEnabled(enable);
+        removedL2Button.setEnabled(enable);
+        notRemovedL2Button.setEnabled(enable);
+        removedL2Counter.setEnabled(enable);
+
+        attemptedL3ID.setEnabled(enable);
+        attemptedL3Button.setEnabled(enable);
+        notAttemptedL3Button.setEnabled(enable);
+        attemptedL3Counter.setEnabled(enable);
+
+        attemptedL2ID.setEnabled(enable);
+        attemptedL2Button.setEnabled(enable);
+        notAttemptedL2Button.setEnabled(enable);
+        attemptedL2Counter.setEnabled(enable);
+
+        processorID.setEnabled(enable);
+        scoredProcessorID.setEnabled(enable);
+        scoredProcessorButton.setEnabled(enable);
+        notScoredProcessorButton.setEnabled(enable);
+        scoredProcessorCounter.setEnabled(enable);
+        missedProcessorID.setEnabled(enable);
+        missedProcessorButton.setEnabled(enable);
+        notMissedProcessorButton.setEnabled(enable);
+        missedProcessorCounter.setEnabled(enable);
+
+        netID.setEnabled(enable);
+        scoredNetID.setEnabled(enable);
+        scoredNetButton.setEnabled(enable);
+        notScoredNetButton.setEnabled(enable);
+        scoredNetCounter.setEnabled(enable);
+        missedNetID.setEnabled(enable);
+        missedNetButton.setEnabled(enable);
+}
+
+private void miscButtonsEnabledState(boolean enable){
+        miscInstructionsID.setEnabled(enable);
         leaveSwitch.setEnabled(enable);
         leaveID.setEnabled(enable);
         fellOverSwitch.setEnabled(enable);
@@ -531,14 +599,30 @@ public class Auton extends Fragment implements UpdateListener {
     private void allButtonsEnabledState(boolean enable){
         possessionButtonsEnabledState(enable);
         scoringButtonsEnabledState(enable);
-
-        miscID.setEnabled(enable);
-        miscDescription.setEnabled(enable);
-        leaveSwitch.setEnabled(enable);
-        leaveID.setEnabled(enable);
+        miscButtonsEnabledState(enable);
     }
 
     public void updateXMLObjects(){
+        scoredL4Counter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredCoralL4"), 3));
+        scoredL3Counter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredCoralL3"), 3));
+        scoredL2Counter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredCoralL2"), 3));
+        scoredL1Counter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredCoralL1"), 3));
+
+        missedL4Counter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedCoralL4"), 3));
+        missedL3Counter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedCoralL3"), 3));
+        missedL2Counter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedCoralL2"), 3));
+        missedL1Counter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedCoralL1"), 3));
+
+        removedL3Counter.setText(GenUtils.padLeftZeros(autonHashMap.get("RemovedAlgaeL3"), 3));
+        removedL2Counter.setText(GenUtils.padLeftZeros(autonHashMap.get("RemovedAlgaeL2"), 3));
+        attemptedL3Counter.setText(GenUtils.padLeftZeros(autonHashMap.get("AttemptedAlgaeL3"), 3));
+        attemptedL2Counter.setText(GenUtils.padLeftZeros(autonHashMap.get("AttemptedAlgaeL2"), 3));
+
+        scoredProcessorCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredAlgaeProcessor"), 3));
+        missedProcessorCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedAlgaeProcessor"), 3));
+        scoredNetCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredAlgaeNet"), 3));
+        missedNetCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedAlgaeNet"), 3));
+
         scoredSpeakerCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredSpeaker"), 2));
         scoredAmpCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredAmp"), 2));
         missedSpeakerCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedSpeaker"), 2));
