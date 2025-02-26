@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="895dp"
     android:background="@color/bg_general"
-    android:padding="@dimen/padding"
+    android:padding="@dimen/auton_fragment_padding"
     tools:context=".MatchActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -1389,12 +1389,14 @@
 
     <ImageView
         android:id="@+id/topEdgeBar"
-        android:layout_width="560dp"
+        android:layout_width="0dp"
         android:layout_height="5dp"
         android:alpha="0"
         android:background="@drawable/teleop_warning"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/rightEdgeBar"
+        app:layout_constraintStart_toEndOf="@id/leftEdgeBar"
+        tools:layout_editor_absoluteY="15dp" />
 
     <ImageView
         android:id="@+id/bottomEdgeBar"
@@ -1405,21 +1407,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/rightEdgeBar"
         app:layout_constraintStart_toStartOf="@+id/leftEdgeBar" />
-
-    <TextView
-        android:id="@+id/TeleopWarning"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/teleop_warning"
-        android:fontFamily="@font/open_sans"
-        android:gravity="center"
-        android:text="@string/TeleopWarning"
-        android:textColor="@color/bg_general"
-        android:textSize="@dimen/input_label_text_size"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/rightEdgeBar"
-        app:layout_constraintStart_toEndOf="@+id/leftEdgeBar"
-        app:layout_constraintTop_toTopOf="@+id/IDPossessionDirections" />
 
     <TextView
         android:id="@+id/IDAutonSeconds1"
@@ -1475,6 +1462,21 @@
         android:textSize="@dimen/instruction_text_size"
         app:layout_constraintStart_toStartOf="@+id/coralLayout"
         app:layout_constraintTop_toBottomOf="@+id/coralPossessionLayout" />
+
+    <TextView
+        android:id="@+id/TeleopWarning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/teleop_warning"
+        android:fontFamily="@font/open_sans"
+        android:gravity="center"
+        android:text="@string/TeleopWarning"
+        android:textColor="@color/bg_general"
+        android:textSize="@dimen/input_label_text_size"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/rightEdgeBar"
+        app:layout_constraintStart_toEndOf="@+id/leftEdgeBar"
+        app:layout_constraintTop_toTopOf="@+id/IDPossessionDirections" />
 
     <TextView
         android:id="@+id/IDLeave"
