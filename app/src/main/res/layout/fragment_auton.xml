@@ -198,7 +198,7 @@
             android:id="@+id/L2RemovedButtonGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:divider="?android:attr/dividerHorizontal"
             android:orientation="horizontal"
             android:showDividers="middle"
@@ -534,7 +534,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:divider="?android:attr/dividerHorizontal"
             android:orientation="horizontal"
             android:showDividers="middle"
@@ -662,7 +662,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:divider="?android:attr/dividerHorizontal"
             android:orientation="horizontal"
             android:showDividers="middle"
@@ -790,7 +790,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:divider="?android:attr/dividerHorizontal"
             android:orientation="horizontal"
             android:showDividers="middle"
@@ -1206,9 +1206,8 @@
         android:id="@+id/coralPossessionLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="@+id/coralLayout"
-        app:layout_constraintTop_toBottomOf="@+id/coralLayout">
+        app:layout_constraintTop_toTopOf="@+id/algaePossesssionLayout">
 
         <TextView
             android:id="@+id/IDCoralPossession"
@@ -1412,8 +1411,7 @@
         android:id="@+id/IDAutonSeconds1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="740dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:drawableStart="@drawable/timer"
         android:drawablePadding="@dimen/drawable_padding"
         android:fontFamily="@font/futura_medium_condensed_bt"
@@ -1422,8 +1420,7 @@
         android:textSize="@dimen/instruction_text_size"
         app:layout_constraintBottom_toTopOf="@+id/NextTeleopButton"
         app:layout_constraintEnd_toStartOf="@+id/rightEdgeBar"
-        app:layout_constraintStart_toEndOf="@+id/leftEdgeBar"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/leftEdgeBar" />
 
     <TextView
         android:id="@+id/IDPossessionDirections"
@@ -1534,7 +1531,7 @@
         android:layout_height="55dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/button_next_states"
         android:drawableEnd="@drawable/right_states"
         android:paddingStart="170dp"

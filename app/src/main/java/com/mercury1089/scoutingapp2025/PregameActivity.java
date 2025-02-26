@@ -28,6 +28,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -36,6 +37,7 @@ import com.google.zxing.common.BitMatrix;
 import com.mercury1089.scoutingapp2025.utils.QRStringBuilder;
 
 import java.util.LinkedHashMap;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 public class PregameActivity extends AppCompatActivity {
@@ -505,8 +507,8 @@ public class PregameActivity extends AppCompatActivity {
                 teamNumberInput.getText().length() > 0 &&
                 firstAlliancePartnerInput.getText().length() > 0 &&
                 secondAlliancePartnerInput.getText().length() > 0 &&
-                (blueButton.isSelected() || redButton.isSelected()) &&
-                (setupHashMap.get("NoShow").equals("0") || setupHashMap.get("NoShow").equals("1"));
+                !setupHashMap.get("AllianceColor").isEmpty() &&
+                (Objects.equals(setupHashMap.get("NoShow"), "0") || Objects.equals(setupHashMap.get("NoShow"), "1"));
     }
     /*
     - Check to see if there's any values that need to be cleared

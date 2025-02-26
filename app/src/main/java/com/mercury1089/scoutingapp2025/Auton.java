@@ -560,6 +560,8 @@ public class Auton extends Fragment implements UpdateListener {
 
         algaeID.setEnabled(enable);
         dealgaefyingID.setEnabled(enable);
+        L3AlgaeID.setEnabled(enable);
+        L2AlgaeID.setEnabled(enable);
 
         removedL3ID.setEnabled(enable);
         removedL3Button.setEnabled(enable);
@@ -604,8 +606,6 @@ private void miscButtonsEnabledState(boolean enable){
         miscInstructionsID.setEnabled(enable);
         leaveSwitch.setEnabled(enable);
         leaveID.setEnabled(enable);
-        fellOverSwitch.setEnabled(enable);
-        fellOverID.setEnabled(enable);
         nextButton.setEnabled(enable);
     }
 
