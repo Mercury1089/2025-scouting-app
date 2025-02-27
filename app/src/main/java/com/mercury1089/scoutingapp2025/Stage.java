@@ -87,27 +87,15 @@ public class Stage extends Fragment {
         endgameID = getView().findViewById(R.id.IDEndgame);
         endgameDirections = getView().findViewById(R.id.IDEndgameDirections);
         stageZoneID = getView().findViewById(R.id.IDStageZone);
-        stageZoneDirections = getView().findViewById(R.id.IDStageZoneDirections);
+        stageZoneDirections = getView().findViewById(R.id.IDBargeZoneDirections);
 
         parkID = getView().findViewById(R.id.IDPark);
         parkSwitch = getView().findViewById(R.id.parkSwitch);
 
-        onstageID = getView().findViewById(R.id.IDOnstage);
+        onstageID = getView().findViewById(R.id.IDHanged);
         onstageSwitch = getView().findViewById(R.id.onstageSwitch);
-        onstageDirections = getView().findViewById(R.id.IDOnstageDirections);
+        onstageDirections = getView().findViewById(R.id.IDHangedDirections);
         stageTabs = getView().findViewById(R.id.stageTabs);
-
-        trapScoringID = getView().findViewById(R.id.IDTrapScoring);
-        trapScoringDirections = getView().findViewById(R.id.IDTrapScoringDirections);
-        trapScoredID = getView().findViewById(R.id.IDTrapScored);
-        trapScoredCounter = getView().findViewById(R.id.scoredTrapCounter);
-        trapMissedID = getView().findViewById(R.id.IDTrapMissed);
-        trapMissedCounter = getView().findViewById(R.id.missedTrapCounter);
-
-        scoredTrapButton = getView().findViewById(R.id.scoredTrapButton);
-        notScoredTrapButton = getView().findViewById(R.id.notScoredTrapButton);
-        missedTrapButton = getView().findViewById(R.id.missedTrapButton);
-        notMissedTrapButton = getView().findViewById(R.id.notMissedTrapButton);
 
         generateQRButton = getView().findViewById(R.id.GenerateQRButton);
 
@@ -146,12 +134,10 @@ public class Stage extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 String text = (String) tab.getText();
-                if (text.equals(getResources().getString(R.string.LeftStage)))
-                    climbHashMap.put("Stage", "L");
-                else if (text.equals(getResources().getString(R.string.CenterStage)))
-                    climbHashMap.put("Stage", "C");
-                else if (text.equals(getResources().getString(R.string.RightStage)))
-                    climbHashMap.put("Stage", "R");
+                if (text.equals(getResources().getString(R.string.Shallow)))
+                    climbHashMap.put("Barge", "S");
+                else if (text.equals(getResources().getString(R.string.Deep)))
+                    climbHashMap.put("Barge", "D");
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) { climbHashMap.put("Stage", "N"); }
@@ -160,51 +146,6 @@ public class Stage extends Fragment {
 
             }
         });
-
-        scoredTrapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) trapScoredCounter.getText());
-                // A robot cannot score more than 3 notes in their Traps (3 traps, 1 note per trap)
-                if (currentCount < 3)
-                    currentCount++;
-                climbHashMap.put("ScoredTrap", String.valueOf(currentCount));
-                updateXMLObjects();
-            }
-        });
-
-        notScoredTrapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) trapScoredCounter.getText());
-                if (currentCount > 0)
-                    currentCount--;
-                climbHashMap.put("ScoredTrap", String.valueOf(currentCount));
-                updateXMLObjects();
-            }
-        });
-
-        missedTrapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) trapMissedCounter.getText());
-                currentCount++;
-                climbHashMap.put("MissedTrap", String.valueOf(currentCount));
-                updateXMLObjects();
-            }
-        });
-
-        notMissedTrapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) trapMissedCounter.getText());
-                if (currentCount > 0)
-                    currentCount--;
-                climbHashMap.put("MissedTrap", String.valueOf(currentCount));
-                updateXMLObjects();
-            }
-        });
-
 
         generateQRButton.setOnClickListener(new View.OnClickListener() {
             @Override
