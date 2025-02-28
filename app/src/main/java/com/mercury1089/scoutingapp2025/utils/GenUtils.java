@@ -62,6 +62,7 @@ public class GenUtils {
     }
 
     public static String padLeftZeros(String input, int length){
+        if (input == null) return new String(new char[length]).replace("\0", "0");
         if(input.length() < length){
             String result = "";
             for(int i = 0; i < length - input.length(); i++){

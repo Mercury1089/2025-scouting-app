@@ -27,7 +27,7 @@ import com.google.zxing.common.BitMatrix;
 import com.mercury1089.scoutingapp2025.utils.GenUtils;
 import com.mercury1089.scoutingapp2025.utils.QRStringBuilder;
 
-public class Stage extends Fragment {
+public class Climb extends Fragment {
     //HashMaps for sending QR data between screens
     private LinkedHashMap<String, String> setupHashMap;
     private LinkedHashMap<String, String> climbHashMap;
@@ -41,33 +41,27 @@ public class Stage extends Fragment {
 
     //Switches
     private Switch parkSwitch;
-    private Switch onstageSwitch;
+    private Switch hangSwitch;
 
     //TextViews
     private TextView endgameID;
-    private TextView endgameDirections;
-    private TextView stageZoneID;
-    private TextView stageZoneDirections;
+    private TextView endgameDirectionsID;
+    private TextView bargeZoneID;
+    private TextView bargeZoneDirections;
     private TextView parkID;
-    private TextView onstageDirections;
-    private TextView onstageID;
-    private TextView trapScoringID;
-    private TextView trapScoringDirections;
-    private TextView trapScoredID;
-    private TextView trapMissedID;
-    private TextView trapScoredCounter;
-    private TextView trapMissedCounter;
+    private TextView hangDirections;
+    private TextView hangID;
 
     //Containers
-    private TabLayout stageTabs;
+    private TabLayout bargeTabs;
 
     //other variables
     private ProgressDialog progressDialog;
     private Dialog loading_alert;
     public final static int QRCodeSize = 500;
 
-    public static Stage newInstance() {
-        Stage fragment = new Stage();
+    public static Climb newInstance() {
+        Climb fragment = new Climb();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -85,34 +79,22 @@ public class Stage extends Fragment {
 
         //linking variables to XML elements on the screen
         endgameID = getView().findViewById(R.id.IDEndgame);
-        endgameDirections = getView().findViewById(R.id.IDEndgameDirections);
-        stageZoneID = getView().findViewById(R.id.IDStageZone);
-        stageZoneDirections = getView().findViewById(R.id.IDStageZoneDirections);
+        endgameDirectionsID = getView().findViewById(R.id.IDEndgameDirections);
+        bargeZoneID = getView().findViewById(R.id.IDBargeZone);
+        bargeZoneDirections = getView().findViewById(R.id.IDBargeZoneDirections);
 
         parkID = getView().findViewById(R.id.IDPark);
         parkSwitch = getView().findViewById(R.id.parkSwitch);
 
-        onstageID = getView().findViewById(R.id.IDOnstage);
-        onstageSwitch = getView().findViewById(R.id.onstageSwitch);
-        onstageDirections = getView().findViewById(R.id.IDOnstageDirections);
-        stageTabs = getView().findViewById(R.id.stageTabs);
-
-        trapScoringID = getView().findViewById(R.id.IDTrapScoring);
-        trapScoringDirections = getView().findViewById(R.id.IDTrapScoringDirections);
-        trapScoredID = getView().findViewById(R.id.IDTrapScored);
-        trapScoredCounter = getView().findViewById(R.id.scoredTrapCounter);
-        trapMissedID = getView().findViewById(R.id.IDTrapMissed);
-        trapMissedCounter = getView().findViewById(R.id.missedTrapCounter);
-
-        scoredTrapButton = getView().findViewById(R.id.scoredTrapButton);
-        notScoredTrapButton = getView().findViewById(R.id.notScoredTrapButton);
-        missedTrapButton = getView().findViewById(R.id.missedTrapButton);
-        notMissedTrapButton = getView().findViewById(R.id.notMissedTrapButton);
+        hangID = getView().findViewById(R.id.IDHanged);
+        hangSwitch = getView().findViewById(R.id.hangSwitch);
+        hangDirections = getView().findViewById(R.id.IDHangedDirections);
+        bargeTabs = getView().findViewById(R.id.stageTabs);
 
         generateQRButton = getView().findViewById(R.id.GenerateQRButton);
 
         //Removes tab indicator because climb switch starts out as null
-        stageTabs.setSelectedTabIndicator(null);
+        bargeTabs.setSelectedTabIndicator(null);
 
         //set listeners for buttons
 
@@ -124,87 +106,40 @@ public class Stage extends Fragment {
             }
         });
 
-        onstageSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+        hangSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                climbHashMap.put("Onstage", isChecked ? "Y" : "N");
+                climbHashMap.put("Hang", isChecked ? "Y" : "N");
                 //Default option for rung is LOW
                 if (isChecked) {
                     //Sets tab indicator to built-in default
-                    stageTabs.setSelectedTabIndicator(R.drawable.mtrl_tabs_default_indicator);
-                    stageTabs.getTabAt(0).select();
-                    climbHashMap.put("Stage", "L");
+                    bargeTabs.setSelectedTabIndicator(R.drawable.mtrl_tabs_default_indicator);
+                    bargeTabs.getTabAt(0).select();
+                    climbHashMap.put("Barge", "S");
                 } else {
                     //Removes tab indicator
-                    stageTabs.setSelectedTabIndicator(null);
+                    bargeTabs.setSelectedTabIndicator(null);
 
                 }
                 updateXMLObjects();
             }
         });
 
-        stageTabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        bargeTabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 String text = (String) tab.getText();
-                if (text.equals(getResources().getString(R.string.LeftStage)))
-                    climbHashMap.put("Stage", "L");
-                else if (text.equals(getResources().getString(R.string.CenterStage)))
-                    climbHashMap.put("Stage", "C");
-                else if (text.equals(getResources().getString(R.string.RightStage)))
-                    climbHashMap.put("Stage", "R");
+                if (text.equals(getResources().getString(R.string.Shallow)))
+                    climbHashMap.put("Barge", "S");
+                else if (text.equals(getResources().getString(R.string.Deep)))
+                    climbHashMap.put("Barge", "D");
             }
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) { climbHashMap.put("Stage", "N"); }
+            public void onTabUnselected(TabLayout.Tab tab) { climbHashMap.put("Barge", "N"); }
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });
-
-        scoredTrapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) trapScoredCounter.getText());
-                // A robot cannot score more than 3 notes in their Traps (3 traps, 1 note per trap)
-                if (currentCount < 3)
-                    currentCount++;
-                climbHashMap.put("ScoredTrap", String.valueOf(currentCount));
-                updateXMLObjects();
-            }
-        });
-
-        notScoredTrapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) trapScoredCounter.getText());
-                if (currentCount > 0)
-                    currentCount--;
-                climbHashMap.put("ScoredTrap", String.valueOf(currentCount));
-                updateXMLObjects();
-            }
-        });
-
-        missedTrapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) trapMissedCounter.getText());
-                currentCount++;
-                climbHashMap.put("MissedTrap", String.valueOf(currentCount));
-                updateXMLObjects();
-            }
-        });
-
-        notMissedTrapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int currentCount = Integer.parseInt((String) trapMissedCounter.getText());
-                if (currentCount > 0)
-                    currentCount--;
-                climbHashMap.put("MissedTrap", String.valueOf(currentCount));
-                updateXMLObjects();
-            }
-        });
-
 
         generateQRButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -230,7 +165,7 @@ public class Stage extends Fragment {
                         HashMapManager.putSetupHashMap(setupHashMap);
                         HashMapManager.putClimbHashMap(climbHashMap);
 
-                        Stage.QRRunnable qrRunnable = new Stage.QRRunnable();
+                        Climb.QRRunnable qrRunnable = new Climb.QRRunnable();
                         new Thread(qrRunnable).start();
                         dialog.dismiss();
                     }
@@ -246,11 +181,11 @@ public class Stage extends Fragment {
         });
     }
 
-    private void onstageTabsEnabledState(boolean enable) {
+    private void bargeTabsEnabledState(boolean enable) {
         if (!enable)
-            climbHashMap.put("Stage", "N");
-        stageTabs.setEnabled(enable);
-        LinearLayout tabStrip = ((LinearLayout) stageTabs.getChildAt(0));
+            climbHashMap.put("Barge", "N");
+        bargeTabs.setEnabled(enable);
+        LinearLayout tabStrip = ((LinearLayout) bargeTabs.getChildAt(0));
         tabStrip.setEnabled(enable);
         for(int i = 0; i < tabStrip.getChildCount(); i++) {
             tabStrip.getChildAt(i).setEnabled(enable);
@@ -258,95 +193,59 @@ public class Stage extends Fragment {
         }
     }
 
-    private void stageButtonsEnabledState(boolean enable) {
+    private void bargeButtonsEnabledState(boolean enable) {
         parkSwitch.setEnabled(enable);
-        onstageSwitch.setEnabled(enable);
+        hangSwitch.setEnabled(enable);
 
         //Always want the climbed switch and "climb" text next to switch to be enabled unless fell over/died is checked
-        onstageTabsEnabledState(enable);
+        bargeTabsEnabledState(enable);
     }
 
-    private void stageZoneEnabledState(boolean enable) {
+    private void bargeZoneEnabledState(boolean enable) {
         // "Post Match" title and directions
         endgameID.setEnabled(enable);
-        endgameDirections.setEnabled(enable);
+        endgameDirectionsID.setEnabled(enable);
         // Other TextViews
-        stageZoneID.setEnabled(enable);
-        stageZoneDirections.setEnabled(enable);
-        onstageDirections.setEnabled(enable);
+        bargeZoneID.setEnabled(enable);
+        bargeZoneDirections.setEnabled(enable);
+        hangDirections.setEnabled(enable);
         parkID.setEnabled(enable);
-        onstageID.setEnabled(enable);
+        hangID.setEnabled(enable);
 
         // Buttons
-        stageButtonsEnabledState(enable);
+        bargeButtonsEnabledState(enable);
     }
-
-    private void trapScoringEnabledState(boolean enable) {
-        // "Trap Scoring" header and directions
-        trapScoringID.setEnabled(enable);
-        trapScoringDirections.setEnabled(enable);
-        // Other TextViews
-        trapScoredID.setEnabled(enable);
-        trapMissedID.setEnabled(enable);
-        // Counters
-        trapScoredCounter.setEnabled(enable);
-        trapMissedCounter.setEnabled(enable);
-        // Buttons
-        scoredTrapButton.setEnabled(enable);
-        notScoredTrapButton.setEnabled(enable);
-        missedTrapButton.setEnabled(enable);
-        notMissedTrapButton.setEnabled(enable);
-        onstageID.setEnabled(enable);
-    }
-
 
     private void updateXMLObjects() {
-        // Update counters
-        trapScoredCounter.setText(GenUtils.padLeftZeros(climbHashMap.get("ScoredTrap"), 3));
-        trapMissedCounter.setText(GenUtils.padLeftZeros(climbHashMap.get("MissedTrap"), 3));
-
-        if (setupHashMap.get("FellOver").equals("1")) {
-            onstageSwitch.setChecked(false);
-            climbHashMap.put("Stage", "N");
-            stageButtonsEnabledState(false);
-            stageZoneEnabledState(false);
-            trapScoringEnabledState(false);
-        } else if (setupHashMap.get("FellOver").equals("0")) {
-            stageZoneEnabledState(true);
-            trapScoringEnabledState(true);
-            if (climbHashMap.get("Onstage").equals("N")) {
-                climbHashMap.put("Stage", "N");
-                onstageSwitch.setChecked(false);
-                onstageTabsEnabledState(false);
-            } else if (climbHashMap.get("Onstage").equals("Y")) {
+        if (setupHashMap.get("FellOver").equals("Y")) {
+            hangSwitch.setChecked(false);
+            climbHashMap.put("Hang", "N");
+            climbHashMap.put("Barge", "N");
+            bargeButtonsEnabledState(false);
+            bargeZoneEnabledState(false);
+        } else if (setupHashMap.get("FellOver").equals("N")) {
+            bargeZoneEnabledState(true);
+            if (climbHashMap.get("Hang").equals("N")) {
+                climbHashMap.put("Barge", "N");
+                hangSwitch.setChecked(false);
+                bargeTabsEnabledState(false);
+            } else if (climbHashMap.get("Hang").equals("Y")) {
                 // If robot is onstage, they cannot be parked
                 parkSwitch.setChecked(false);
                 parkSwitch.setEnabled(false);
                 parkID.setEnabled(false);
                 climbHashMap.put("Park", "N");
 
-                onstageSwitch.setChecked(true);
-                onstageTabsEnabledState(true);
+                hangSwitch.setChecked(true);
+                bargeTabsEnabledState(true);
             }
             if (climbHashMap.get("Park").equals("Y")) {
-                onstageSwitch.setChecked(false);
-                onstageSwitch.setEnabled(false);
-                onstageID.setEnabled(false);
-                onstageTabsEnabledState(false);
+                hangSwitch.setChecked(false);
+                hangSwitch.setEnabled(false);
+                hangID.setEnabled(false);
+                bargeTabsEnabledState(false);
                 climbHashMap.put("Onstage", "N");
             }
-
-            if (Integer.parseInt((String) trapScoredCounter.getText()) <= 0)
-                notScoredTrapButton.setEnabled(false);
-            else
-                notScoredTrapButton.setEnabled(true);
-            if (Integer.parseInt((String) trapMissedCounter.getText()) <= 0)
-                notMissedTrapButton.setEnabled(false);
-            else
-                notMissedTrapButton.setEnabled(true);
-            // A robot cannot score more than 3 notes in their Traps (3 traps, 1 note per trap)
-            if (Integer.parseInt((String) trapScoredCounter.getText()) >= 3)
-                scoredTrapButton.setEnabled(false);
         }
     }
 

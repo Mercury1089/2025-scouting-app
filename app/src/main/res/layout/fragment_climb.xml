@@ -11,10 +11,10 @@
     tools:ignore="ExtraText">
 
     <TextView
-        android:id="@+id/IDStageZone"
+        android:id="@+id/IDBargeZone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/BargeZoneHeader"
         android:textColor="@drawable/text_subead_states"
@@ -85,8 +85,8 @@
         android:text="@string/MiscDirections"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/instruction_text_size"
-        app:layout_constraintStart_toStartOf="@+id/IDStageZone"
-        app:layout_constraintTop_toBottomOf="@+id/IDStageZone" />
+        app:layout_constraintStart_toStartOf="@+id/IDBargeZone"
+        app:layout_constraintTop_toBottomOf="@+id/IDBargeZone" />
 
     <TextView
         android:id="@+id/IDHangedDirections"
@@ -100,7 +100,7 @@
         android:textSize="@dimen/instruction_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/onstageSwitch" />
+        app:layout_constraintTop_toBottomOf="@+id/hangSwitch" />
 
     <TextView
         android:id="@+id/IDHanged"
@@ -111,9 +111,9 @@
         android:text="@string/Hanged"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/input_label_text_size"
-        app:layout_constraintBottom_toBottomOf="@+id/onstageSwitch"
-        app:layout_constraintStart_toEndOf="@+id/onstageSwitch"
-        app:layout_constraintTop_toTopOf="@+id/onstageSwitch" />
+        app:layout_constraintBottom_toBottomOf="@+id/hangSwitch"
+        app:layout_constraintStart_toEndOf="@+id/hangSwitch"
+        app:layout_constraintTop_toTopOf="@+id/hangSwitch" />
 
     <TextView
         android:id="@+id/IDPark"
@@ -129,7 +129,7 @@
         app:layout_constraintTop_toTopOf="@+id/parkSwitch" />
 
     <Switch
-        android:id="@+id/onstageSwitch"
+        android:id="@+id/hangSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
