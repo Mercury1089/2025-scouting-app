@@ -59,14 +59,14 @@ public class QRStringBuilder {
         // Teleop
         QRString.append("Teleop").append(",");
         QRString.append("Coral").append(",");
-        QRString.append(teleop.get("L4ScoredCoral")).append(",");
-        QRString.append(teleop.get("L3ScoredCoral")).append(",");
-        QRString.append(teleop.get("L2ScoredCoral")).append(",");
-        QRString.append(teleop.get("L1ScoredCoral")).append(",");
-        QRString.append(teleop.get("L4MissedCoral")).append(",");
-        QRString.append(teleop.get("L3MissedCoral")).append(",");
-        QRString.append(teleop.get("L2MissedCoral")).append(",");
-        QRString.append(teleop.get("L1MissedCoral")).append(",");
+        QRString.append(teleop.get("ScoredCoralL4")).append(",");
+        QRString.append(teleop.get("ScoredCoralL3")).append(",");
+        QRString.append(teleop.get("ScoredCoralL2")).append(",");
+        QRString.append(teleop.get("ScoredCoralL1")).append(",");
+        QRString.append(teleop.get("MissedCoralL4")).append(",");
+        QRString.append(teleop.get("MissedCoralL3")).append(",");
+        QRString.append(teleop.get("MissedCoralL2")).append(",");
+        QRString.append(teleop.get("MissedCoralL1")).append(",");
         QRString.append(teleop.get("CoralPickedUp")).append(",");
 
         QRString.append("Algae").append(",");
