@@ -36,14 +36,14 @@ public class QRStringBuilder {
         // Auton
         QRString.append("Auton").append(",");
         QRString.append("Coral").append(",");
-        QRString.append(auton.get("L4ScoredCoral")).append(",");
-        QRString.append(auton.get("L3ScoredCoral")).append(",");
-        QRString.append(auton.get("L2ScoredCoral")).append(",");
-        QRString.append(auton.get("L1ScoredCoral")).append(",");
-        QRString.append(auton.get("L4MissedCoral")).append(",");
-        QRString.append(auton.get("L3MissedCoral")).append(",");
-        QRString.append(auton.get("L2MissedCoral")).append(",");
-        QRString.append(auton.get("L1MissedCoral")).append(",");
+        QRString.append(auton.get("ScoredCoralL4")).append(",");
+        QRString.append(auton.get("ScoredCoralL3")).append(",");
+        QRString.append(auton.get("ScoredCoralL2")).append(",");
+        QRString.append(auton.get("ScoredCoralL1")).append(",");
+        QRString.append(auton.get("MissedCoralL4")).append(",");
+        QRString.append(auton.get("MissedCoralL3")).append(",");
+        QRString.append(auton.get("MissedCoralL2")).append(",");
+        QRString.append(auton.get("MissedCoralL1")).append(",");
         QRString.append(auton.get("CoralPickedUp")).append(",");
 
         QRString.append("Algae").append(",");

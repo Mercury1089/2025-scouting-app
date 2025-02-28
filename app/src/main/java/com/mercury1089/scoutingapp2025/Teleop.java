@@ -84,7 +84,6 @@ public class Teleop extends Fragment implements UpdateListener {
     private TextView pickedUpAlgaeCounter;
 
     // Robot toggle options
-    private TextView robotID;
     private TextView miscInstructionsID;
     private TextView playedDefenseID, fellOverID;
     private Switch playedDefenseSwitch;
@@ -219,7 +218,6 @@ public class Teleop extends Fragment implements UpdateListener {
         notPickedUpAlgaeButton = getView().findViewById(R.id.notPossessedAlgaeButtonTeleop);
         pickedUpAlgaeCounter = getView().findViewById(R.id.algaePossessedCounterTeleop);
 
-        robotID = getView().findViewById(R.id.IDRobotTeleop);
         miscInstructionsID = getView().findViewById(R.id.IDMiscDirectionsTeleop);
         playedDefenseID = getView().findViewById(R.id.IDPlayedDefenseTeleop);
         playedDefenseSwitch = getView().findViewById(R.id.playedDefenseSwitchTeleop);
@@ -405,7 +403,6 @@ public class Teleop extends Fragment implements UpdateListener {
     }
 
     private void miscButtonsEnabledState(boolean enable){
-        robotID.setEnabled(enable);
         miscInstructionsID.setEnabled(enable);
         playedDefenseID.setEnabled(enable);
         playedDefenseSwitch.setEnabled(enable);
