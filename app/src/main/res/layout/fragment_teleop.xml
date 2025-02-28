@@ -26,15 +26,16 @@
         -->
 
     <TextView
-        android:id="@+id/IDRobotTeleop"
+        android:id="@+id/IDPossessionDirectionsTeleop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/futura_medium_condensed_bt"
-        android:text="@string/RobotTitle"
-        android:textColor="@drawable/text_subead_states"
-        android:textSize="@dimen/alt_header_text_size"
-        app:layout_constraintStart_toStartOf="@+id/coralLayoutTeleop"
-        tools:layout_editor_absoluteY="634dp" />
+        android:fontFamily="@font/open_sans_italic"
+        android:text="@string/PossessionDirections"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/algaeLayoutTeleop"
@@ -215,7 +216,7 @@
             android:paddingBottom="4dp"
             android:text="@string/DefaultValue"
             android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
+            android:textSize="@dimen/counter_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/L3AttemptedButtonGroupTeleop"
             app:layout_constraintStart_toEndOf="@+id/L3AttemptedButtonGroupTeleop"
             app:layout_constraintTop_toTopOf="@+id/L3AttemptedButtonGroupTeleop" />
@@ -341,7 +342,7 @@
             android:paddingBottom="4dp"
             android:text="@string/DefaultValue"
             android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
+            android:textSize="@dimen/counter_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/L2AttemptedButtonGroupTeleop"
             app:layout_constraintStart_toEndOf="@+id/L2AttemptedButtonGroupTeleop"
             app:layout_constraintTop_toTopOf="@+id/L2AttemptedButtonGroupTeleop" />
@@ -550,7 +551,7 @@
             android:paddingBottom="4dp"
             android:text="@string/DefaultValue"
             android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
+            android:textSize="@dimen/counter_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/L4MissedButtonGroupTeleop"
             app:layout_constraintStart_toEndOf="@+id/L4MissedButtonGroupTeleop"
             app:layout_constraintTop_toTopOf="@+id/L4MissedButtonGroupTeleop" />
@@ -678,7 +679,7 @@
             android:paddingBottom="4dp"
             android:text="@string/DefaultValue"
             android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
+            android:textSize="@dimen/counter_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/L3MissedButtonGroupTeleop"
             app:layout_constraintStart_toEndOf="@+id/L3MissedButtonGroupTeleop"
             app:layout_constraintTop_toTopOf="@+id/L3MissedButtonGroupTeleop" />
@@ -806,7 +807,7 @@
             android:paddingBottom="4dp"
             android:text="@string/DefaultValue"
             android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
+            android:textSize="@dimen/counter_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/L2MissedButtonGroupTeleop"
             app:layout_constraintStart_toEndOf="@+id/L2MissedButtonGroupTeleop"
             app:layout_constraintTop_toTopOf="@+id/L2MissedButtonGroupTeleop" />
@@ -934,7 +935,7 @@
             android:paddingBottom="4dp"
             android:text="@string/DefaultValue"
             android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
+            android:textSize="@dimen/counter_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/L1MissedButtonGroupTeleop"
             app:layout_constraintStart_toEndOf="@+id/L1MissedButtonGroupTeleop"
             app:layout_constraintTop_toTopOf="@+id/L1MissedButtonGroupTeleop" />
@@ -1083,7 +1084,7 @@
             android:paddingBottom="4dp"
             android:text="@string/DefaultValue"
             android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
+            android:textSize="@dimen/counter_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/ProcessorMissedButtonGroupTeleop"
             app:layout_constraintEnd_toEndOf="@+id/ProcessorScoredCounterTeleop"
             app:layout_constraintTop_toTopOf="@+id/ProcessorMissedButtonGroupTeleop" />
@@ -1141,7 +1142,7 @@
             android:paddingBottom="4dp"
             android:text="@string/DefaultValue"
             android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
+            android:textSize="@dimen/counter_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/netScoredCounterTeleop"
             app:layout_constraintTop_toTopOf="@+id/NetMissedButtonGroupTeleop" />
@@ -1397,22 +1398,20 @@
             android:textSize="@dimen/counter_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/AlgaePossessedButtonGroupTeleop"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/AlgaePossessedButtonGroupTeleop"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="@+id/AlgaePossessedButtonGroupTeleop" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/IDPossessionDirectionsTeleop"
+        android:id="@+id/IDRobotTeleop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/open_sans_italic"
-        android:text="@string/PossessionDirections"
-        android:textColor="@drawable/text_states"
-        android:textSize="@dimen/instruction_text_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:fontFamily="@font/futura_medium_condensed_bt"
+        android:text="@string/RobotTitle"
+        android:textColor="@drawable/text_subead_states"
+        android:textSize="@dimen/alt_header_text_size"
+        app:layout_constraintStart_toStartOf="@+id/coralLayoutTeleop"
+        app:layout_constraintTop_toBottomOf="@+id/coralPossessionLayoutTeleop" />
 
     <TextView
         android:id="@+id/IDMiscDirectionsTeleop"
@@ -1459,7 +1458,7 @@
         android:text="@string/FellOver"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/input_label_text_size"
-        app:layout_constraintBottom_toBottomOf="@+id/FellOverSwitchTeleop"
+        app:layout_constraintBottom_toBottomOf="@+id/fellOverSwitchTeleop"
         app:layout_constraintStart_toEndOf="@+id/fellOverSwitchTeleop"
         app:layout_constraintTop_toTopOf="@+id/fellOverSwitchTeleop" />
 
@@ -1490,7 +1489,6 @@
         android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.341"
         app:layout_constraintStart_toStartOf="parent" />
 
 

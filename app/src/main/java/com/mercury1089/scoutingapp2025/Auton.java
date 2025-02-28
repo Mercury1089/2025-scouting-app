@@ -434,6 +434,8 @@ public class Auton extends Fragment implements UpdateListener {
         //set listeners for buttons and fill the hashmap with data
         pickedUpCoralButton.setOnClickListener(new NumericalDataInputListener(pickedUpCoralCounter, autonHashMap, "CoralPickedUp", true, this));
         notPickedUpCoralButton.setOnClickListener(new NumericalDataInputListener(pickedUpCoralCounter, autonHashMap, "CoralPickedUp", false, this));
+        pickedUpAlgaeButton.setOnClickListener(new NumericalDataInputListener(pickedUpAlgaeCounter, autonHashMap, "AlgaePickedUp", true, this));
+        notPickedUpAlgaeButton.setOnClickListener(new NumericalDataInputListener(pickedUpAlgaeCounter, autonHashMap, "AlgaePickedUp", false, this));
 
         scoredL4Button.setOnClickListener(new NumericalDataInputListener(scoredL4Counter, autonHashMap, "ScoredCoralL4", true, this));
         notScoredL4Button.setOnClickListener(new NumericalDataInputListener(scoredL4Counter, autonHashMap, "ScoredCoralL4", false, this));
@@ -476,14 +478,14 @@ public class Auton extends Fragment implements UpdateListener {
 
         leaveSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                autonHashMap.put("Leave", isChecked ? "1" : "0");
+                autonHashMap.put("Leave", isChecked ? "Y" : "N");
                 updateXMLObjects();
             }
         });
 
         fellOverSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setupHashMap.put("FellOver", isChecked ? "1" : "0");
+                setupHashMap.put("FellOver", isChecked ? "Y" : "N");
                 updateXMLObjects();
             }
         });
@@ -600,6 +602,7 @@ public class Auton extends Fragment implements UpdateListener {
         scoredNetCounter.setEnabled(enable);
         missedNetID.setEnabled(enable);
         missedNetButton.setEnabled(enable);
+        missedNetCounter.setEnabled(enable);
 }
 
 private void miscButtonsEnabledState(boolean enable){
@@ -636,9 +639,12 @@ private void miscButtonsEnabledState(boolean enable){
         scoredNetCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("ScoredAlgaeNet"), 3));
         missedNetCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("MissedAlgaeNet"), 3));
 
-        leaveSwitch.setChecked(autonHashMap.get("Leave").equals("1"));
+        pickedUpCoralCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("CoralPickedUp"), 3));
+        pickedUpAlgaeCounter.setText(GenUtils.padLeftZeros(autonHashMap.get("AlgaePickedUp"), 3));
 
-        if(setupHashMap.get("FellOver").equals("1")) {
+        leaveSwitch.setChecked(autonHashMap.get("Leave").equals("Y"));
+
+        if(setupHashMap.get("FellOver").equals("Y")) {
             fellOverSwitch.setChecked(true);
             nextButton.setPadding(150, 0, 150, 0);
             nextButton.setText(R.string.GenerateQRCode);
@@ -650,6 +656,8 @@ private void miscButtonsEnabledState(boolean enable){
             allButtonsEnabledState(true);
             // Disables decrement buttons if counter is at 0
             // There's totally a better way to do this without the redundancy
+            notPickedUpCoralButton.setEnabled(Integer.parseInt(pickedUpCoralCounter.getText().toString()) > 0);
+            notPickedUpAlgaeButton.setEnabled(Integer.parseInt(pickedUpAlgaeCounter.getText().toString()) > 0);
             notPickedUpCoralButton.setEnabled(Integer.parseInt(pickedUpCoralCounter.getText().toString()) > 0);
             notPickedUpAlgaeButton.setEnabled(Integer.parseInt(pickedUpAlgaeCounter.getText().toString()) > 0);
             notScoredL4Button.setEnabled(Integer.parseInt(scoredL4Counter.getText().toString()) > 0);

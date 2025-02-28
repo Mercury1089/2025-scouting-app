@@ -314,13 +314,14 @@ public class HashMapManager{
                 setupHashMap.put("ScouterName", "");
                 setupHashMap.put("MatchNumber", "");
                 setupHashMap.put("TeamNumber", "");
-                setupHashMap.put("NoShow", "0");
-                setupHashMap.put("PreloadNote", "0");
+                setupHashMap.put("NoShow", "N");
+                setupHashMap.put("PreloadNote", "N");
+                setupHashMap.put("PlayedDefense", "N");
                 setupHashMap.put("AlliancePartner1", "");
                 setupHashMap.put("AlliancePartner2", "");
                 setupHashMap.put("AllianceColor", "");
                 //Note: FellOver is put in setup hashmap because its value may be updated in Auton, Teleop, or Climb
-                setupHashMap.put("FellOver", "0");
+                setupHashMap.put("FellOver", "N");
                 break;
             case AUTON:
                 //include all the items that will be in the autonHashMap
@@ -348,26 +349,42 @@ public class HashMapManager{
                 autonHashMap.put("ScoredAlgaeNet", "0");
                 autonHashMap.put("MissedAlgaeNet", "0");
 
-                autonHashMap.put("Leave", "0");
+                autonHashMap.put("Leave", "N");
                 break;
             case TELEOP:
                 //include all the items that will be in the teleopHashMap
                 teleopHashMap.put("HashMapName", "Teleop");
-                teleopHashMap.put("NumberPickedUp", "0");
-                teleopHashMap.put("ScoredSpeaker", "0");
-                teleopHashMap.put("ScoredAmp", "0");
-                teleopHashMap.put("MissedSpeaker", "0");
-                teleopHashMap.put("MissedAmp", "0");
+                teleopHashMap.put("CoralPickedUp", "0");
+                teleopHashMap.put("AlgaePickedUp", "0");
+
+                teleopHashMap.put("ScoredCoralL4", "0");
+                teleopHashMap.put("ScoredCoralL3", "0");
+                teleopHashMap.put("ScoredCoralL2", "0");
+                teleopHashMap.put("ScoredCoralL1", "0");
+
+                teleopHashMap.put("MissedCoralL4", "0");
+                teleopHashMap.put("MissedCoralL3", "0");
+                teleopHashMap.put("MissedCoralL2", "0");
+                teleopHashMap.put("MissedCoralL1", "0");
+
+                teleopHashMap.put("RemovedAlgaeL3", "0");
+                teleopHashMap.put("RemovedAlgaeL2", "0");
+                teleopHashMap.put("AttemptedAlgaeL3", "0");
+                teleopHashMap.put("AttemptedAlgaeL2", "0");
+
+                teleopHashMap.put("ScoredAlgaeProcessor", "0");
+                teleopHashMap.put("MissedAlgaeProcessor", "0");
+                teleopHashMap.put("ScoredAlgaeNet", "0");
+                teleopHashMap.put("MissedAlgaeNet", "0");
+
                 break;
             case CLIMB:
                 //include all the items that will be in the climbHashMap
                 climbHashMap.put("HashMapName", "Climb");
                 climbHashMap.put("Park", "N");
-                climbHashMap.put("Onstage", "N"); //Value to update climbedSwitch (*NOT PART OF QRSTRING*)
-                //If robot didn't climb, value will be "N". Otherwise, it will be "L", "C", or "R"
-                climbHashMap.put("Stage", "N");
-                climbHashMap.put("ScoredTrap", "0");
-                climbHashMap.put("MissedTrap", "0");
+                climbHashMap.put("Hang", "N"); //Value to update barge selector (*NOT PART OF QRSTRING*)
+                //If robot didn't climb, value will be "N". Otherwise, it will be "S" or "D" (Shallow or Deep)
+                climbHashMap.put("Barge", "N");
                 break;
         }
     }

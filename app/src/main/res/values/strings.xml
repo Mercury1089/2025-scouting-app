@@ -18,14 +18,14 @@
         <string name="RobotTitle">ROBOT</string>
         <string name="ControlPanelTitle">CONTROL PANEL</string>
         <string name="ClimbTitle">CLIMB</string>
-        <string name="EndGameTitle">POST - MATCH</string>
+        <string name="EndGameTitle">POST-MATCH</string>
         <string name="QRCodeTitle">DID YOU SCAN YOUR QR CODE?</string>
 
     <!-- Tabs -->
         <string name="Setup">Setup</string>
         <string name="Auton">Auton</string>
         <string name="Teleop">Teleop</string>
-        <string name="Stage">Stage</string>
+        <string name="PostMatch">Post-Match</string>
 
 
 <!-- PregameActivity -->
@@ -108,7 +108,7 @@
     <!-- Teleop -->
         <string name="PlayedDefense">Played Defense</string>
         <string name="FellOverOrDied">Fell over/Died</string>
-        <string name="ClimbNext">NEXT: STAGE ZONE AND QR</string>
+        <string name="ClimbNext">NEXT: POST-MATCH</string>
 
     <!-- Stage -->
         <string name="PostMatchDirections">Do not complete this screen until >5 seconds after the buzzer</string>

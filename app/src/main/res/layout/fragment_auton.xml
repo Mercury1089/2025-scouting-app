@@ -189,7 +189,7 @@
             android:paddingBottom="4dp"
             android:text="@string/DefaultValue"
             android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
+            android:textSize="@dimen/counter_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/L3AttemptedButtonGroup"
             app:layout_constraintStart_toEndOf="@+id/L3AttemptedButtonGroup"
             app:layout_constraintTop_toTopOf="@+id/L3AttemptedButtonGroup" />
@@ -315,7 +315,7 @@
             android:paddingBottom="4dp"
             android:text="@string/DefaultValue"
             android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
+            android:textSize="@dimen/counter_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/L2AttemptedButtonGroup"
             app:layout_constraintStart_toEndOf="@+id/L2AttemptedButtonGroup"
             app:layout_constraintTop_toTopOf="@+id/L2AttemptedButtonGroup" />
@@ -524,7 +524,7 @@
             android:paddingBottom="4dp"
             android:text="@string/DefaultValue"
             android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
+            android:textSize="@dimen/counter_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/L4MissedButtonGroup"
             app:layout_constraintStart_toEndOf="@+id/L4MissedButtonGroup"
             app:layout_constraintTop_toTopOf="@+id/L4MissedButtonGroup" />
@@ -652,7 +652,7 @@
             android:paddingBottom="4dp"
             android:text="@string/DefaultValue"
             android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
+            android:textSize="@dimen/counter_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/L3MissedButtonGroup"
             app:layout_constraintStart_toEndOf="@+id/L3MissedButtonGroup"
             app:layout_constraintTop_toTopOf="@+id/L3MissedButtonGroup" />
@@ -780,7 +780,7 @@
             android:paddingBottom="4dp"
             android:text="@string/DefaultValue"
             android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
+            android:textSize="@dimen/counter_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/L2MissedButtonGroup"
             app:layout_constraintStart_toEndOf="@+id/L2MissedButtonGroup"
             app:layout_constraintTop_toTopOf="@+id/L2MissedButtonGroup" />
@@ -908,7 +908,7 @@
             android:paddingBottom="4dp"
             android:text="@string/DefaultValue"
             android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
+            android:textSize="@dimen/counter_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/L1MissedButtonGroup"
             app:layout_constraintStart_toEndOf="@+id/L1MissedButtonGroup"
             app:layout_constraintTop_toTopOf="@+id/L1MissedButtonGroup" />
@@ -1057,7 +1057,7 @@
             android:paddingBottom="4dp"
             android:text="@string/DefaultValue"
             android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
+            android:textSize="@dimen/counter_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/ProcessorMissedButtonGroup"
             app:layout_constraintEnd_toEndOf="@+id/ProcessorScoredCounter"
             app:layout_constraintTop_toTopOf="@+id/ProcessorMissedButtonGroup" />
@@ -1115,7 +1115,7 @@
             android:paddingBottom="4dp"
             android:text="@string/DefaultValue"
             android:textColor="@drawable/text_states"
-            android:textSize="@dimen/instruction_text_size"
+            android:textSize="@dimen/counter_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/netScoredCounter"
             app:layout_constraintTop_toTopOf="@+id/NetMissedButtonGroup" />

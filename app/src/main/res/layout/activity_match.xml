@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/Climb"
-        android:name="com.mercury1089.scoutingapp2025.Stage"
+        android:name="com.mercury1089.scoutingapp2025.Climb"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -101,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/toggle_right_states"
-            android:text="@string/Stage"
+            android:text="@string/PostMatch"
             app:tabBackground="@drawable/toggle_right_states" />
     </com.google.android.material.tabs.TabLayout>
 

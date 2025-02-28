@@ -1,6 +1,7 @@
 package com.mercury1089.scoutingapp2025;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -236,6 +237,8 @@ public class Teleop extends Fragment implements UpdateListener {
         //set listeners for buttons
         pickedUpCoralButton.setOnClickListener(new NumericalDataInputListener(pickedUpCoralCounter, teleopHashMap, "CoralPickedUp", true, this));
         notPickedUpCoralButton.setOnClickListener(new NumericalDataInputListener(pickedUpCoralCounter, teleopHashMap, "CoralPickedUp", false, this));
+        pickedUpAlgaeButton.setOnClickListener(new NumericalDataInputListener(pickedUpAlgaeCounter, teleopHashMap, "AlgaePickedUp", true, this));
+        notPickedUpAlgaeButton.setOnClickListener(new NumericalDataInputListener(pickedUpAlgaeCounter, teleopHashMap, "AlgaePickedUp", false, this));
 
         scoredL4Button.setOnClickListener(new NumericalDataInputListener(scoredL4Counter, teleopHashMap, "ScoredCoralL4", true, this));
         notScoredL4Button.setOnClickListener(new NumericalDataInputListener(scoredL4Counter, teleopHashMap, "ScoredCoralL4", false, this));
@@ -275,9 +278,14 @@ public class Teleop extends Fragment implements UpdateListener {
         missedNetButton.setOnClickListener(new NumericalDataInputListener(missedNetCounter, teleopHashMap, "MissedAlgaeNet", true, this));
         notMissedNetButton.setOnClickListener(new NumericalDataInputListener(missedNetCounter, teleopHashMap, "MissedAlgaeNet", false, this));
 
+        playedDefenseSwitch.setOnCheckedChangeListener((view, isChecked) -> {
+            setupHashMap.put("PlayedDefense", isChecked ? "Y" : "N");
+            updateXMLObjects();
+        });
+
         fellOverSwitch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                setupHashMap.put("FellOver", isChecked ? "1" : "0");
+                setupHashMap.put("FellOver", isChecked ? "Y" : "N");
                 updateXMLObjects();
             }
         });
@@ -409,6 +417,7 @@ public class Teleop extends Fragment implements UpdateListener {
     }
 
     private void updateXMLObjects(){
+        Log.d("d", "Scored coral l4: " + teleopHashMap.get("ScoredCoralL4"));
         scoredL4Counter.setText(GenUtils.padLeftZeros(teleopHashMap.get("ScoredCoralL4"), 3));
         scoredL3Counter.setText(GenUtils.padLeftZeros(teleopHashMap.get("ScoredCoralL3"), 3));
         scoredL2Counter.setText(GenUtils.padLeftZeros(teleopHashMap.get("ScoredCoralL2"), 3));
@@ -429,7 +438,10 @@ public class Teleop extends Fragment implements UpdateListener {
         scoredNetCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("ScoredAlgaeNet"), 3));
         missedNetCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("MissedAlgaeNet"), 3));
 
-        if(setupHashMap.get("FellOver").equals("1")) {
+        pickedUpCoralCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("CoralPickedUp"), 3));
+        pickedUpAlgaeCounter.setText(GenUtils.padLeftZeros(teleopHashMap.get("AlgaePickedUp"), 3));
+
+        if(setupHashMap.get("FellOver").equals("Y")) {
             fellOverSwitch.setChecked(true);
             nextButton.setPadding(150, 0, 185, 0);
             nextButton.setText(R.string.GenerateQRCode);
