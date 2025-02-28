@@ -52,6 +52,7 @@ public class QRStringBuilder {
         QRString.append(auton.get("AttemptedAlgaeL3")).append(",");
         QRString.append(auton.get("AttemptedAlgaeL2")).append(",");
         QRString.append(auton.get("ScoredAlgaeProcessor")).append(",");
+        QRString.append(auton.get("MissedAlgaeProcessor")).append(",");
         QRString.append(auton.get("ScoredAlgaeNet")).append(",");
         QRString.append(auton.get("MissedAlgaeNet")).append(",");
         QRString.append(auton.get("AlgaePickedUp")).append(",");
@@ -75,6 +76,7 @@ public class QRStringBuilder {
         QRString.append(teleop.get("AttemptedAlgaeL3")).append(",");
         QRString.append(teleop.get("AttemptedAlgaeL2")).append(",");
         QRString.append(teleop.get("ScoredAlgaeProcessor")).append(",");
+        QRString.append(auton.get("MissedAlgaeProcessor")).append(",");
         QRString.append(teleop.get("ScoredAlgaeNet")).append(",");
         QRString.append(teleop.get("MissedAlgaeNet")).append(",");
         QRString.append(teleop.get("AlgaePickedUp")).append(",");
