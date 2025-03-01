@@ -1445,7 +1445,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:fontFamily="@font/open_sans"
-        android:text="@string/FellOver"
+        android:text="@string/FellOverOrDied"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/input_label_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/fellOverSwitchTeleop"
