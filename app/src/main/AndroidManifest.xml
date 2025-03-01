@@ -13,14 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.mercury1089.scoutingapp2025.SettingsActivity"
-            android:screenOrientation="fullSensor"/>
+            android:screenOrientation="portrait"/>
         <activity android:name="com.mercury1089.scoutingapp2025.PregameActivity"
-            android:screenOrientation="fullSensor"/>
+            android:screenOrientation="portrait"/>
         <activity android:name="com.mercury1089.scoutingapp2025.MatchActivity"
-            android:screenOrientation="fullSensor"/>
+            android:screenOrientation="portrait"/>
         <activity android:name="com.mercury1089.scoutingapp2025.SplashActivity"
             android:exported="true"
-            android:screenOrientation="fullSensor">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
