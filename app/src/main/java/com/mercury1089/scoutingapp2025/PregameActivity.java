@@ -557,10 +557,11 @@ public class PregameActivity extends AppCompatActivity {
 
             startButton.setPadding(185, 0, 185, 0);
             startButton.setText(R.string.GenerateQRCode);
+            startButton.setCompoundDrawablesRelativeWithIntrinsicBounds(this.getDrawable(R.drawable.qr), null, null, null);
             isQRButton = true;
         } else {
             noShowSwitch.setChecked(false);
-
+            startButton.setCompoundDrawablesRelativeWithIntrinsicBounds(this.getDrawable(R.drawable.start_button_symbol_states), null, null, null);
             startButton.setPadding(234, 0, 234, 0);
             startButton.setText(R.string.Start);
             isQRButton = false;
