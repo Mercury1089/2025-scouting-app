@@ -566,7 +566,7 @@ public class PregameActivity extends AppCompatActivity {
             isQRButton = false;
         }
 
-        startButton.setEnabled(readyToStart || isQRButton);
+        startButton.setEnabled(readyToStart);
         startDirectionsToast.setEnabled(readyToStart && !isQRButton);
         clearButton.setEnabled(canClear);
     }
