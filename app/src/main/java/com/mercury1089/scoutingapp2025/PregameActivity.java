@@ -618,6 +618,7 @@ public class PregameActivity extends AppCompatActivity {
                         Dialog dialog = new Dialog(PregameActivity.this);
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         dialog.setContentView(R.layout.popup_qr);
+                        QRStringBuilder.storeQRString(getApplicationContext());
 
                         ImageView imageView = dialog.findViewById(R.id.imageView);
                         TextView scouterName = dialog.findViewById(R.id.ScouterNameQR);
@@ -651,7 +652,7 @@ public class PregameActivity extends AppCompatActivity {
                                 setupNextMatchButton.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        QRStringBuilder.clearQRString(getApplicationContext());
+                                        QRStringBuilder.clearQRString();
                                         HashMapManager.setupNextMatch();
                                         setupHashMap = HashMapManager.getSetupHashMap();
                                         updateXMLObjects(true);

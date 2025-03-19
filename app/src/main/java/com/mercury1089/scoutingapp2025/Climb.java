@@ -314,6 +314,7 @@ public class Climb extends Fragment {
                         Dialog dialog = new Dialog(context);
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         dialog.setContentView(R.layout.popup_qr);
+                        QRStringBuilder.storeQRString(context);
 
                         ImageView imageView = dialog.findViewById(R.id.imageView);
                         TextView scouterName = dialog.findViewById(R.id.ScouterNameQR);
@@ -347,7 +348,7 @@ public class Climb extends Fragment {
                                 setupNextMatchButton.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        QRStringBuilder.clearQRString(context);
+                                        QRStringBuilder.clearQRString();
                                         HashMapManager.setupNextMatch();
                                         Intent intent = new Intent(context, PregameActivity.class);
                                         startActivity(intent);

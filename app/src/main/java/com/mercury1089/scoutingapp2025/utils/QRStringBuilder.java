@@ -87,8 +87,11 @@ public class QRStringBuilder {
         return QRString.toString();
     }
 
-    public static void clearQRString(Context context) {
-        HashMapManager.appendQRList(QRString.toString(), context);
+    public static void storeQRString(Context ctx) {
+        HashMapManager.appendQRList(QRString.toString(), ctx);
+    }
+
+    public static void clearQRString() {
         QRString = new StringBuilder();
     }
 }
