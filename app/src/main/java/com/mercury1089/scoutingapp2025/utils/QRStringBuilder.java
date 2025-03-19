@@ -17,6 +17,7 @@ public class QRStringBuilder {
         LinkedHashMap<String, String> climb = HashMapManager.getClimbHashMap();
 
         // Setup Data
+        QRString.append(setup.get("ScouterName")).append(",");
         QRString.append(setup.get("TeamNumber")).append(",");
         QRString.append(setup.get("MatchNumber")).append(",");
         QRString.append(setup.get("AlliancePartner1")).append(",");
@@ -79,8 +80,7 @@ public class QRStringBuilder {
         QRString.append(auton.get("MissedAlgaeProcessor")).append(",");
         QRString.append(teleop.get("ScoredAlgaeNet")).append(",");
         QRString.append(teleop.get("MissedAlgaeNet")).append(",");
-        QRString.append(teleop.get("AlgaePickedUp")).append(",");
-        QRString.append(setup.get("ScouterName"));
+        QRString.append(teleop.get("AlgaePickedUp"));
     }
 
     public static String getQRString(){
