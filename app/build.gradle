@@ -40,12 +40,14 @@ dependencies {
     var2
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.beardedhen:androidbootstrap:2.3.2'
-    implementation 'com.google.zxing:core:3.4.0'
-    implementation 'com.google.zxing:javase:3.4.0'
+//    implementation 'com.google.zxing:core:3.4.0'
+//    implementation 'com.google.zxing:javase:3.4.0'
     implementation 'com.github.markushi:circlebutton:1.1'
     implementation 'androidx.fragment:fragment:1.1.0'
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.github.kenglxn.QRGen:android:3.0.1'
+
 
 }
