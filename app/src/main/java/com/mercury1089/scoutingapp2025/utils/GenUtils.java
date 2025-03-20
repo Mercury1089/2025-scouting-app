@@ -35,32 +35,6 @@ public class GenUtils {
         button.setEnabled(false);
     }
 
-    public static Bitmap TextToImageEncode(Context context, String value) throws WriterException {
-        BitMatrix bitMatrix;
-        try {
-            bitMatrix = new MultiFormatWriter().encode(
-                    value,
-                    BarcodeFormat.QR_CODE,
-                    QRCodeSize, QRCodeSize, null
-            );
-        } catch (IllegalArgumentException illegalArgumentException) {
-            return null;
-        }
-
-        int bitMatrixWidth = bitMatrix.getWidth();
-        int bitMatrixHeight = bitMatrix.getHeight();
-        int[] pixels = new int[bitMatrixWidth * bitMatrixHeight];
-        for (int y = 0; y < bitMatrixHeight; y++) {
-            int offset = y * bitMatrixWidth;
-            for (int x = 0; x < bitMatrixWidth; x++)
-                pixels[offset + x] = bitMatrix.get(x, y) ?
-                        getAColor(context, R.color.design_default_color_primary_dark) : getAColor(context, R.color.bootstrap_dropdown_divider);
-        }
-        Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
-        bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
-        return bitmap;
-    }
-
     public static String padLeftZeros(String input, int length){
         if (input == null) return new String(new char[length]).replace("\0", "0");
         if(input.length() < length){

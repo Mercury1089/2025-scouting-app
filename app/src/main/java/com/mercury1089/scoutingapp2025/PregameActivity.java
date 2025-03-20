@@ -1,6 +1,7 @@
 package com.mercury1089.scoutingapp2025;
 
-import com.mercury1089.scoutingapp2025.utils.GenUtils;
+import com.mercury1089.scoutingapp2025.qr.QRRunnable;
+
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -12,7 +13,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -28,17 +28,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.mercury1089.scoutingapp2025.utils.QRStringBuilder;
 
 import java.util.LinkedHashMap;
 import java.util.Objects;
-import java.util.logging.Logger;
 
 public class PregameActivity extends AppCompatActivity {
     // Strategy was here
@@ -72,8 +65,7 @@ public class PregameActivity extends AppCompatActivity {
     private Dialog loading_alert;
     private ProgressDialog progressDialog;
 
-    //for QR code generator
-    public final static int QRCodeSize = 500;
+
     Bitmap bitmap;
     //ProgressDialog progressDialog;
     boolean isQRButton = false;
@@ -123,7 +115,8 @@ public class PregameActivity extends AppCompatActivity {
 
         scouterNameInput.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -132,12 +125,14 @@ public class PregameActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) { }
+            public void afterTextChanged(Editable s) {
+            }
         });
 
         matchNumberInput.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -146,12 +141,14 @@ public class PregameActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) { }
+            public void afterTextChanged(Editable s) {
+            }
         });
 
         teamNumberInput.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -160,12 +157,14 @@ public class PregameActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) { }
+            public void afterTextChanged(Editable s) {
+            }
         });
 
         firstAlliancePartnerInput.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -174,12 +173,14 @@ public class PregameActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) { }
+            public void afterTextChanged(Editable s) {
+            }
         });
 
         secondAlliancePartnerInput.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -188,7 +189,8 @@ public class PregameActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) { }
+            public void afterTextChanged(Editable s) {
+            }
         });
 
         //starting listener to check the status of the switch
@@ -228,7 +230,7 @@ public class PregameActivity extends AppCompatActivity {
                 password = tempPassword;
                 requiredPassword = tempRequired;
 
-                if(requiredPassword.equals("N")){
+                if (requiredPassword.equals("N")) {
                     HashMapManager.putSetupHashMap(setupHashMap);
                     Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
                     startActivity(intent);
@@ -264,7 +266,7 @@ public class PregameActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         String savedPassword = !password.equals("") ? password : PregameActivity.this.password;
-                        if(passwordField.getText().toString().equals(savedPassword)){
+                        if (passwordField.getText().toString().equals(savedPassword)) {
                             HashMapManager.putSetupHashMap(setupHashMap);
                             Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
                             startActivity(intent);
@@ -343,7 +345,7 @@ public class PregameActivity extends AppCompatActivity {
 
         blueButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 setupHashMap.put("AllianceColor", setupHashMap.get("AllianceColor").equals("Blue") ? "" : "Blue");
                 updateXMLObjects(false);
             }
@@ -351,7 +353,7 @@ public class PregameActivity extends AppCompatActivity {
 
         redButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 setupHashMap.put("AllianceColor", setupHashMap.get("AllianceColor").equals("Red") ? "" : "Red");
                 updateXMLObjects(false);
             }
@@ -359,8 +361,8 @@ public class PregameActivity extends AppCompatActivity {
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public  void onClick(View v){
-                if(isQRButton) {
+            public void onClick(View v) {
+                if (isQRButton) {
                     Dialog dialog = new Dialog(PregameActivity.this);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setContentView(R.layout.generate_qrcode_confirm_popup);
@@ -373,17 +375,17 @@ public class PregameActivity extends AppCompatActivity {
                     generateQRButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            HashMapManager.putSetupHashMap(setupHashMap);
+
+                            // Show the loading dialog
                             loading_alert = new Dialog(PregameActivity.this);
                             loading_alert.requestWindowFeature(Window.FEATURE_NO_TITLE);
                             loading_alert.setContentView(R.layout.loading_screen);
                             loading_alert.setCancelable(false);
                             loading_alert.show();
 
-                            HashMapManager.putSetupHashMap(setupHashMap);
-
-                            PregameActivity.QRRunnable qrRunnable = new PregameActivity.QRRunnable();
-                            new Thread(qrRunnable).start();
-                            dialog.dismiss();
+                            QRRunnable runnable = new QRRunnable(PregameActivity.this, loading_alert);
+                            new Thread(runnable).start();
                         }
                     });
 
@@ -395,28 +397,28 @@ public class PregameActivity extends AppCompatActivity {
                     });
                 } else {
                     HashMapManager.putSetupHashMap(setupHashMap);
-                    if(scouterNameInput.getText().toString().equals("Mercury") && matchNumberInput.getText().toString().equals("1") && teamNumberInput.getText().toString().equals("0") && firstAlliancePartnerInput.getText().toString().equals("8") && secondAlliancePartnerInput.getText().toString().equals("9")) {
+                    if (scouterNameInput.getText().toString().equals("Mercury") && matchNumberInput.getText().toString().equals("1") && teamNumberInput.getText().toString().equals("0") && firstAlliancePartnerInput.getText().toString().equals("8") && secondAlliancePartnerInput.getText().toString().equals("9")) {
                         settingsHashMap.put("NothingToSeeHere", "1");
                         HashMapManager.setDefaultValues(HashMapManager.HASH.SETUP);
                         setupHashMap = HashMapManager.getSetupHashMap();
 
                         updateXMLObjects(true);
                         return;
-                    } else if(scouterNameInput.getText().toString().equals("0x") && matchNumberInput.getText().toString().equals("441") && teamNumberInput.getText().toString().equals("1089") && firstAlliancePartnerInput.getText().toString().equals("1089") && secondAlliancePartnerInput.getText().toString().equals("1089")) {
+                    } else if (scouterNameInput.getText().toString().equals("0x") && matchNumberInput.getText().toString().equals("441") && teamNumberInput.getText().toString().equals("1089") && firstAlliancePartnerInput.getText().toString().equals("1089") && secondAlliancePartnerInput.getText().toString().equals("1089")) {
                         settingsHashMap.put("Slack", "1");
                         HashMapManager.setDefaultValues(HashMapManager.HASH.SETUP);
                         setupHashMap = HashMapManager.getSetupHashMap();
 
                         updateXMLObjects(true);
                         return;
-                    } else if(scouterNameInput.getText().toString().equals("admin") && matchNumberInput.getText().toString().equals("1") && teamNumberInput.getText().toString().equals("0") && firstAlliancePartnerInput.getText().toString().equals("8") && secondAlliancePartnerInput.getText().toString().equals("9")){
+                    } else if (scouterNameInput.getText().toString().equals("admin") && matchNumberInput.getText().toString().equals("1") && teamNumberInput.getText().toString().equals("0") && firstAlliancePartnerInput.getText().toString().equals("8") && secondAlliancePartnerInput.getText().toString().equals("9")) {
                         HashMapManager.saveSettingsPassword(new String[]{"", "N"}, PregameActivity.this);
                         HashMapManager.setDefaultValues(HashMapManager.HASH.SETUP);
                         setupHashMap = HashMapManager.getSetupHashMap();
 
                         updateXMLObjects(true);
                         return;
-                    } else if(settingsHashMap.get("NothingToSeeHere").equals("1")) {
+                    } else if (settingsHashMap.get("NothingToSeeHere").equals("1")) {
                         rooster.start();
                     } else if (teamNumberInput.getText().toString().equals(firstAlliancePartnerInput.getText().toString()) || teamNumberInput.getText().toString().equals(secondAlliancePartnerInput.getText().toString())) {
                         Toast.makeText(PregameActivity.this, "A team cannot be its own partner.", Toast.LENGTH_SHORT).show();
@@ -509,6 +511,7 @@ public class PregameActivity extends AppCompatActivity {
                 !setupHashMap.get("AllianceColor").isEmpty() &&
                 (Objects.equals(setupHashMap.get("NoShow"), "Y") || Objects.equals(setupHashMap.get("NoShow"), "N"));
     }
+
     /*
     - Check to see if there's any values that need to be cleared
     - (if nothing is filled out, clear button should be disabled)
@@ -528,7 +531,7 @@ public class PregameActivity extends AppCompatActivity {
         - This is called on most events (so in all the View EventListeners)
         - It updates hashmaps and the visual appearance of Views
      */
-    private void updateXMLObjects(boolean updateText){
+    private void updateXMLObjects(boolean updateText) {
         boolean readyToStart = readyToStart();
         boolean canClear = canClearInputs();
 
@@ -536,7 +539,7 @@ public class PregameActivity extends AppCompatActivity {
         - updateText should only be true if you want to reset the basic info fields to the stored hashmap values
             - e.g. if you're returning from SettingsActivity or if you used the "Clear" button
          */
-        if(updateText) {
+        if (updateText) {
             scouterNameInput.setText(setupHashMap.get("ScouterName"));
             matchNumberInput.setText(setupHashMap.get("MatchNumber"));
             teamNumberInput.setText(setupHashMap.get("TeamNumber"));
@@ -547,7 +550,7 @@ public class PregameActivity extends AppCompatActivity {
         blueButton.setSelected(setupHashMap.get("AllianceColor").equals("Blue"));
         redButton.setSelected(setupHashMap.get("AllianceColor").equals("Red"));
 
-        if(settingsHashMap.get("Slack").equals("1"))
+        if (settingsHashMap.get("Slack").equals("1"))
             slackCenter.setVisibility(View.VISIBLE);
 
         preloadSwitch.setChecked(setupHashMap.get("PreloadNote").equals("Y"));
@@ -570,108 +573,5 @@ public class PregameActivity extends AppCompatActivity {
         startButton.setEnabled(readyToStart);
         startDirectionsToast.setEnabled(readyToStart && !isQRButton);
         clearButton.setEnabled(canClear);
-    }
-
-    //QR Generation
-    private Bitmap TextToImageEncode(String Value) throws WriterException {
-        BitMatrix bitMatrix;
-        try {
-            bitMatrix = new MultiFormatWriter().encode(
-                    Value,
-                    BarcodeFormat.DATA_MATRIX.QR_CODE,
-                    QRCodeSize, QRCodeSize, null
-            );
-        } catch (IllegalArgumentException illegalArgumentException) {
-            return null;
-        }
-
-        int bitMatrixWidth = bitMatrix.getWidth();
-        int bitMatrixHeight = bitMatrix.getHeight();
-        int[] pixels = new int[bitMatrixWidth * bitMatrixHeight];
-        for (int y = 0; y < bitMatrixHeight; y++) {
-            int offset = y * bitMatrixWidth;
-            for (int x = 0; x < bitMatrixWidth; x++) {
-                pixels[offset + x] = bitMatrix.get(x, y) ?
-                        GenUtils.getAColor(PregameActivity.this, R.color.black) : GenUtils.getAColor(PregameActivity.this, R.color.white);
-            }
-        }
-
-        Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
-        bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
-        return bitmap;
-    }
-
-    class QRRunnable implements Runnable {
-        @Override
-        public void run() {
-            HashMapManager.setDefaultValues(HashMapManager.HASH.AUTON);
-            HashMapManager.setDefaultValues(HashMapManager.HASH.TELEOP);
-            HashMapManager.setDefaultValues(HashMapManager.HASH.CLIMB);
-
-            QRStringBuilder.buildQRString();
-
-            try {
-                bitmap = TextToImageEncode(QRStringBuilder.getQRString());
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Dialog dialog = new Dialog(PregameActivity.this);
-                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                        dialog.setContentView(R.layout.popup_qr);
-                        QRStringBuilder.storeQRString(getApplicationContext());
-
-                        ImageView imageView = dialog.findViewById(R.id.imageView);
-                        TextView scouterName = dialog.findViewById(R.id.ScouterNameQR);
-                        TextView teamNumber = dialog.findViewById(R.id.TeamNumberQR);
-                        TextView matchNumber = dialog.findViewById(R.id.MatchNumberQR);
-                        Button goBackToMain = dialog.findViewById(R.id.GoBackButton);
-                        imageView.setImageBitmap(bitmap);
-
-                        dialog.setCancelable(false);
-
-                        scouterName.setText(setupHashMap.get("ScouterName"));
-                        teamNumber.setText(setupHashMap.get("TeamNumber"));
-                        matchNumber.setText(setupHashMap.get("MatchNumber"));
-
-                        loading_alert.dismiss();
-
-                        dialog.show();
-
-                        goBackToMain.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Dialog confirmDialog = new Dialog(PregameActivity.this);
-                                confirmDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                                confirmDialog.setContentView(R.layout.setup_next_match_confirm_popup);
-
-                                Button setupNextMatchButton = confirmDialog.findViewById(R.id.SetupNextMatchButton);
-                                Button cancelConfirm = confirmDialog.findViewById(R.id.CancelConfirm);
-
-                                confirmDialog.show();
-
-                                setupNextMatchButton.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        QRStringBuilder.clearQRString();
-                                        HashMapManager.setupNextMatch();
-                                        setupHashMap = HashMapManager.getSetupHashMap();
-                                        updateXMLObjects(true);
-                                        dialog.dismiss();
-                                        confirmDialog.dismiss();
-                                    }
-                                });
-
-                                cancelConfirm.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        confirmDialog.dismiss();
-                                    }
-                                });
-                            }
-                        });
-                    }
-                });
-            } catch (WriterException e){}
-        }
     }
 }
