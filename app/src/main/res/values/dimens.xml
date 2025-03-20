@@ -26,7 +26,7 @@
     <dimen name="carat_width">48dp</dimen>
     <dimen name="carat_height">28dp</dimen>
     <dimen name="square_toggle_text">20sp</dimen>
-    <dimen name="square_toggle_length">48dp</dimen>
+    <dimen name="square_toggle_length">44sp</dimen>
     <dimen name="auton_fragment_padding">10dp</dimen>
     <dimen name="padding">20dp</dimen>
     <dimen name="drawable_padding">10dp</dimen>
