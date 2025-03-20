@@ -159,7 +159,7 @@ public class Climb extends Fragment {
                     public void onClick(View view) {
                         HashMapManager.putSetupHashMap(setupHashMap);
                         HashMapManager.putClimbHashMap(climbHashMap);
-
+                        dialog.dismiss(); // Dismiss the confirmation dialog
                         // Show the loading dialog
                         loading_alert = new Dialog(context);
                         loading_alert.requestWindowFeature(Window.FEATURE_NO_TITLE);

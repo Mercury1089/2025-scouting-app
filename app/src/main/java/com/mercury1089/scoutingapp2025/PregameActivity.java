@@ -376,7 +376,7 @@ public class PregameActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             HashMapManager.putSetupHashMap(setupHashMap);
-
+                            dialog.dismiss(); // Dismiss the confirmation dialogue
                             // Show the loading dialog
                             loading_alert = new Dialog(PregameActivity.this);
                             loading_alert.requestWindowFeature(Window.FEATURE_NO_TITLE);
