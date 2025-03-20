@@ -160,7 +160,14 @@ public class Climb extends Fragment {
                         HashMapManager.putSetupHashMap(setupHashMap);
                         HashMapManager.putClimbHashMap(climbHashMap);
 
-                        QRRunnable qrRunnable = new QRRunnable(context); // Uses MatchActivity context
+                        // Show the loading dialog
+                        loading_alert = new Dialog(context);
+                        loading_alert.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        loading_alert.setContentView(R.layout.loading_screen);
+                        loading_alert.setCancelable(false);
+                        loading_alert.show();
+
+                        QRRunnable qrRunnable = new QRRunnable(context, loading_alert); // Uses MatchActivity context
                         new Thread(qrRunnable).start();
                         dialog.dismiss();
                     }

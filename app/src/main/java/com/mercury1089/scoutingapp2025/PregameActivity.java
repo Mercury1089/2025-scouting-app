@@ -1,7 +1,7 @@
 package com.mercury1089.scoutingapp2025;
 
 import com.mercury1089.scoutingapp2025.qr.QRRunnable;
-import com.mercury1089.scoutingapp2025.utils.GenUtils;
+
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -13,7 +13,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,17 +28,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.mercury1089.scoutingapp2025.utils.QRStringBuilder;
 
 import java.util.LinkedHashMap;
 import java.util.Objects;
-import java.util.logging.Logger;
 
 public class PregameActivity extends AppCompatActivity {
     // Strategy was here
@@ -384,7 +376,15 @@ public class PregameActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             HashMapManager.putSetupHashMap(setupHashMap);
-                            QRRunnable runnable = new QRRunnable(PregameActivity.this);
+
+                            // Show the loading dialog
+                            loading_alert = new Dialog(PregameActivity.this);
+                            loading_alert.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                            loading_alert.setContentView(R.layout.loading_screen);
+                            loading_alert.setCancelable(false);
+                            loading_alert.show();
+
+                            QRRunnable runnable = new QRRunnable(PregameActivity.this, loading_alert);
                             new Thread(runnable).start();
                         }
                     });

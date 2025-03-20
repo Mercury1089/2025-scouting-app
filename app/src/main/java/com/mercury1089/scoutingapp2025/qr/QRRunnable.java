@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -20,11 +22,13 @@ import java.util.LinkedHashMap;
 
 public class QRRunnable implements Runnable {
     private final Activity context;
+    private final Dialog loading_alert;
     LinkedHashMap<String, String> setupHashMap = HashMapManager.getSetupHashMap();
     LinkedHashMap<String, String> autonHashMap = HashMapManager.getAutonHashMap();
     LinkedHashMap<String, String> teleopHashMap = HashMapManager.getTeleopHashMap();
-    public QRRunnable(Activity ctx) {
+    public QRRunnable(Activity ctx, Dialog loading_alert) {
         this.context = ctx;
+        this.loading_alert = loading_alert;
     }
     @Override
     public void run() {
@@ -37,15 +41,8 @@ public class QRRunnable implements Runnable {
         QRStringBuilder.buildQRString();
 
         try {
-            Bitmap bitmap = QRUtils.textToImageEncode(this.context, QRStringBuilder.getQRString());
+            Bitmap bitmap = QRUtils.textToImageEncode(QRStringBuilder.getQRString());
             context.runOnUiThread(() -> {
-                // Show loading alert dialog
-                Dialog loading_alert = new Dialog(context);
-                loading_alert.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                loading_alert.setContentView(R.layout.loading_screen);
-                loading_alert.setCancelable(false);
-                loading_alert.show();
-
                 HashMapManager.putSetupHashMap(setupHashMap);
 
                 // Show the QR and store it in the cache
@@ -67,8 +64,9 @@ public class QRRunnable implements Runnable {
                 teamNumber.setText(setupHashMap.get("TeamNumber"));
                 matchNumber.setText(setupHashMap.get("MatchNumber"));
 
-                loading_alert.dismiss();
-
+                if (loading_alert != null && loading_alert.isShowing()) {
+                    loading_alert.dismiss();
+                }
                 dialog.show();
 
                 goBackToMain.setOnClickListener(v -> {
@@ -87,9 +85,9 @@ public class QRRunnable implements Runnable {
                             QRStringBuilder.clearQRString();
                             HashMapManager.setupNextMatch();
                             Intent intent = new Intent(context, PregameActivity.class);
+                            dialog.dismiss();
                             context.startActivity(intent);
                             context.finish();
-                            dialog.dismiss();
                             confirmDialog.dismiss();
                         }
                     });
@@ -102,6 +100,8 @@ public class QRRunnable implements Runnable {
                     });
                 });
             });
-        } catch (WriterException e){}
+        } catch (Exception e){
+            Log.d("QRGen", "Something went wrong while generating a QR Code.");
+        }
     }
 }
