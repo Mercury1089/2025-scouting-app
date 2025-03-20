@@ -9,6 +9,10 @@ import java.util.LinkedHashMap;
 public class QRStringBuilder {
 
     private static StringBuilder QRString = new StringBuilder();
+    public static final int SCOUTER_NAME_INDEX = 0;
+    public static final int TEAM_NUM_INDEX = 1;
+    public static final int MATCH_NUM_INDEX = 2;
+    public static final String DELIMITER = ",";
 
     public static void buildQRString(){
         LinkedHashMap<String, String> setup = HashMapManager.getSetupHashMap();
@@ -86,6 +90,9 @@ public class QRStringBuilder {
     public static String getQRString(){
         return QRString.toString();
     }
+    public static String getScouterName() { return !QRString.toString().isEmpty() ? QRString.toString().split(",")[SCOUTER_NAME_INDEX] : null; }
+    public static String getTeamNumber() { return !QRString.toString().isEmpty() ? QRString.toString().split(",")[TEAM_NUM_INDEX] : null; }
+    public static String getMatchNumber() { return !QRString.toString().isEmpty() ? QRString.toString().split(",")[MATCH_NUM_INDEX] : null; }
 
     public static void storeQRString(Context ctx) {
         HashMapManager.appendQRList(QRString.toString(), ctx);
