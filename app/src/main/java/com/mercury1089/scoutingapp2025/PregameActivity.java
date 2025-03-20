@@ -556,6 +556,7 @@ public class PregameActivity extends AppCompatActivity {
         preloadSwitch.setChecked(setupHashMap.get("PreloadNote").equals("Y"));
 
         if (setupHashMap.get("NoShow").equals("Y")) {
+            preloadSwitch.setEnabled(false);
             noShowSwitch.setChecked(true);
 
             startButton.setPadding(185, 0, 185, 0);
@@ -563,6 +564,7 @@ public class PregameActivity extends AppCompatActivity {
             startButton.setCompoundDrawablesRelativeWithIntrinsicBounds(this.getDrawable(R.drawable.qr), null, null, null);
             isQRButton = true;
         } else {
+            preloadSwitch.setEnabled(true);
             noShowSwitch.setChecked(false);
             startButton.setCompoundDrawablesRelativeWithIntrinsicBounds(this.getDrawable(R.drawable.start_button_symbol_states), null, null, null);
             startButton.setPadding(234, 0, 234, 0);
