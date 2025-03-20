@@ -24,6 +24,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import com.mercury1089.scoutingapp2025.qr.QRRunnable;
 import com.mercury1089.scoutingapp2025.utils.GenUtils;
 import com.mercury1089.scoutingapp2025.utils.QRStringBuilder;
 
@@ -156,16 +157,10 @@ public class Climb extends Fragment {
                 generateQRButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        loading_alert = new Dialog(context);
-                        loading_alert.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                        loading_alert.setContentView(R.layout.loading_screen);
-                        loading_alert.setCancelable(false);
-                        loading_alert.show();
-
                         HashMapManager.putSetupHashMap(setupHashMap);
                         HashMapManager.putClimbHashMap(climbHashMap);
 
-                        Climb.QRRunnable qrRunnable = new Climb.QRRunnable();
+                        QRRunnable qrRunnable = new QRRunnable(context); // Uses MatchActivity context
                         new Thread(qrRunnable).start();
                         dialog.dismiss();
                     }
@@ -265,110 +260,6 @@ public class Climb extends Fragment {
                 HashMapManager.putSetupHashMap(setupHashMap);
                 HashMapManager.putClimbHashMap(climbHashMap);
             }
-        }
-    }
-
-    //QR Generation
-    private Bitmap TextToImageEncode(String Value) throws WriterException {
-        BitMatrix bitMatrix;
-        try {
-            bitMatrix = new MultiFormatWriter().encode(
-                    Value,
-                    BarcodeFormat.DATA_MATRIX.QR_CODE,
-                    QRCodeSize, QRCodeSize, null
-            );
-        } catch (IllegalArgumentException illegalArgumentException) {
-            return null;
-        }
-
-        int bitMatrixWidth = bitMatrix.getWidth();
-        int bitMatrixHeight = bitMatrix.getHeight();
-        int[] pixels = new int[bitMatrixWidth * bitMatrixHeight];
-        for (int y = 0; y < bitMatrixHeight; y++) {
-            int offset = y * bitMatrixWidth;
-            for (int x = 0; x < bitMatrixWidth; x++) {
-                pixels[offset + x] = bitMatrix.get(x, y) ?
-                        GenUtils.getAColor(context, R.color.black) : GenUtils.getAColor(context, R.color.white);
-            }
-        }
-
-        Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
-        bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
-        return bitmap;
-    }
-
-    class QRRunnable implements Runnable {
-        @Override
-        public void run() {
-            HashMapManager.checkNullOrEmpty(HashMapManager.HASH.AUTON);
-            HashMapManager.checkNullOrEmpty(HashMapManager.HASH.TELEOP);
-            HashMapManager.checkNullOrEmpty(HashMapManager.HASH.CLIMB);
-
-            QRStringBuilder.buildQRString();
-
-            try {
-                Bitmap bitmap = TextToImageEncode(QRStringBuilder.getQRString());
-                context.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Dialog dialog = new Dialog(context);
-                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                        dialog.setContentView(R.layout.popup_qr);
-                        QRStringBuilder.storeQRString(context);
-
-                        ImageView imageView = dialog.findViewById(R.id.imageView);
-                        TextView scouterName = dialog.findViewById(R.id.ScouterNameQR);
-                        TextView teamNumber = dialog.findViewById(R.id.TeamNumberQR);
-                        TextView matchNumber = dialog.findViewById(R.id.MatchNumberQR);
-                        Button goBackToMain = dialog.findViewById(R.id.GoBackButton);
-                        imageView.setImageBitmap(bitmap);
-
-                        dialog.setCancelable(false);
-
-                        scouterName.setText(setupHashMap.get("ScouterName"));
-                        teamNumber.setText(setupHashMap.get("TeamNumber"));
-                        matchNumber.setText(setupHashMap.get("MatchNumber"));
-
-                        loading_alert.dismiss();
-
-                        dialog.show();
-
-                        goBackToMain.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Dialog confirmDialog = new Dialog(context);
-                                confirmDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                                confirmDialog.setContentView(R.layout.setup_next_match_confirm_popup);
-
-                                Button setupNextMatchButton = confirmDialog.findViewById(R.id.SetupNextMatchButton);
-                                Button cancelConfirm = confirmDialog.findViewById(R.id.CancelConfirm);
-
-                                confirmDialog.show();
-
-                                setupNextMatchButton.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        QRStringBuilder.clearQRString();
-                                        HashMapManager.setupNextMatch();
-                                        Intent intent = new Intent(context, PregameActivity.class);
-                                        startActivity(intent);
-                                        context.finish();
-                                        dialog.dismiss();
-                                        confirmDialog.dismiss();
-                                    }
-                                });
-
-                                cancelConfirm.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        confirmDialog.dismiss();
-                                    }
-                                });
-                            }
-                        });
-                    }
-                });
-            } catch (WriterException e){}
         }
     }
 }
