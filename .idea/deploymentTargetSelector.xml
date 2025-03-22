@@ -4,7 +4,7 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-03-20T02:41:02.721336200Z">
+        <DropdownSelection timestamp="2025-03-21T02:53:20.824016300Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\satvi\.android\avd\Robotics_Tablet_API_22.avd" />

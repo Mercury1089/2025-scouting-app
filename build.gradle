@@ -7,7 +7,7 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.8.1'
+        classpath 'com.android.tools.build:gradle:8.8.2'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -24,6 +24,23 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+tasks.register('buildDebugApk', Exec) {
+    group = "build"
+    description = "Builds the debug APK"
+    commandLine "./gradlew", "assembleDebug"
+}
+
+// It is optimized for distribution but is not necessarily signed yet.
+// Likely cannot be installed on most devices
+tasks.register('buildReleaseApk', Exec) {
+    group = "build"
+    description = "Builds the release APK"
+    commandLine "./gradlew", "assembleRelease"
+}
+
+// This can be installed
+tasks.register('signReleaseApk', Exec) {
+    group = "build"
+    description = "Builds and signs the release APK"
+    commandLine "./gradlew", "bundleRelease"
 }
