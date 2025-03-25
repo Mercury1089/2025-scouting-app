@@ -20,4 +20,6 @@ public class RetrofitClient {
         }
         return client;
     }
+
+    public static MatchService getMatchService() { return matchService; }
 }

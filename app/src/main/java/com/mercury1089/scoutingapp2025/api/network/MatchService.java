@@ -9,6 +9,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface MatchService {
-    @GET("event/{matchKey}/matches/simple")
-    Call<List<Match>> listMatches(@Path("matchKey") String matchKey);
+    @GET("event/{eventKey}/matches/simple")
+    Call<List<Match>> fetchAllMatchesByEvent(@Path("eventKey") String eventKey);
 }

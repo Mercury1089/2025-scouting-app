@@ -1,13 +1,14 @@
 package com.mercury1089.scoutingapp2025.database.dao;
 
+import androidx.room.Dao;
 import androidx.room.Query;
 
 import com.mercury1089.scoutingapp2025.database.model.Match;
 
 import java.util.List;
 
+@Dao
 public interface MatchDataAccessObject {
-    String table = "matches";
     @Query("SELECT * FROM matches")
     List<Match> fetchAll();
     @Query("SELECT * FROM matches WHERE matchKey IS (:key)")

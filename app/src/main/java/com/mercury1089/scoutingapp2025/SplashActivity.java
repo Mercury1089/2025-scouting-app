@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.mercury1089.scoutingapp2025.repository.MatchRepository;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -25,6 +27,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity);
+        MatchRepository repo = new MatchRepository(getApplicationContext());
+        repo.storeMatchesByEvent("2025paben");
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

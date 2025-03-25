@@ -12,7 +12,6 @@ import com.mercury1089.scoutingapp2025.database.model.Match;
 @Database(entities = {Match.class}, version = 1)
 public abstract class MatchDatabase extends RoomDatabase {
     private static MatchDatabase instance;
-
     public abstract MatchDataAccessObject matchDao();
 
     public static MatchDatabase getInstance(Context context) {
@@ -21,7 +20,7 @@ public abstract class MatchDatabase extends RoomDatabase {
             synchronized (MatchDatabase.class) {
                 if (instance == null) {
                     instance = Room.databaseBuilder(context.getApplicationContext(),
-                                    MatchDatabase.class, "match_database")
+                                    MatchDatabase.class, "app-db")
                             .fallbackToDestructiveMigration()
                             .build();
                 }
