@@ -15,9 +15,11 @@ import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.List;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 // Connects match API data and the local SQL database
 public class MatchRepository {
@@ -29,7 +31,7 @@ public class MatchRepository {
     }
     public void storeMatchesByEvent(String eventKey) {
         MatchDataAccessObject dao = database.matchDao();
-        matchService.fetchAllMatchesByEvent(eventKey).enqueue(new Callback<List<Match>>() {
+        matchService.fetchAllMatchesByEvent(eventKey, getApiAuthorization()).enqueue(new Callback<List<Match>>() {
 
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
@@ -49,7 +51,10 @@ public class MatchRepository {
                 Log.d("MatchRepository", "Network Error :: " + throwable.getLocalizedMessage());
             }
         });
+    }
 
-
+    public static String getApiAuthorization() {
+        Dotenv dotenv = Dotenv.load();
+        return dotenv.get("TBA_API_KEY");
     }
 }

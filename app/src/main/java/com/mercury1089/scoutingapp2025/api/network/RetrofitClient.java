@@ -1,5 +1,6 @@
 package com.mercury1089.scoutingapp2025.api.network;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -8,18 +9,24 @@ public class RetrofitClient {
     private static Retrofit client;
     private static MatchService matchService;
 
+    public synchronized static void initClient() {
+        if (client == null) {
+            client = new Retrofit.Builder()
+                    .baseUrl(API_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            matchService = client.create(MatchService.class);
+        }
+    }
     public static Retrofit getClient() {
         if (client == null) {
-            synchronized(RetrofitClient.class) {
-                client = new Retrofit.Builder()
-                        .baseUrl(API_URL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                matchService = client.create(MatchService.class);
-            }
+            initClient();
         }
         return client;
     }
 
-    public static MatchService getMatchService() { return matchService; }
+    public static MatchService getMatchService() {
+        initClient();
+        return matchService;
+    }
 }

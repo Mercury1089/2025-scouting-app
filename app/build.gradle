@@ -28,8 +28,6 @@ android {
     namespace 'com.mercury1089.scoutingapp2025'
 }
 
-
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     final def var = implementation 'com.android.support:appcompat-v7:28.0.0'
@@ -51,6 +49,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.github.kenglxn.QRGen:android:3.0.1'
     implementation 'com.squareup.retrofit2:retrofit:2.11.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.11.0'
 
     def room_version = "2.6.1"
 
@@ -58,8 +57,6 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.6.1'
     annotationProcessor 'androidx.room:room-compiler:2.6.1'
 
-    implementation 'com.squareup.retrofit2:converter-gson:2.11.0'
-
-
-
+    // dotenv
+    implementation 'io.github.cdimascio:dotenv-java:3.2.0'
 }

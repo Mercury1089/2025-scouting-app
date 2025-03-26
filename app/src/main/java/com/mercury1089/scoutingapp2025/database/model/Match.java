@@ -4,9 +4,12 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import org.jetbrains.annotations.NotNull;
+
 @Entity(tableName = "matches")
 public class Match {
     @PrimaryKey
+    @NotNull
     public String matchKey;
     @ColumnInfo(name = "red_alliance")
     public String redAllianceTeams;
