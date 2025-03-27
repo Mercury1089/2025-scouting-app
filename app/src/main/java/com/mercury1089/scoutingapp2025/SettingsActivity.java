@@ -32,8 +32,7 @@ public class SettingsActivity extends AppCompatActivity {
         Button localStorageResetButton = findViewById(R.id.LocalStorageResetButton);
         Button backButton = findViewById(R.id.BackButton);
         Button clearQRCache = findViewById(R.id.ClearQRCodesButton);
-        Button passwordSettingsButton = findViewById(R.id.PasswordSettingsButton);
-        ImageButton muteButton = findViewById(R.id.MuteButton);
+        Button passwordSettingsButton = findViewById(R.id.ChangePasswordButton);
 
         qrCodeSelector = findViewById(R.id.QRCodeListView);
 
@@ -43,14 +42,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         listAdapter = new ListAdapter(this, qrList);
         addQRCodes();
-
-        if(settingsHashMap.get("NothingToSeeHere").equals("1")) {
-            muteButton.setVisibility(View.VISIBLE);
-            muteButton.setEnabled(true);
-        } else {
-            muteButton.setVisibility(View.INVISIBLE);
-            muteButton.setEnabled(false);
-        }
 
         try {
             String requiredPassword = HashMapManager.pullSettingsPassword(SettingsActivity.this)[1];
@@ -125,16 +116,6 @@ public class SettingsActivity extends AppCompatActivity {
                 Intent intent = new Intent(SettingsActivity.this, PregameActivity.class);
                 startActivity(intent);
                 finish();
-            }
-        });
-
-        muteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view){
-                settingsHashMap.put("NothingToSeeHere", "0");
-                Toast.makeText(SettingsActivity.this, "Muted", Toast.LENGTH_SHORT).show();
-                muteButton.setVisibility(View.INVISIBLE);
-                muteButton.setEnabled(false);
             }
         });
 

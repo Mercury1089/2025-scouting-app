@@ -56,7 +56,10 @@
     <!-- ID Fields -->
         <string name="ResetID">RESET APP</string>
         <string name="GoBack">BACK</string>
-        <string name="QRCache">QR Code Cache</string>
+        <string name="AvailableQRCodes">AVAILABLE QR CODES</string>
+        <string name="DefaultPasswordPreview">NO PASSWORD SET</string>
+        <string name="ChangePassword">Change Password</string>
+        <string name="CreatePassword">Create Password</string>
 
     <!-- Directions -->
         <string name="ResetDirections">If a QR code fails to generate or the app is displaying persistent and incorrect active states, tap the button below.</string>
