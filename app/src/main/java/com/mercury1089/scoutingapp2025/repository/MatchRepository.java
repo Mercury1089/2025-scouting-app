@@ -54,7 +54,6 @@ public class MatchRepository {
     }
 
     public static String getApiAuthorization() {
-        Dotenv dotenv = Dotenv.load();
-        return dotenv.get("TBA_API_KEY");
+
     }
 }
