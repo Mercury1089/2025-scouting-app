@@ -2,6 +2,7 @@ package com.mercury1089.scoutingapp2025.database.dao;
 
 import androidx.room.Dao;
 import androidx.room.Query;
+import androidx.room.Upsert;
 
 import com.mercury1089.scoutingapp2025.database.model.Match;
 
@@ -15,4 +16,10 @@ public interface MatchDataAccessObject {
     List<Match> fetchByMatchKey(String key);
     @Query("SELECT * FROM matches WHERE matchKey IN (:keys)")
     List<Match> fetchAllByMatchKey(String[] keys);
+
+    @Upsert()
+    void storeMatch(Match match);
+
+    @Upsert()
+    void storeMatches(List<Match> matches);
 }

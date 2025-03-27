@@ -1,6 +1,5 @@
 package com.mercury1089.scoutingapp2025.api.network;
 
-import io.github.cdimascio.dotenv.Dotenv;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

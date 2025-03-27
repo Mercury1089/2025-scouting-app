@@ -1,5 +1,6 @@
 package com.mercury1089.scoutingapp2025.api.network;
 
+import com.mercury1089.scoutingapp2025.api.model.ApiMatch;
 import com.mercury1089.scoutingapp2025.database.model.Match;
 
 import java.util.List;
@@ -12,5 +13,5 @@ import retrofit2.http.Path;
 
 public interface MatchService {
     @GET("event/{eventKey}/matches/simple")
-    Call<List<Match>> fetchAllMatchesByEvent(@Path("eventKey") String eventKey, @Header("Authorization") String authorizationHeader);
+    Call<List<ApiMatch>> fetchAllMatchesByEvent(@Header("X-TBA-Auth-Key") String authorization, @Path("eventKey") String eventKey);
 }
