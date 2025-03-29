@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/auton"
     android:layout_width="match_parent"
-    android:layout_height="895dp"
+    android:layout_height="match_parent"
     android:background="@color/bg_general"
     android:padding="@dimen/auton_fragment_padding"
     tools:context=".MatchActivity">
@@ -1392,9 +1392,9 @@
         android:layout_height="5dp"
         android:alpha="0"
         android:background="@drawable/teleop_warning"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/rightEdgeBar"
         app:layout_constraintStart_toEndOf="@id/leftEdgeBar"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteY="15dp" />
 
     <ImageView
@@ -1424,8 +1424,8 @@
 
     <TextView
         android:id="@+id/IDPossessionDirections"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="535dp"
+        android:layout_height="20dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/open_sans_italic"
         android:text="@string/PossessionDirections"

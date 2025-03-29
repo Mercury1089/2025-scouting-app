@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/teleop"
     android:layout_width="match_parent"
-    android:layout_height="895dp"
+    android:layout_height="match_parent"
     android:background="@color/bg_general"
     android:padding="@dimen/padding"
     tools:context=".MatchActivity">
