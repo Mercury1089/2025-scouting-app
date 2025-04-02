@@ -1,3 +1,14 @@
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file("local.properties")
+if (!localPropertiesFile.exists()) {
+    throw new GradleException("Error: no local.properties file exists. Please create one and add TBA_API_KEY before building the project.")
+}
+localProperties.load(new FileInputStream(localPropertiesFile))
+def apiKey = localProperties.getProperty("TBA_API_KEY")
+if (apiKey == null || apiKey.isEmpty()) {
+    throw new GradleException("ERROR: Missing TBA_API_KEY in local.properties. Please add it before building the project.")
+}
+
 apply plugin: 'com.android.application'
 
 android {
@@ -23,7 +34,11 @@ android {
         targetCompatibility JavaVersion.VERSION_21
     }
     buildFeatures {
+        buildConfig true
         viewBinding true
+    }
+    defaultConfig {
+        buildConfigField "String", "TBA_API_KEY", "\"${apiKey}\""
     }
     namespace 'com.mercury1089.scoutingapp2025'
 }
