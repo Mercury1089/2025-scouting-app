@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,6 +32,8 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.splash_activity);
         MatchRepository repo = new MatchRepository(getApplicationContext());
         repo.storeMatchesByEvent("2025paben");
+        Log.d("MatchRepository", repo.getStoredMatch("2025paben_qm1").toString());
+
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

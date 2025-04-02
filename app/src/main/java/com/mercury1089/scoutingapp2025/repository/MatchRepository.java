@@ -74,5 +74,14 @@ public class MatchRepository {
         });
     }
 
+    public Match getStoredMatch(String matchKey) {
+        MatchDataAccessObject matchDao = database.matchDao();
+        executorService.execute(() -> {
+            Match m = getStoredMatch(matchKey);
+            // TODO: callback or Future?
+        });
+        return null;
+    }
+
 
 }
