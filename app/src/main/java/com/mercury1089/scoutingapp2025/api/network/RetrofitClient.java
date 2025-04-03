@@ -1,5 +1,8 @@
 package com.mercury1089.scoutingapp2025.api.network;
 
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -13,6 +16,10 @@ public class RetrofitClient {
             client = new Retrofit.Builder()
                     .baseUrl(API_URL)
                     .addConverterFactory(GsonConverterFactory.create())
+                    .client(new OkHttpClient.Builder()
+                            .connectTimeout(5, TimeUnit.SECONDS)
+                            .readTimeout(5, TimeUnit.SECONDS)
+                            .build())
                     .build();
             matchService = client.create(MatchService.class);
         }

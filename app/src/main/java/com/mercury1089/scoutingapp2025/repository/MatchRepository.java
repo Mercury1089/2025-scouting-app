@@ -111,6 +111,4 @@ public class MatchRepository {
         NetworkCapabilities networkCapabilities = cm.getNetworkCapabilities(network);
         return networkCapabilities != null && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED);
     }
-
-
 }
