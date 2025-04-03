@@ -20,6 +20,8 @@ import com.mercury1089.scoutingapp2025.repository.MatchRepository;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
 
@@ -30,10 +32,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity);
-        MatchRepository repo = new MatchRepository(getApplicationContext());
-        repo.storeMatchesByEvent("2025paben");
-        Log.d("MatchRepository", repo.getStoredMatch("2025paben_qm1").toString());
-
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

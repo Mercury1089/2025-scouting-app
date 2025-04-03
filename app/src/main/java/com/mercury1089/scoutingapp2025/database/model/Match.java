@@ -17,6 +17,11 @@ public class Match {
     @PrimaryKey
     @NotNull
     public String matchKey;
+    @ColumnInfo(name = "comp_level")
+    public String compLevel;
+
+    @ColumnInfo(name = "match_number")
+    public int matchNumber;
     // Info in Room Entities are required to be simple data types
     // So taems are stored in a comma-separated string and split when accessed
     @ColumnInfo(name = "red_alliance")
@@ -24,10 +29,21 @@ public class Match {
     @ColumnInfo(name = "blue_alliance")
     public String blueAllianceTeams;
 
+    /*
+    TBA match key with the format yyyy[EVENT_CODE]_[COMP_LEVEL]m[MATCH_NUMBER],
+    where yyyy is the year, and EVENT_CODE is the event code of the event,
+    COMP_LEVEL is (qm, ef, qf, sf, f), and MATCH_NUMBER is the match number in the competition level.
+    A set number may append the competition level if more than one match in required per set.
+     */
     public String getMatchKey() {
         return matchKey;
     }
-
+    public String getCompLevel() {
+        return compLevel;
+    }
+    public int getMatchNumber() {
+        return matchNumber;
+    }
     public List<String> getRedAllianceTeams() {
         return Arrays.asList(redAllianceTeams.split(","));
     }
@@ -47,6 +63,8 @@ public class Match {
         private String matchKey;
         private String redAllianceTeams;
         private String blueAllianceTeams;
+        private String compLevel;
+        private int matchNumber;
 
         public Builder setMatchKey(String matchKey) {
             this.matchKey = matchKey;
@@ -63,9 +81,21 @@ public class Match {
             return this;
         }
 
+        public Builder setCompLevel(String compLevel) {
+            this.compLevel = compLevel;
+            return this;
+        }
+
+        public Builder setMatchNumber(int matchNumber) {
+            this.matchNumber = matchNumber;
+            return this;
+        }
+
         public Match build() {
             Match match = new Match();
             match.matchKey = this.matchKey;
+            match.compLevel = this.compLevel;
+            match.matchNumber = this.matchNumber;
             match.redAllianceTeams = this.redAllianceTeams;
             match.blueAllianceTeams = this.blueAllianceTeams;
             return match;

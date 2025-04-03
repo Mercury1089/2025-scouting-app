@@ -9,6 +9,10 @@ import java.util.List;
 public class ApiMatch {
     @SerializedName("key")
     private String key;
+    @SerializedName("comp_level")
+    private String compLevel;
+    @SerializedName("match_number")
+    private int matchNumber;
     @SerializedName("alliances")
     private Alliances alliances;
     public String getKey() {

@@ -15,7 +15,7 @@ public interface MatchDataAccessObject {
     @Query("SELECT * FROM matches WHERE matchKey IS (:key)")
     Match fetchByMatchKey(String key);
     @Query("SELECT * FROM matches WHERE matchKey IN (:keys)")
-    List<Match> fetchAllByMatchKey(String[] keys);
+    List<Match> fetchAllByMatchKeys(String[] keys);
 
     @Upsert()
     void storeMatch(Match match);

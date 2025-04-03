@@ -1,6 +1,7 @@
 package com.mercury1089.scoutingapp2025.repository;
 
 import android.content.Context;
+import android.graphics.Path;
 import android.util.Log;
 
 import androidx.room.Room;
@@ -17,9 +18,15 @@ import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.core.Scheduler;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,8 +47,7 @@ public class MatchRepository {
         executorService.execute(() -> {
             matchService.fetchAllMatchesByEvent(ApiUtils.getApiAuthorization(), eventKey).enqueue(new Callback<List<ApiMatch>>() {
                 // Callback functions are assumed by Android to be run on the main thread so
-                // Database operations have to explicitly be in an executorService.execute() block
-                // So that they run on a background thread instead
+                // Database operations have to explicitly run on a background thread
                 @Override
                 public void onResponse(Call<List<ApiMatch>> call, Response<List<ApiMatch>> response) {
                     if (response.isSuccessful()) {
@@ -59,7 +65,7 @@ public class MatchRepository {
                     } else {
                         try {
                             assert response.errorBody() != null;
-                            Log.d("MatchRepository", response.errorBody().string());
+                            Log.d("MR", response.errorBody().string());
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -67,20 +73,26 @@ public class MatchRepository {
                 }
                 @Override
                 public void onFailure(Call<List<ApiMatch>> call, Throwable throwable) {
-                    Log.d("MatchRepository", "Network Error :: " + throwable.getLocalizedMessage());
+                    Log.d("MR", "Network Error :: " + throwable.getLocalizedMessage());
                 }
             });
 
         });
     }
 
-    public Match getStoredMatch(String matchKey) {
+    public Maybe<Match> getStoredMatch(String matchKey) {
         MatchDataAccessObject matchDao = database.matchDao();
-        executorService.execute(() -> {
-            Match m = getStoredMatch(matchKey);
-            // TODO: callback or Future?
-        });
-        return null;
+        // Uses RxJava's Single for async database operations
+        return Maybe.fromCallable(() -> matchDao.fetchByMatchKey(matchKey))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single<List<Match>> getAllStoredMatches() {
+        MatchDataAccessObject matchDao = database.matchDao();
+        return Single.fromCallable(() -> matchDao.fetchAll())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
 
