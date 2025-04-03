@@ -33,7 +33,13 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity);
         MatchRepository mr = new MatchRepository(getApplicationContext());
-        mr.storeMatchesByEvent("2025mrcmp");
+        mr.storeMatchesByEvent("2025paben");
+        mr.getStoredMatch("2025paben_qm1")
+                .subscribe(
+                        match -> Log.d("MR", match.toString()),
+                        throwable -> Log.d("MR", "Error: " + throwable.toString()),
+                        () -> Log.d("MR", "No match found.")
+                        );
 
 
         Handler handler = new Handler();

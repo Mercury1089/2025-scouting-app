@@ -91,15 +91,15 @@ public class MatchRepository {
 
     public Maybe<Match> getStoredMatch(String matchKey) {
         MatchDataAccessObject matchDao = database.matchDao();
-        // Uses RxJava's Single for async database operations
+        // Uses RxJava's Maybe for async database operations that may or may not return a result
         return Maybe.fromCallable(() -> matchDao.fetchByMatchKey(matchKey))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Single<List<Match>> getAllStoredMatches() {
+    public Maybe<List<Match>> getAllStoredMatches() {
         MatchDataAccessObject matchDao = database.matchDao();
-        return Single.fromCallable(() -> matchDao.fetchAll())
+        return Maybe.fromCallable(() -> matchDao.fetchAll())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
@@ -109,9 +109,7 @@ public class MatchRepository {
         Network network = cm.getActiveNetwork();
         if (network == null) return false;
         NetworkCapabilities networkCapabilities = cm.getNetworkCapabilities(network);
-        return networkCapabilities != null &&
-                (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
-                        networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED));
+        return networkCapabilities != null && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED);
     }
 
 
