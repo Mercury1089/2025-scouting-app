@@ -32,6 +32,9 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity);
+        MatchRepository mr = new MatchRepository(getApplicationContext());
+        mr.storeMatchesByEvent("2025mrcmp");
+
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

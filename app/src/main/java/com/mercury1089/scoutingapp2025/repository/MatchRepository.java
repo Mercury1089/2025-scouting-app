@@ -2,6 +2,9 @@ package com.mercury1089.scoutingapp2025.repository;
 
 import android.content.Context;
 import android.graphics.Path;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.util.Log;
 
 import androidx.room.Room;
@@ -34,15 +37,21 @@ import retrofit2.Retrofit;
 
 // Connects match API data and the local SQL database
 public class MatchRepository {
+    private Context context;
     private final MatchService matchService;
     private final MatchDatabase database;
     private final ExecutorService executorService;
     public MatchRepository(Context context) {
+        this.context = context;
         matchService = RetrofitClient.getMatchService();
         database = MatchDatabase.getInstance(context);
         executorService = Executors.newSingleThreadExecutor();
     }
     public void storeMatchesByEvent(String eventKey) {
+        if (!hasInternetConnection(context)) {
+            Log.d("MR", "No internet connection");
+            return;
+        }
         MatchDataAccessObject dao = database.matchDao();
         executorService.execute(() -> {
             matchService.fetchAllMatchesByEvent(ApiUtils.getApiAuthorization(), eventKey).enqueue(new Callback<List<ApiMatch>>() {
@@ -93,6 +102,16 @@ public class MatchRepository {
         return Single.fromCallable(() -> matchDao.fetchAll())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public boolean hasInternetConnection(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        Network network = cm.getActiveNetwork();
+        if (network == null) return false;
+        NetworkCapabilities networkCapabilities = cm.getNetworkCapabilities(network);
+        return networkCapabilities != null &&
+                (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
+                        networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED));
     }
 
 
