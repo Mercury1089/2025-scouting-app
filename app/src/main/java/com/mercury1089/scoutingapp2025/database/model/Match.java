@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity(tableName = "matches")
 public class Match {
@@ -44,18 +45,25 @@ public class Match {
     public int getMatchNumber() {
         return matchNumber;
     }
-    public List<String> getRedAllianceTeams() {
-        return Arrays.asList(redAllianceTeams.split(","));
+    // Teams are in format frc{teamNumber}, these methods return only the numbers
+    // While preserving the original order (for the purpose of keeping consistent scouting
+    // assignments (e.g. R1, R2, R3 or B1, B2, B3)
+    public List<Integer> getRedAllianceTeams() {
+        return Arrays.stream(redAllianceTeams.split(","))
+                .map(teamStr -> Integer.parseInt(teamStr.replace("frc", "")))
+                .collect(Collectors.toList());
     }
 
-    public List<String> getBlueAllianceTeams() {
-        return Arrays.asList(blueAllianceTeams.split(","));
+    public List<Integer> getBlueAllianceTeams() {
+        return Arrays.stream(blueAllianceTeams.split(","))
+                .map(teamStr -> Integer.parseInt(teamStr.replace("frc", "")))
+                .collect(Collectors.toList());
     }
 
     @NonNull
     @Override
     public String toString() {
-        return matchKey + ": Red(" + redAllianceTeams + ") | Blue(" + blueAllianceTeams + ")";
+        return matchKey + ": Red(" + getRedAllianceTeams() + ") | Blue(" + getBlueAllianceTeams() + ")";
     }
     // Builder for Match because creating an explicit constructor for Match (with args)
     // conflicts with auto generated Impls for Match created by Room
