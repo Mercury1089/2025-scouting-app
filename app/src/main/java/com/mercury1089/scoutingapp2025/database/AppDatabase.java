@@ -7,20 +7,23 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.mercury1089.scoutingapp2025.database.dao.MatchDataAccessObject;
+import com.mercury1089.scoutingapp2025.database.dao.MetadataDataAccessObject;
 import com.mercury1089.scoutingapp2025.database.model.Match;
+import com.mercury1089.scoutingapp2025.database.model.Metadata;
 
 @Database(entities = {Match.class}, version = 1)
-public abstract class MatchDatabase extends RoomDatabase {
-    private static MatchDatabase instance;
+public abstract class AppDatabase extends RoomDatabase {
+    private static AppDatabase instance;
     public abstract MatchDataAccessObject matchDao();
+    public abstract MetadataDataAccessObject metadataDao();
 
-    public static MatchDatabase getInstance(Context context) {
+    public static AppDatabase getInstance(Context context) {
         if (instance == null) {
             // lock if null so only one thread creates an instance
-            synchronized (MatchDatabase.class) {
+            synchronized (AppDatabase.class) {
                 if (instance == null) {
                     instance = Room.databaseBuilder(context.getApplicationContext(),
-                                    MatchDatabase.class, "app-db")
+                                    AppDatabase.class, "app-db")
                             .fallbackToDestructiveMigration()
                             .build();
                 }

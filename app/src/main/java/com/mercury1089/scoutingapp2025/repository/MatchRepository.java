@@ -1,50 +1,45 @@
 package com.mercury1089.scoutingapp2025.repository;
 
 import android.content.Context;
-import android.graphics.Path;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.util.Log;
 
-import androidx.room.Room;
-
 import com.mercury1089.scoutingapp2025.api.model.ApiMatch;
 import com.mercury1089.scoutingapp2025.api.network.MatchService;
 import com.mercury1089.scoutingapp2025.api.network.RetrofitClient;
 import com.mercury1089.scoutingapp2025.api.util.ApiUtils;
-import com.mercury1089.scoutingapp2025.database.MatchDatabase;
+import com.mercury1089.scoutingapp2025.database.AppDatabase;
 import com.mercury1089.scoutingapp2025.database.dao.MatchDataAccessObject;
+import com.mercury1089.scoutingapp2025.database.dao.MetadataDataAccessObject;
 import com.mercury1089.scoutingapp2025.database.model.Match;
+import com.mercury1089.scoutingapp2025.database.model.Metadata;
+import com.mercury1089.scoutingapp2025.database.util.DBUtil;
 
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Maybe;
-import io.reactivex.rxjava3.core.Scheduler;
-import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 // Connects match API data and the local SQL database
 public class MatchRepository {
     private Context context;
     private final MatchService matchService;
-    private final MatchDatabase database;
+    private final AppDatabase database;
     private final ExecutorService executorService;
     public MatchRepository(Context context) {
         this.context = context;
         matchService = RetrofitClient.getMatchService();
-        database = MatchDatabase.getInstance(context);
+        database = AppDatabase.getInstance(context);
         executorService = Executors.newSingleThreadExecutor();
     }
     public void storeMatchesByEvent(String eventKey) {
@@ -53,6 +48,7 @@ public class MatchRepository {
             return;
         }
         MatchDataAccessObject dao = database.matchDao();
+        MetadataDataAccessObject metaDao = database.metadataDao(); // For storing "last fetched" time
         executorService.execute(() -> {
             matchService.fetchAllMatchesByEvent(ApiUtils.getApiAuthorization(), eventKey).enqueue(new Callback<List<ApiMatch>>() {
                 // Callback functions are assumed by Android to be run on the main thread so
@@ -68,6 +64,9 @@ public class MatchRepository {
                                     .setBlueAllianceTeams(String.join(",", m.getAlliances().getBlueAlliance().getTeamKeys()))
                                     .build();
                             matches.add(databaseMatch);
+                            metaDao.upsertMetadata(
+                                    new Metadata(DBUtil.LAST_API_FETCH_KEY, String.valueOf(System.currentTimeMillis()))
+                            );
                         }
                         // Makes sure that the database operation is run on a background thread
                         executorService.execute(() -> dao.storeMatches(matches));
@@ -100,6 +99,13 @@ public class MatchRepository {
     public Maybe<List<Match>> getAllStoredMatches() {
         MatchDataAccessObject matchDao = database.matchDao();
         return Maybe.fromCallable(() -> matchDao.fetchAll())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Maybe<Long> getLastFetchedTime() {
+        MetadataDataAccessObject metaDao = database.metadataDao();
+        return Maybe.fromCallable(() -> Long.parseLong(metaDao.fetchMetadata(DBUtil.LAST_API_FETCH_KEY).getValue()))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

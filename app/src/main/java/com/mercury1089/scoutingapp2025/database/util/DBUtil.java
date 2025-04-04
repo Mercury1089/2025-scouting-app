@@ -1,6 +1,8 @@
 package com.mercury1089.scoutingapp2025.database.util;
 
-public class MatchUtil {
+public class DBUtil {
+
+    public static final String LAST_API_FETCH_KEY = "last_api_fetch"; // For metadata table
     public enum MatchType {
         // Technically the prefix for qualification matches is "qm" but the "m" overlaps
         // with the "m" before the match number in TBA data so I'm choosing to omit it.

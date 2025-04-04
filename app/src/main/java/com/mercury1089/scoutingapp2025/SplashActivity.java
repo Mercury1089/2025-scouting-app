@@ -15,12 +15,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.mercury1089.scoutingapp2025.database.util.DBUtil;
 import com.mercury1089.scoutingapp2025.repository.MatchRepository;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
@@ -33,13 +34,21 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity);
         MatchRepository mr = new MatchRepository(getApplicationContext());
-        mr.storeMatchesByEvent("2025paben");
-        mr.getStoredMatch("2025paben_qm1")
+
+        String eventKey = "2025paben";
+        mr.storeMatchesByEvent(eventKey);
+        mr.getStoredMatch(DBUtil.createQualificationMatchKey(eventKey, 1))
                 .subscribe(
                         match -> Log.d("MR", match.toString()),
                         throwable -> Log.d("MR", "Error: " + throwable.toString()),
                         () -> Log.d("MR", "No match found.")
                         );
+        mr.getLastFetchedTime()
+                .subscribe(
+                        longTime -> Log.d("MR", DateFormat.getDateInstance().format(new Date(longTime))),
+                        throwable -> Log.d("MR", throwable.toString()),
+                        () -> Log.d("MR", "No previous fetch date found")
+                );
 
 
         Handler handler = new Handler();
