@@ -10,6 +10,19 @@
     tools:ignore="ExtraText">
 
     <TextView
+        android:id="@+id/IDEventKey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/EventKeyID"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/input_label_text_size"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/EventKeyInput"
+        app:layout_constraintStart_toStartOf="@+id/IDSettingsDirections3"
+        app:layout_constraintTop_toTopOf="@+id/EventKeyInput" />
+
+    <TextView
         android:id="@+id/IDPasswordSubhead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +31,7 @@
         android:text="@string/IDPassword"
         android:textColor="@color/sky"
         android:textSize="@dimen/subheader_text_size"
-        app:layout_constraintStart_toStartOf="@+id/BackButton"
+        app:layout_constraintStart_toStartOf="@+id/IDQrCodes"
         app:layout_constraintTop_toBottomOf="@+id/QRCodeListView" />
 
     <TextView
@@ -37,6 +50,8 @@
         android:id="@+id/BackButton"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/button_height"
+        android:layout_marginStart="@dimen/padding"
+        android:layout_marginTop="30dp"
         android:background="@drawable/button_states"
         android:drawableLeft="@drawable/left"
         android:drawablePadding="@dimen/drawable_padding"
@@ -44,8 +59,8 @@
         android:text="@string/GoBack"
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/button_text_size"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/IDResetApp"
@@ -56,8 +71,20 @@
         android:text="@string/ResetID"
         android:textColor="@color/sky"
         android:textSize="@dimen/subheader_text_size"
-        app:layout_constraintStart_toStartOf="@+id/BackButton"
+        app:layout_constraintStart_toStartOf="@+id/IDPasswordSubhead"
         app:layout_constraintTop_toBottomOf="@+id/IDPasswordPreview" />
+
+    <TextView
+        android:id="@+id/IDAPI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/futura_medium_condensed_bt"
+        android:text="@string/ApiID"
+        android:textColor="@color/sky"
+        android:textSize="@dimen/subheader_text_size"
+        app:layout_constraintStart_toStartOf="@+id/IDResetApp"
+        app:layout_constraintTop_toBottomOf="@+id/LocalStorageResetButton" />
 
     <Button
         android:id="@+id/ClearQRCodesButton"
@@ -90,6 +117,20 @@
         app:layout_constraintStart_toStartOf="@+id/IDResetApp"
         app:layout_constraintTop_toBottomOf="@+id/IDResetApp" />
 
+    <TextView
+        android:id="@+id/IDSettingsDirections3"
+        android:layout_width="541dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/open_sans_italic"
+        android:text="@string/ApiDirections"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/instruction_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/IDAPI"
+        app:layout_constraintTop_toBottomOf="@+id/IDAPI" />
+
     <Button
         android:id="@+id/LocalStorageResetButton"
         android:layout_width="wrap_content"
@@ -106,10 +147,24 @@
         app:layout_constraintTop_toBottomOf="@+id/IDSettingsDirections" />
 
     <Button
+        android:id="@+id/FetchMatchesFromEventButton"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/button_states"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/FetchMatchesButton"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/button_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/EventKeyInput"
+        app:layout_constraintStart_toEndOf="@+id/EventKeyInput"
+        app:layout_constraintTop_toTopOf="@+id/EventKeyInput"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
         android:id="@+id/ChangePasswordButton"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/button_height"
-        android:layout_marginEnd="116dp"
         android:background="@drawable/button_states"
         android:fontFamily="@font/open_sans"
         android:text="@string/CreatePassword"
@@ -124,8 +179,7 @@
         android:id="@+id/IDSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/futura_medium_condensed_bt"
         android:text="@string/SettingsTitle"
         android:textColor="@drawable/text_header_states"
@@ -141,8 +195,9 @@
         android:text="@string/SettingsWarning"
         android:textColor="@color/banana"
         android:textSize="@dimen/alt_subheader_text_size"
-        app:layout_constraintTop_toBottomOf="@+id/IDSettings"
-        tools:layout_editor_absoluteX="164dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IDSettings" />
 
     <TextView
         android:id="@+id/IDQrCodes"
@@ -170,5 +225,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/IDQrCodes"
         app:layout_constraintTop_toBottomOf="@+id/IDQrCodes" />
+
+    <EditText
+        android:id="@+id/EventKeyInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edittext_rounded_corners"
+        android:ems="10"
+        android:fontFamily="@font/open_sans"
+        android:hint="@string/HINT_EVENT_KEY"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:tag="ScouterName"
+        android:textColor="@color/charcoal"
+        app:layout_constraintStart_toEndOf="@+id/IDEventKey"
+        app:layout_constraintTop_toBottomOf="@+id/IDSettingsDirections3" />
+
+    <TextView
+        android:id="@+id/LastFetchedAtID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/LastFetchedAtID"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/input_label_text_size"
+        app:layout_constraintStart_toStartOf="@+id/IDEventKey"
+        app:layout_constraintTop_toBottomOf="@+id/EventKeyInput" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

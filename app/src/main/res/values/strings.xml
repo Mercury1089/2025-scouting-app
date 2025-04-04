@@ -60,12 +60,17 @@
         <string name="DefaultPasswordPreview">NO PASSWORD SET</string>
         <string name="ChangePassword">Change Password</string>
         <string name="CreatePassword">Create Password</string>
+        <string name="ApiID">API</string>
+        <string name="EventKeyID">EVENT KEY</string>
+        <string name="LastFetchedAtID">Last fetched at: </string>
 
     <!-- Directions -->
         <string name="ResetDirections">If a QR code fails to generate or the app is displaying persistent and incorrect active states, tap the button below.</string>
+        <string name="ApiDirections">Fetch match data from TBA.</string>
 
     <!-- Button Texts -->
         <string name="ResetButton">RESET ALL VARIABLES</string>
+        <string name="FetchMatchesButton">FETCH MATCHES</string>
         <string name="QRCacheItem">Team Number: %1$s &#160;&#160;&#160;&#160;&#160;&#160; Match Number: %2$s</string>
 
 
