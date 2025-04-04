@@ -24,6 +24,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
@@ -63,10 +64,14 @@ public class MatchRepository {
                                     .setRedAllianceTeams(String.join(",", m.getAlliances().getRedAlliance().getTeamKeys()))
                                     .setBlueAllianceTeams(String.join(",", m.getAlliances().getBlueAlliance().getTeamKeys()))
                                     .build();
-                            matches.add(databaseMatch);
-                            metaDao.upsertMetadata(
-                                    new Metadata(DBUtil.LAST_API_FETCH_KEY, String.valueOf(System.currentTimeMillis()))
-                            );
+                            Completable.fromCallable(() -> {
+                                matches.add(databaseMatch);
+                                metaDao.upsertMetadata(
+                                        new Metadata(DBUtil.LAST_API_FETCH_KEY, String.valueOf(System.currentTimeMillis()))
+                                );
+                                return null;
+                            }).subscribeOn(Schedulers.io()).subscribe();
+
                         }
                         // Makes sure that the database operation is run on a background thread
                         executorService.execute(() -> dao.storeMatches(matches));

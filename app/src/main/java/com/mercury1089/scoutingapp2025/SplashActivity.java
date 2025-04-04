@@ -19,7 +19,11 @@ import com.mercury1089.scoutingapp2025.database.util.DBUtil;
 import com.mercury1089.scoutingapp2025.repository.MatchRepository;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -45,11 +49,13 @@ public class SplashActivity extends AppCompatActivity {
                         );
         mr.getLastFetchedTime()
                 .subscribe(
-                        longTime -> Log.d("MR", DateFormat.getDateInstance().format(new Date(longTime))),
+                        longTime -> {
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss", Locale.getDefault());
+                            Log.d("MR", sdf.format(new Date(longTime)));
+                        },
                         throwable -> Log.d("MR", throwable.toString()),
                         () -> Log.d("MR", "No previous fetch date found")
                 );
-
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

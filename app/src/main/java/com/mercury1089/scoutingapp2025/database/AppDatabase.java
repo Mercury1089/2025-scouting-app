@@ -11,7 +11,7 @@ import com.mercury1089.scoutingapp2025.database.dao.MetadataDataAccessObject;
 import com.mercury1089.scoutingapp2025.database.model.Match;
 import com.mercury1089.scoutingapp2025.database.model.Metadata;
 
-@Database(entities = {Match.class}, version = 1)
+@Database(entities = {Match.class, Metadata.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance;
     public abstract MatchDataAccessObject matchDao();
