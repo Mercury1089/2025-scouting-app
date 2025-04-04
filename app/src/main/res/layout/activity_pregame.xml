@@ -303,6 +303,20 @@
         app:layout_constraintTop_toTopOf="@+id/SettingsButton" />
 
     <Button
+        android:id="@+id/AutofillButton"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/button_height"
+        android:background="@drawable/button_states"
+        android:enabled="false"
+        android:fontFamily="@font/open_sans"
+        android:text="@android:string/autofill"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/button_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/ClearButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ClearButton" />
+
+    <Button
         android:id="@+id/StartButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

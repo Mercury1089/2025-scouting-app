@@ -46,6 +46,7 @@
         <string name="Red">RED</string>
         <string name="NoShow">No robot on field</string>
         <string name="Clear">CLEAR</string>
+        <string name="Autofill">AUTOFILL</string>
         <string name="Start">START</string>
         <string name="GenerateQRCode">GENERATE QR CODE</string>
 

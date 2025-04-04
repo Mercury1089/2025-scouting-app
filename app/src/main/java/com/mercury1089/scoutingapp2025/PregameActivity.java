@@ -1,6 +1,9 @@
 package com.mercury1089.scoutingapp2025;
 
+import com.mercury1089.scoutingapp2025.database.model.Match;
+import com.mercury1089.scoutingapp2025.database.util.DBUtil;
 import com.mercury1089.scoutingapp2025.qr.QRRunnable;
+import com.mercury1089.scoutingapp2025.repository.MatchRepository;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -13,6 +16,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,12 +35,17 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
+
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class PregameActivity extends AppCompatActivity {
     // Strategy was here
     //Set the default password in HashMapManager.setDefaultValues();
     String password;
+    CompositeDisposable disposables = new CompositeDisposable();
 
     //variables that store elements of the screen for the output variables
     //Buttons
@@ -44,6 +53,7 @@ public class PregameActivity extends AppCompatActivity {
     private Button blueButton;
     private Button redButton;
     private Button clearButton;
+    private Button autofillButton;
     private Button startButton;
 
     //Text Fields
@@ -97,6 +107,7 @@ public class PregameActivity extends AppCompatActivity {
         noShowSwitch = findViewById(R.id.NoShowSwitch);
         preloadSwitch = findViewById(R.id.PreloadedCargoSwitch);
         clearButton = findViewById(R.id.ClearButton);
+        autofillButton = findViewById(R.id.AutofillButton);
         startButton = findViewById(R.id.StartButton);
         settingsButton = findViewById(R.id.SettingsButton);
         startDirectionsToast = findViewById(R.id.IDStartDirections);
@@ -362,7 +373,10 @@ public class PregameActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Ensure that any async operations (like fetching from database) are cancelled
+                disposables.clear();
                 if (isQRButton) {
+
                     Dialog dialog = new Dialog(PregameActivity.this);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setContentView(R.layout.generate_qrcode_confirm_popup);
@@ -467,6 +481,46 @@ public class PregameActivity extends AppCompatActivity {
                 });
             }
         });
+
+        autofillButton.setOnClickListener(view -> {
+            if (matchNumberInput.getText().toString().isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Match number is required.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            int matchNumber = Integer.parseInt(matchNumberInput.getText().toString());
+            MatchRepository mr = new MatchRepository(getApplicationContext());
+            disposables.add(mr.getStoredEventKey().subscribe(
+                    eventKey -> {
+                        Log.d("MR", "Event key: " + eventKey);
+                        disposables.add(mr.getStoredMatch(DBUtil.createQualificationMatchKey(eventKey, matchNumber)).subscribe(
+                                match -> autofillMatchInfo(match, "R1"),
+                                throwable -> Toast.makeText(getApplicationContext(), "Error: " + throwable.getMessage(), Toast.LENGTH_SHORT).show()
+                        ));
+                    },
+                    throwable -> Toast.makeText(getApplicationContext(), "Error: " + throwable.getMessage(), Toast.LENGTH_SHORT).show()
+            ));
+
+        });
+
+
+    }
+
+    public void autofillMatchInfo(Match match, String assignment) {
+        boolean allianceColor = assignment.toLowerCase().charAt(0) == 'r'; // 1 = red, 0 = blue
+        List<Integer> teams = allianceColor ? match.getRedAllianceTeams() : match.getBlueAllianceTeams();
+        Log.d("MR", "Teams: " + teams);
+        int assignmentNumber = Integer.parseInt(String.valueOf(assignment.charAt(assignment.length()-1))) - 1; // because teams is zero-indexed
+        for (int i = 0; i < teams.size(); i++) {
+            int team = teams.get(i);
+            if (i == assignmentNumber) teamNumberInput.setText(String.valueOf(team));
+            else if (firstAlliancePartnerInput.getText().toString().isEmpty()) {
+                firstAlliancePartnerInput.setText(String.valueOf(team));
+            }
+            else {
+                secondAlliancePartnerInput.setText(String.valueOf(team));
+            }
+        }
+        Toast.makeText(getApplicationContext(), "Successfully autofilled match info!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -534,6 +588,8 @@ public class PregameActivity extends AppCompatActivity {
     private void updateXMLObjects(boolean updateText) {
         boolean readyToStart = readyToStart();
         boolean canClear = canClearInputs();
+
+        autofillButton.setEnabled(!matchNumberInput.getText().toString().isEmpty());
 
         /*
         - updateText should only be true if you want to reset the basic info fields to the stored hashmap values

@@ -37,24 +37,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity);
-        MatchRepository mr = new MatchRepository(getApplicationContext());
-
-        String eventKey = "2025paben";
-        mr.getStoredMatch(DBUtil.createQualificationMatchKey(eventKey, 1))
-                .subscribe(
-                        match -> Log.d("MR", match.toString()),
-                        throwable -> Log.d("MR", "Error: " + throwable.toString()),
-                        () -> Log.d("MR", "No match found.")
-                        );
-        mr.getLastFetchedTime()
-                .subscribe(
-                        longTime -> {
-                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss", Locale.getDefault());
-                            Log.d("MR", sdf.format(new Date(longTime)));
-                        },
-                        throwable -> Log.d("MR", throwable.toString()),
-                        () -> Log.d("MR", "No previous fetch date found")
-                );
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
