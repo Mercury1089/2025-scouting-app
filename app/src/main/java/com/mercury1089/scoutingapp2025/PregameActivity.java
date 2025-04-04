@@ -12,6 +12,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Editable;
@@ -52,6 +53,8 @@ public class PregameActivity extends AppCompatActivity {
     private ImageButton settingsButton;
     private Button blueButton;
     private Button redButton;
+
+    private Button oneButton, twoButton, threeButton;
     private Button clearButton;
     private Button autofillButton;
     private Button startButton;
@@ -63,6 +66,7 @@ public class PregameActivity extends AppCompatActivity {
     private EditText firstAlliancePartnerInput;
     private EditText secondAlliancePartnerInput;
     private TextView startDirectionsToast;
+    private TextView robotAssignmentID;
 
     //Switches
     private Switch noShowSwitch;
@@ -104,6 +108,9 @@ public class PregameActivity extends AppCompatActivity {
         secondAlliancePartnerInput = findViewById(R.id.SecondAlliancePartnerInput);
         blueButton = findViewById(R.id.BlueButton);
         redButton = findViewById(R.id.RedButton);
+        oneButton = findViewById(R.id.FirstRobotButton);
+        twoButton = findViewById(R.id.SecondRobotButton);
+        threeButton = findViewById(R.id.ThirdRobotButton);
         noShowSwitch = findViewById(R.id.NoShowSwitch);
         preloadSwitch = findViewById(R.id.PreloadedCargoSwitch);
         clearButton = findViewById(R.id.ClearButton);
@@ -111,6 +118,7 @@ public class PregameActivity extends AppCompatActivity {
         startButton = findViewById(R.id.StartButton);
         settingsButton = findViewById(R.id.SettingsButton);
         startDirectionsToast = findViewById(R.id.IDStartDirections);
+        robotAssignmentID = findViewById(R.id.IDRobotAssignment);
 
         rooster = MediaPlayer.create(PregameActivity.this, R.raw.sound);
 
@@ -370,6 +378,21 @@ public class PregameActivity extends AppCompatActivity {
             }
         });
 
+        oneButton.setOnClickListener(view -> {
+            setupHashMap.put("RobotAssignment", "1");
+            updateXMLObjects(false);
+        });
+
+        twoButton.setOnClickListener(view -> {
+            setupHashMap.put("RobotAssignment", "2");
+            updateXMLObjects(false);
+        });
+
+        threeButton.setOnClickListener(view -> {
+            setupHashMap.put("RobotAssignment", "3");
+            updateXMLObjects(false);
+        });
+
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -483,17 +506,17 @@ public class PregameActivity extends AppCompatActivity {
         });
 
         autofillButton.setOnClickListener(view -> {
-            if (matchNumberInput.getText().toString().isEmpty()) {
-                Toast.makeText(getApplicationContext(), "Match number is required.", Toast.LENGTH_SHORT).show();
+            if (!canAutoFill()) {
+                Toast.makeText(getApplicationContext(), "Match Number, Alliance Color, and Robot Assignment are required to autofill.", Toast.LENGTH_SHORT).show();
                 return;
             }
             int matchNumber = Integer.parseInt(matchNumberInput.getText().toString());
             MatchRepository mr = new MatchRepository(getApplicationContext());
             disposables.add(mr.getStoredEventKey().subscribe(
                     eventKey -> {
-                        Log.d("MR", "Event key: " + eventKey);
+                        String assignment = (setupHashMap.get("AllianceColor").charAt(0) + setupHashMap.get("RobotAssignment")).toUpperCase();
                         disposables.add(mr.getStoredMatch(DBUtil.createQualificationMatchKey(eventKey, matchNumber)).subscribe(
-                                match -> autofillMatchInfo(match, "R1"),
+                                match -> autofillMatchInfo(match, assignment),
                                 throwable -> Toast.makeText(getApplicationContext(), "Error: " + throwable.getMessage(), Toast.LENGTH_SHORT).show()
                         ));
                     },
@@ -501,14 +524,15 @@ public class PregameActivity extends AppCompatActivity {
             ));
 
         });
-
-
     }
 
     public void autofillMatchInfo(Match match, String assignment) {
         boolean allianceColor = assignment.toLowerCase().charAt(0) == 'r'; // 1 = red, 0 = blue
         List<Integer> teams = allianceColor ? match.getRedAllianceTeams() : match.getBlueAllianceTeams();
-        Log.d("MR", "Teams: " + teams);
+        // Clear boxes that are going to be autofilled
+        teamNumberInput.getText().clear();
+        firstAlliancePartnerInput.getText().clear();
+        secondAlliancePartnerInput.getText().clear();
         int assignmentNumber = Integer.parseInt(String.valueOf(assignment.charAt(assignment.length()-1))) - 1; // because teams is zero-indexed
         for (int i = 0; i < teams.size(); i++) {
             int team = teams.get(i);
@@ -563,7 +587,14 @@ public class PregameActivity extends AppCompatActivity {
                 firstAlliancePartnerInput.getText().length() > 0 &&
                 secondAlliancePartnerInput.getText().length() > 0 &&
                 !setupHashMap.get("AllianceColor").isEmpty() &&
+                !setupHashMap.get("RobotAssignment").isEmpty() &&
                 (Objects.equals(setupHashMap.get("NoShow"), "Y") || Objects.equals(setupHashMap.get("NoShow"), "N"));
+    }
+
+    private boolean canAutoFill() {
+        return !matchNumberInput.getText().toString().isEmpty() &&
+                !setupHashMap.get("AllianceColor").isEmpty() &&
+                !setupHashMap.get("RobotAssignment").isEmpty();
     }
 
     /*
@@ -577,7 +608,24 @@ public class PregameActivity extends AppCompatActivity {
                 noShowSwitch.isChecked() ||
                 firstAlliancePartnerInput.getText().length() > 0 ||
                 secondAlliancePartnerInput.getText().length() > 0 ||
-                blueButton.isSelected() || redButton.isSelected();
+                blueButton.isSelected() || redButton.isSelected() ||
+                oneButton.isSelected() || twoButton.isSelected() || threeButton.isSelected();
+    }
+
+    private void setRobotAssignmentButtonsEnabled(boolean enabled) {
+        if (!enabled) setupHashMap.put("RobotAssignment", "");
+        robotAssignmentID.setEnabled(enabled);
+        oneButton.setEnabled(enabled);
+        twoButton.setEnabled(enabled);
+        threeButton.setEnabled(enabled);
+    }
+
+    private void setRobotAssignmentButtonsBackground(String allianceColor) {
+        int bgDrawableID = allianceColor == "Red" ? R.drawable.toggle_red_states : allianceColor == "Blue" ? R.drawable.toggle_blue_states : 0;
+        if (bgDrawableID == 0) return;
+        oneButton.setBackground(getDrawable(bgDrawableID));
+        twoButton.setBackground(getDrawable(bgDrawableID));
+        threeButton.setBackground(getDrawable(bgDrawableID));
     }
 
     /*
@@ -602,9 +650,15 @@ public class PregameActivity extends AppCompatActivity {
             firstAlliancePartnerInput.setText(setupHashMap.get("AlliancePartner1"));
             secondAlliancePartnerInput.setText(setupHashMap.get("AlliancePartner2"));
         }
+        setRobotAssignmentButtonsEnabled(!setupHashMap.get("AllianceColor").isEmpty());
+        // Dynamically set background of robot assignment buttons
+        setRobotAssignmentButtonsBackground(setupHashMap.get("AllianceColor"));
 
         blueButton.setSelected(setupHashMap.get("AllianceColor").equals("Blue"));
         redButton.setSelected(setupHashMap.get("AllianceColor").equals("Red"));
+        oneButton.setSelected(setupHashMap.get("RobotAssignment").equals("1"));
+        twoButton.setSelected(setupHashMap.get("RobotAssignment").equals("2"));
+        threeButton.setSelected(setupHashMap.get("RobotAssignment").equals("3"));
 
         if (settingsHashMap.get("Slack").equals("1"))
             slackCenter.setVisibility(View.VISIBLE);
