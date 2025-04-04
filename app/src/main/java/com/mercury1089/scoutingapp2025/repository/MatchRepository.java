@@ -27,6 +27,7 @@ import java.util.concurrent.Executors;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,6 +44,10 @@ public class MatchRepository {
         matchService = RetrofitClient.getMatchService();
         database = AppDatabase.getInstance(context);
         executorService = Executors.newSingleThreadExecutor();
+
+        RxJavaPlugins.setErrorHandler(throwable -> {
+            Log.d("MR", "Undeliverable error: " + throwable.getMessage());
+        });
     }
     public Completable storeMatchesByEvent(String eventKey) {
         if (!hasInternetConnection(context)) {
@@ -75,7 +80,10 @@ public class MatchRepository {
                             Completable.fromAction(() -> {
                                 dao.storeMatches(matches);
                                 metaDao.upsertMetadata(
-                                        new Metadata(DBUtil.LAST_API_FETCH_KEY, String.valueOf(System.currentTimeMillis()))
+                                        new Metadata(DBUtil.MetadataKey.LAST_API_FETCH_KEY.getKey(), String.valueOf(System.currentTimeMillis()))
+                                );
+                                metaDao.upsertMetadata(
+                                        new Metadata(DBUtil.MetadataKey.STORED_EVENT_KEY_KEY.getKey(), eventKey)
                                 );
                             })
                             .subscribeOn(Schedulers.io())
@@ -108,10 +116,18 @@ public class MatchRepository {
 
     public Maybe<Long> getLastFetchedTime() {
         MetadataDataAccessObject metaDao = database.metadataDao();
-        return Maybe.fromCallable(() -> metaDao.fetchMetadata(DBUtil.LAST_API_FETCH_KEY))
+        return Maybe.fromCallable(() -> metaDao.fetchMetadata(DBUtil.MetadataKey.LAST_API_FETCH_KEY.getKey()))
                 .subscribeOn(Schedulers.io())
                 .map(Metadata::getValue)
                 .map(Long::parseLong)
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Maybe<String> getStoredEventKey() {
+        MetadataDataAccessObject metaDao = database.metadataDao();
+        return Maybe.fromCallable(() -> metaDao.fetchMetadata(DBUtil.MetadataKey.STORED_EVENT_KEY_KEY.getKey()))
+                .subscribeOn(Schedulers.io())
+                .map(Metadata::getValue)
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
