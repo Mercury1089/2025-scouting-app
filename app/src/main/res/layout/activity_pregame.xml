@@ -13,6 +13,55 @@
     tools:context=".PregameActivity">
 
 
+    <RadioGroup
+        android:id="@+id/RobotAssignmentSelector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:divider="?android:attr/dividerHorizontal"
+        android:orientation="horizontal"
+        android:showDividers="middle"
+        app:layout_constraintStart_toStartOf="@+id/IDRobotAssignment"
+        app:layout_constraintTop_toBottomOf="@+id/IDRobotAssignment">
+
+        <Button
+            android:id="@+id/FirstRobotButton"
+            android:layout_width="@dimen/robot_assignment_width"
+            android:layout_height="@dimen/button_height"
+            android:background="@drawable/toggle_left_states"
+            android:fontFamily="@font/open_sans"
+            android:gravity="center"
+            android:text="@string/One"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/button_text_size"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/SecondRobotButton"
+            android:layout_width="@dimen/robot_assignment_width"
+            android:layout_height="@dimen/button_height"
+            android:background="@drawable/toggle_center_states"
+            android:fontFamily="@font/open_sans"
+            android:gravity="center"
+            android:text="@string/Two"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/button_text_size"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/ThirdRobotButton"
+            android:layout_width="@dimen/robot_assignment_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_red_states"
+            android:fontFamily="@font/open_sans"
+            android:gravity="center"
+            android:text="@string/Three"
+            android:textColor="@drawable/text_states"
+            android:textSize="@dimen/button_text_size"
+            tools:visibility="visible" />
+    </RadioGroup>
+
     <Switch
         android:id="@+id/PreloadedCargoSwitch"
         android:layout_width="wrap_content"
@@ -220,8 +269,20 @@
         app:layout_constraintStart_toStartOf="@+id/IDAlliancePartners"
         app:layout_constraintTop_toBottomOf="@+id/FirstAlliancePartnerInput" />
 
+    <TextView
+        android:id="@+id/IDRobotAssignment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/RobotAssignmentID"
+        android:textColor="@drawable/text_states"
+        android:textSize="@dimen/input_label_text_size"
+        app:layout_constraintStart_toEndOf="@+id/AllianceColorToggle"
+        app:layout_constraintTop_toTopOf="@+id/IDAllianceColor" />
+
     <RadioGroup
-        android:id="@+id/MissedToggle"
+        android:id="@+id/AllianceColorToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -354,7 +415,7 @@
         android:textColor="@drawable/text_states"
         android:textSize="@dimen/instruction_text_size"
         app:layout_constraintStart_toStartOf="@+id/IDAllianceColor"
-        app:layout_constraintTop_toBottomOf="@+id/MissedToggle" />
+        app:layout_constraintTop_toBottomOf="@+id/AllianceColorToggle" />
 
     <!-- Left field side buttons -->
 

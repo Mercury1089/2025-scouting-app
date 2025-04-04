@@ -35,6 +35,7 @@
         <string name="TeamNumberID">TEAM #:</string>
         <string name="AlliancePartnersID">ALLIANCE PARTNERS:</string>
         <string name="AllianceColorID">ALLIANCE COLOR:</string>
+        <string name="RobotAssignmentID">ROBOT ASSIGNMENT:</string>
 
     <!-- Directions -->
         <string name="SetupDirections">Complete the fields below <b>before</b> the start of each match.</string>
@@ -44,6 +45,9 @@
     <!-- Button Texts -->
         <string name="Blue">BLUE</string>
         <string name="Red">RED</string>
+        <string name="One">1</string>
+        <string name="Two">2</string>
+        <string name="Three">3</string>
         <string name="NoShow">No robot on field</string>
         <string name="Clear">CLEAR</string>
         <string name="Autofill">AUTOFILL</string>
