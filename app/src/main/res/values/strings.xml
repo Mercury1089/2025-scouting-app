@@ -62,7 +62,7 @@
         <string name="CreatePassword">Create Password</string>
         <string name="ApiID">API</string>
         <string name="EventKeyID">EVENT KEY</string>
-        <string name="LastFetchedAtID">Last fetched at: </string>
+        <string name="LastFetchedAtID" formatted="true">Last fetched at: %1$s</string>
 
     <!-- Directions -->
         <string name="ResetDirections">If a QR code fails to generate or the app is displaying persistent and incorrect active states, tap the button below.</string>

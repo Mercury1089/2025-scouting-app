@@ -40,7 +40,6 @@ public class SplashActivity extends AppCompatActivity {
         MatchRepository mr = new MatchRepository(getApplicationContext());
 
         String eventKey = "2025paben";
-        mr.storeMatchesByEvent(eventKey);
         mr.getStoredMatch(DBUtil.createQualificationMatchKey(eventKey, 1))
                 .subscribe(
                         match -> Log.d("MR", match.toString()),

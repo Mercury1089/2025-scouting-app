@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.mercury1089.scoutingapp2025.api.model.ApiMatch;
 import com.mercury1089.scoutingapp2025.api.network.MatchService;
@@ -43,53 +44,50 @@ public class MatchRepository {
         database = AppDatabase.getInstance(context);
         executorService = Executors.newSingleThreadExecutor();
     }
-    public void storeMatchesByEvent(String eventKey) {
+    public Completable storeMatchesByEvent(String eventKey) {
         if (!hasInternetConnection(context)) {
-            Log.d("MR", "No internet connection");
-            return;
+            return Completable.error(new IOException("No internet connection"));
         }
         MatchDataAccessObject dao = database.matchDao();
         MetadataDataAccessObject metaDao = database.metadataDao(); // For storing "last fetched" time
-        executorService.execute(() -> {
-            matchService.fetchAllMatchesByEvent(ApiUtils.getApiAuthorization(), eventKey).enqueue(new Callback<List<ApiMatch>>() {
-                // Callback functions are assumed by Android to be run on the main thread so
-                // Database operations have to explicitly run on a background thread
-                @Override
-                public void onResponse(Call<List<ApiMatch>> call, Response<List<ApiMatch>> response) {
-                    if (response.isSuccessful()) {
-                        List<Match> matches = new ArrayList<>();
-                        for (ApiMatch m : response.body()) {
-                            Match databaseMatch = new Match.Builder()
-                                    .setMatchKey(m.getKey())
-                                    .setRedAllianceTeams(String.join(",", m.getAlliances().getRedAlliance().getTeamKeys()))
-                                    .setBlueAllianceTeams(String.join(",", m.getAlliances().getBlueAlliance().getTeamKeys()))
-                                    .build();
-                            Completable.fromCallable(() -> {
+        return Completable.create(emitter -> {
+            matchService.fetchAllMatchesByEvent(ApiUtils.getApiAuthorization(), eventKey)
+                .enqueue(new Callback<>() {
+                    @Override
+                    public void onFailure(Call<List<ApiMatch>> call, Throwable throwable) {
+                        emitter.onError(throwable);
+                    }
+
+                    @Override
+                    public void onResponse(Call<List<ApiMatch>> call, Response<List<ApiMatch>> response) {
+                        if (response.isSuccessful()) {
+                            List<Match> matches = new ArrayList<>();
+                            for (ApiMatch m : response.body()) {
+                                Match databaseMatch = new Match.Builder()
+                                        .setMatchKey(m.getKey())
+                                        .setRedAllianceTeams(String.join(",", m.getAlliances().getRedAlliance().getTeamKeys()))
+                                        .setBlueAllianceTeams(String.join(",", m.getAlliances().getBlueAlliance().getTeamKeys()))
+                                        .build();
                                 matches.add(databaseMatch);
+                            }
+                            // List of matches has been created
+                            // Now store matches in database and update last fetched metadata
+                            Completable.fromAction(() -> {
+                                dao.storeMatches(matches);
                                 metaDao.upsertMetadata(
                                         new Metadata(DBUtil.LAST_API_FETCH_KEY, String.valueOf(System.currentTimeMillis()))
                                 );
-                                return null;
-                            }).subscribeOn(Schedulers.io()).subscribe();
-
-                        }
-                        // Makes sure that the database operation is run on a background thread
-                        executorService.execute(() -> dao.storeMatches(matches));
-                    } else {
-                        try {
-                            assert response.errorBody() != null;
-                            Log.d("MR", response.errorBody().string());
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
+                            })
+                            .subscribeOn(Schedulers.io())
+                            .subscribe(
+                                    () -> emitter.onComplete(),
+                                    t -> emitter.onError(t)
+                            );
+                        } else {
+                            emitter.onError(new IOException("API Error: " + response.code()));
                         }
                     }
-                }
-                @Override
-                public void onFailure(Call<List<ApiMatch>> call, Throwable throwable) {
-                    Log.d("MR", "Network Error :: " + throwable.getLocalizedMessage());
-                }
-            });
-
+                });
         });
     }
 
@@ -110,8 +108,10 @@ public class MatchRepository {
 
     public Maybe<Long> getLastFetchedTime() {
         MetadataDataAccessObject metaDao = database.metadataDao();
-        return Maybe.fromCallable(() -> Long.parseLong(metaDao.fetchMetadata(DBUtil.LAST_API_FETCH_KEY).getValue()))
+        return Maybe.fromCallable(() -> metaDao.fetchMetadata(DBUtil.LAST_API_FETCH_KEY))
                 .subscribeOn(Schedulers.io())
+                .map(Metadata::getValue)
+                .map(Long::parseLong)
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
