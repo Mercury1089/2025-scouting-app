@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -26,13 +25,14 @@ import java.util.Locale;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Maybe;
-import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SettingsActivity extends AppCompatActivity {
 
     private LinkedHashMap settingsHashMap;
+    private CompositeDisposable disposables = new CompositeDisposable();
     private String[] qrList;
     private ListView qrCodeSelector;
     private ListAdapter listAdapter;
@@ -51,10 +51,12 @@ public class SettingsActivity extends AppCompatActivity {
         Button fetchMatchesButton = findViewById(R.id.FetchMatchesFromEventButton);
         TextView lastFetchedID = findViewById(R.id.LastFetchedAtID);
 
-        Disposable setLastFetchedText = getLastFetchedDate().subscribe(
+        // onComplete (third argument) is called when the action completes but doesn't return a result
+        disposables.add(getLastFetchedDate().subscribe(
                 str -> lastFetchedID.setText(getString(R.string.LastFetchedAtID, str)),
-                throwable -> Log.d("MR", throwable.getMessage())
-        );
+                throwable -> Log.d("MR", throwable.getMessage()),
+                () -> lastFetchedID.setText(getString(R.string.LastFetchedAtID, "Unknown"))
+        ));
 
 
         qrCodeSelector = findViewById(R.id.QRCodeListView);
@@ -180,19 +182,19 @@ public class SettingsActivity extends AppCompatActivity {
             MatchRepository mr = new MatchRepository(getApplicationContext());
             String eventKey = eventKeyInput.getText().toString();
 
-            Disposable storeMatchesDisposable = mr.storeMatchesByEvent(eventKey)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                            () -> {
-                                Toast.makeText(getApplicationContext(), "Matches fetched and stored!", Toast.LENGTH_SHORT).show();
-                                Disposable setLastFetchedTextAgain = getLastFetchedDate().subscribe(
-                                        str -> lastFetchedID.setText(getString(R.string.LastFetchedAtID, str)),
-                                        throwable -> Log.d("MR", throwable.getMessage())
-                                );
-                            },
-                            error -> Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show()
-                    );
+            disposables.add(mr.storeMatchesByEvent(eventKey)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        () -> {
+                            Toast.makeText(getApplicationContext(), "Matches fetched and stored!", Toast.LENGTH_SHORT).show();
+                            Disposable setLastFetchedTextAgain = getLastFetchedDate().subscribe(
+                                    str -> lastFetchedID.setText(getString(R.string.LastFetchedAtID, str)),
+                                    throwable -> Log.d("MR", throwable.getMessage())
+                            );
+                        },
+                        error -> Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show()
+                ));
         });
     }
 
@@ -215,6 +217,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        disposables.clear();
         HashMapManager.putSettingsHashMap(settingsHashMap);
     }
 }

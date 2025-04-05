@@ -251,6 +251,7 @@ public class PregameActivity extends AppCompatActivity {
 
                 if (requiredPassword.equals("N")) {
                     HashMapManager.putSetupHashMap(setupHashMap);
+                    disposables.clear();
                     Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
                     startActivity(intent);
                     finish();
@@ -287,6 +288,7 @@ public class PregameActivity extends AppCompatActivity {
                         String savedPassword = !password.equals("") ? password : PregameActivity.this.password;
                         if (passwordField.getText().toString().equals(savedPassword)) {
                             HashMapManager.putSetupHashMap(setupHashMap);
+                            disposables.clear();
                             Intent intent = new Intent(PregameActivity.this, SettingsActivity.class);
                             startActivity(intent);
                             dialog.dismiss();
