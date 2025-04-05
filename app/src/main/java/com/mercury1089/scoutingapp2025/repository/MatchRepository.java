@@ -46,7 +46,7 @@ public class MatchRepository {
         executorService = Executors.newSingleThreadExecutor();
 
         RxJavaPlugins.setErrorHandler(throwable -> {
-            Log.d("MR", "Undeliverable error: " + throwable.getMessage());
+            Log.d("1089", "Undeliverable error: " + throwable.getMessage());
         });
     }
     public Completable storeMatchesByEvent(String eventKey) {
@@ -92,7 +92,13 @@ public class MatchRepository {
                                     t -> emitter.onError(t)
                             );
                         } else {
-                            emitter.onError(new IOException("API Error: " + response.code()));
+                            try {
+                                Log.d("1089", response.code() + response.errorBody().string());
+                            } catch (IOException e) {
+                                emitter.onError(new IOException("Could not parse error " + response.code()));
+                                return;
+                            }
+                            emitter.onError(new IOException("Could not fetch data (see logs for more detail)"));
                         }
                     }
                 });

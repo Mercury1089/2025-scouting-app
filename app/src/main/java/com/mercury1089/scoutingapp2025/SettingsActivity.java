@@ -54,7 +54,7 @@ public class SettingsActivity extends AppCompatActivity {
         // onComplete (third argument) is called when the action completes but doesn't return a result
         disposables.add(getLastFetchedDate().subscribe(
                 str -> lastFetchedID.setText(getString(R.string.LastFetchedAtID, str)),
-                throwable -> Log.d("MR", throwable.getMessage()),
+                throwable -> Log.d("1089", throwable.getMessage()),
                 () -> lastFetchedID.setText(getString(R.string.LastFetchedAtID, "Unknown"))
         ));
 
@@ -190,7 +190,7 @@ public class SettingsActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Matches fetched and stored!", Toast.LENGTH_SHORT).show();
                             Disposable setLastFetchedTextAgain = getLastFetchedDate().subscribe(
                                     str -> lastFetchedID.setText(getString(R.string.LastFetchedAtID, str)),
-                                    throwable -> Log.d("MR", throwable.getMessage())
+                                    throwable -> Log.d("1089", throwable.getMessage())
                             );
                         },
                         error -> Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show()
