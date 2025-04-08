@@ -30,7 +30,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SettingsActivity extends AppCompatActivity {
-
+    private MatchRepository matchRepository;
     private LinkedHashMap settingsHashMap;
     private CompositeDisposable disposables = new CompositeDisposable();
     private String[] qrList;
@@ -41,6 +41,8 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        matchRepository = new MatchRepository(getApplicationContext());
+
         //assigning variables to their equivalent screen elements
         Button localStorageResetButton = findViewById(R.id.LocalStorageResetButton);
         Button backButton = findViewById(R.id.BackButton);
@@ -48,6 +50,12 @@ public class SettingsActivity extends AppCompatActivity {
         Button passwordSettingsButton = findViewById(R.id.ChangePasswordButton);
 
         EditText eventKeyInput = findViewById(R.id.EventKeyInput);
+
+        disposables.add(matchRepository.getStoredEventKey()
+                .subscribe(
+                        eventKeyInput::setText,
+                        throwable -> Log.d("1089", throwable.getMessage())
+                ));
         Button fetchMatchesButton = findViewById(R.id.FetchMatchesFromEventButton);
         TextView lastFetchedID = findViewById(R.id.LastFetchedAtID);
 
@@ -179,10 +187,9 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         fetchMatchesButton.setOnClickListener(view -> {
-            MatchRepository mr = new MatchRepository(getApplicationContext());
             String eventKey = eventKeyInput.getText().toString();
 
-            disposables.add(mr.storeMatchesByEvent(eventKey)
+            disposables.add(matchRepository.storeMatchesByEvent(eventKey)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -199,8 +206,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private Maybe<String> getLastFetchedDate() {
-        MatchRepository mr = new MatchRepository(getApplicationContext());
-        return mr.getLastFetchedTime()
+        return matchRepository.getLastFetchedTime()
                 .subscribeOn(Schedulers.io())
                 .map(longTime -> {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss", Locale.getDefault());
