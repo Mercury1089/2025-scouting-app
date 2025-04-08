@@ -46,7 +46,8 @@ public class PregameActivity extends AppCompatActivity {
     // Strategy was here
     //Set the default password in HashMapManager.setDefaultValues();
     String password;
-    CompositeDisposable disposables = new CompositeDisposable();
+    private CompositeDisposable disposables = new CompositeDisposable();
+    private MatchRepository matchRepository;
 
     //variables that store elements of the screen for the output variables
     //Buttons
@@ -99,6 +100,7 @@ public class PregameActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pregame);
+        matchRepository = new MatchRepository(getApplicationContext());
 
         // Initialize views here
         scouterNameInput = findViewById(R.id.ScouterNameInput);
@@ -513,11 +515,10 @@ public class PregameActivity extends AppCompatActivity {
                 return;
             }
             int matchNumber = Integer.parseInt(matchNumberInput.getText().toString());
-            MatchRepository mr = new MatchRepository(getApplicationContext());
-            disposables.add(mr.getStoredEventKey().subscribe(
+            disposables.add(matchRepository.getStoredEventKey().subscribe(
                     eventKey -> {
                         String assignment = (setupHashMap.get("AllianceColor").charAt(0) + setupHashMap.get("RobotAssignment")).toUpperCase();
-                        disposables.add(mr.getStoredMatch(DBUtil.createQualificationMatchKey(eventKey, matchNumber)).subscribe(
+                        disposables.add(matchRepository.getStoredMatch(DBUtil.createQualificationMatchKey(eventKey, matchNumber)).subscribe(
                                 match -> autofillMatchInfo(match, assignment),
                                 throwable -> Toast.makeText(getApplicationContext(), "Error: " + throwable.getMessage(), Toast.LENGTH_SHORT).show()
                         ));

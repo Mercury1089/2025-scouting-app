@@ -31,8 +31,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SettingsActivity extends AppCompatActivity {
     private MatchRepository matchRepository;
-    private LinkedHashMap settingsHashMap;
     private CompositeDisposable disposables = new CompositeDisposable();
+    private LinkedHashMap settingsHashMap;
     private String[] qrList;
     private ListView qrCodeSelector;
     private ListAdapter listAdapter;
