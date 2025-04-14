@@ -22,17 +22,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Locale;
+import java.util.Objects;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SettingsActivity extends AppCompatActivity {
     private MatchRepository matchRepository;
-    private CompositeDisposable disposables = new CompositeDisposable();
-    private LinkedHashMap settingsHashMap;
+    private final CompositeDisposable disposables = new CompositeDisposable();
+    private LinkedHashMap<String, String> settingsHashMap;
     private String[] qrList;
     private ListView qrCodeSelector;
     private ListAdapter listAdapter;
@@ -61,7 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
         disposables.add(matchRepository.getStoredEventKey()
                 .subscribe(
                         eventKeyInput::setText,
-                        throwable -> Log.d("1089", throwable.getMessage())
+                        throwable -> Log.d("1089", Objects.requireNonNull(throwable.getMessage()))
                 ));
         Button fetchMatchesButton = findViewById(R.id.FetchMatchesFromEventButton);
         TextView lastFetchedID = findViewById(R.id.LastFetchedAtID);
@@ -69,7 +69,7 @@ public class SettingsActivity extends AppCompatActivity {
         // onComplete (third argument) is called when the action completes but doesn't return a result
         disposables.add(getLastFetchedDate().subscribe(
                 str -> lastFetchedID.setText(getString(R.string.LastFetchedAtID, str)),
-                throwable -> Log.d("1089", throwable.getMessage()),
+                throwable -> Log.d("1089", Objects.requireNonNull(throwable.getMessage())),
                 () -> lastFetchedID.setText(getString(R.string.LastFetchedAtID, "Unknown"))
         ));
 
@@ -82,81 +82,56 @@ public class SettingsActivity extends AppCompatActivity {
         listAdapter = new ListAdapter(this, qrList);
         addQRCodes();
 
-        if(qrList.length > 0)
-            clearQRCache.setEnabled(true);
-        else
-            clearQRCache.setEnabled(false);
+        clearQRCache.setEnabled(qrList.length > 0);
 
-        localStorageResetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                HashMapManager.setDefaultValues(HashMapManager.HASH.SETTINGS);
-                HashMapManager.setDefaultValues(HashMapManager.HASH.SETUP);
-                HashMapManager.setDefaultValues(HashMapManager.HASH.AUTON);
-                HashMapManager.setDefaultValues(HashMapManager.HASH.TELEOP);
-                HashMapManager.setDefaultValues(HashMapManager.HASH.CLIMB);
-                Toast.makeText(SettingsActivity.this, "All variables successfully reset.", Toast.LENGTH_SHORT).show();
+        localStorageResetButton.setOnClickListener(v -> {
+            HashMapManager.setDefaultValues(HashMapManager.HASH.SETTINGS);
+            HashMapManager.setDefaultValues(HashMapManager.HASH.SETUP);
+            HashMapManager.setDefaultValues(HashMapManager.HASH.AUTON);
+            HashMapManager.setDefaultValues(HashMapManager.HASH.TELEOP);
+            HashMapManager.setDefaultValues(HashMapManager.HASH.CLIMB);
+            Toast.makeText(SettingsActivity.this, "All variables successfully reset.", Toast.LENGTH_SHORT).show();
+        });
+
+        createResetPasswordButton.setOnClickListener(v -> {
+            if (createResetPasswordButton.getText().equals(getString(R.string.ResetPassword))) {
+                HashMapManager.saveSettingsPassword(new String[] {"", "N"}, getApplicationContext());
+                Toast.makeText(getApplicationContext(),"Successfully reset password!", Toast.LENGTH_SHORT).show();
+                updatePasswordButtons();
+            } else {
+                createPasswordChangeDialog();
             }
         });
 
-        createResetPasswordButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (createResetPasswordButton.getText().equals(getString(R.string.ResetPassword))) {
-                    HashMapManager.saveSettingsPassword(new String[] {"", "N"}, getApplicationContext());
-                    Toast.makeText(getApplicationContext(),"Successfully reset password!", Toast.LENGTH_SHORT).show();
-                    updatePasswordButtons();
-                } else {
-                    createPasswordChangeDialog();
-                }
-            }
+        changePasswordButton.setOnClickListener(v -> createPasswordChangeDialog());
+
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(SettingsActivity.this, PregameActivity.class);
+            startActivity(intent);
+            finish();
         });
 
-        changePasswordButton.setOnClickListener(v -> {
-            createPasswordChangeDialog();
-        });
+        clearQRCache.setOnClickListener(v -> {
+            Dialog dialog = new Dialog(SettingsActivity.this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.clear_qr_cache_confirm);
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SettingsActivity.this, PregameActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+            Button clearConfirm = dialog.findViewById(R.id.ClearConfirm);
+            Button cancelConfirm = dialog.findViewById(R.id.CancelConfirm);
 
-        clearQRCache.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dialog dialog = new Dialog(SettingsActivity.this);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.clear_qr_cache_confirm);
+            dialog.show();
 
-                Button clearConfirm = dialog.findViewById(R.id.ClearConfirm);
-                Button cancelConfirm = dialog.findViewById(R.id.CancelConfirm);
+            clearConfirm.setOnClickListener(view -> {
+                HashMapManager.outputQRList(new String[0], SettingsActivity.this);
+                qrList = HashMapManager.setupQRList(SettingsActivity.this);
+                listAdapter = new ListAdapter(SettingsActivity.this, qrList);
+                qrCodeSelector.setAdapter(listAdapter);
+                listAdapter.notifyDataSetChanged();
+                clearQRCache.setEnabled(false);
+                dialog.dismiss();
+            });
 
-                dialog.show();
-
-                clearConfirm.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        HashMapManager.outputQRList(new String[0], SettingsActivity.this);
-                        qrList = HashMapManager.setupQRList(SettingsActivity.this);
-                        listAdapter = new ListAdapter(SettingsActivity.this, qrList);
-                        qrCodeSelector.setAdapter(listAdapter);
-                        listAdapter.notifyDataSetChanged();
-                        clearQRCache.setEnabled(false);
-                        dialog.dismiss();
-                    }
-                });
-
-                cancelConfirm.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-            }
+            cancelConfirm.setOnClickListener(view -> dialog.dismiss());
         });
 
         fetchMatchesButton.setOnClickListener(view -> {
@@ -168,10 +143,10 @@ public class SettingsActivity extends AppCompatActivity {
                 .subscribe(
                         () -> {
                             Toast.makeText(getApplicationContext(), "Matches fetched and stored!", Toast.LENGTH_SHORT).show();
-                            Disposable setLastFetchedTextAgain = getLastFetchedDate().subscribe(
+                            disposables.add(getLastFetchedDate().subscribe(
                                     str -> lastFetchedID.setText(getString(R.string.LastFetchedAtID, str)),
-                                    throwable -> Log.d("1089", throwable.getMessage())
-                            );
+                                    throwable -> Log.d("1089", Objects.requireNonNull(throwable.getMessage()))
+                            ));
                         },
                         error -> Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show()
                 ));
@@ -190,36 +165,29 @@ public class SettingsActivity extends AppCompatActivity {
         Button cancelButton = dialog.findViewById(R.id.CancelButton);
 
         String[] passwordData = HashMapManager.pullSettingsPassword(context);
-        try {
+        if (passwordData != null && passwordData.length == 2) {
             passwordField.setText(passwordData[0]);
             requirePasswordSwitch.setChecked(passwordData[1].equals("Y"));
-        } catch (Exception e) {
+        } else {
+            Toast.makeText(getApplicationContext(), "Fatal error: Could not fetch password data", Toast.LENGTH_SHORT).show();
+            return;
         }
 
-        passwordField.setHint(settingsHashMap.get("DefaultPassword").toString());
+        passwordField.setHint(settingsHashMap.get("DefaultPassword"));
 
         dialog.show();
 
-        doneButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String password = passwordField.getText().toString(), requiredPassword = requirePasswordSwitch.isChecked() ? "Y" : "N";
-                HashMapManager.saveSettingsPassword(new String[]{password, requiredPassword}, context);
-                dialog.dismiss();
-                HashMapManager.saveSettingsPassword(new String[]{password, requiredPassword}, context);
-                createResetPasswordButton.setSelected(requiredPassword.equals("Y"));
-                updatePasswordButtons();
-            }
+        doneButton.setOnClickListener(v -> {
+            String password = passwordField.getText().toString(), requiredPassword = requirePasswordSwitch.isChecked() ? "Y" : "N";
+            HashMapManager.saveSettingsPassword(new String[]{password, requiredPassword}, context);
+            dialog.dismiss();
+            HashMapManager.saveSettingsPassword(new String[]{password, requiredPassword}, context);
+            createResetPasswordButton.setSelected(requiredPassword.equals("Y"));
+            updatePasswordButtons();
         });
 
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        cancelButton.setOnClickListener(v -> dialog.dismiss());
     }
-
 
     private void updatePasswordButtons() {
         boolean passwordSet, usePassword;
