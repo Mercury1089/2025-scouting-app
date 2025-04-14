@@ -37,6 +37,10 @@ public class SettingsActivity extends AppCompatActivity {
     private ListView qrCodeSelector;
     private ListAdapter listAdapter;
 
+    // Password buttons
+    private Button createResetPasswordButton, changePasswordButton;
+    private TextView passwordPreviewID;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
@@ -47,7 +51,10 @@ public class SettingsActivity extends AppCompatActivity {
         Button localStorageResetButton = findViewById(R.id.LocalStorageResetButton);
         Button backButton = findViewById(R.id.BackButton);
         Button clearQRCache = findViewById(R.id.ClearQRCodesButton);
-        Button passwordSettingsButton = findViewById(R.id.ChangePasswordButton);
+        createResetPasswordButton = findViewById(R.id.CreateResetPasswordButton);
+        changePasswordButton = findViewById(R.id.ChangePasswordButton);
+        passwordPreviewID = findViewById(R.id.IDPasswordPreview);
+        updatePasswordButtons();
 
         EditText eventKeyInput = findViewById(R.id.EventKeyInput);
 
@@ -66,7 +73,6 @@ public class SettingsActivity extends AppCompatActivity {
                 () -> lastFetchedID.setText(getString(R.string.LastFetchedAtID, "Unknown"))
         ));
 
-
         qrCodeSelector = findViewById(R.id.QRCodeListView);
 
         HashMapManager.checkNullOrEmpty(HashMapManager.HASH.SETTINGS);
@@ -75,13 +81,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         listAdapter = new ListAdapter(this, qrList);
         addQRCodes();
-
-        try {
-            String requiredPassword = HashMapManager.pullSettingsPassword(SettingsActivity.this)[1];
-            passwordSettingsButton.setSelected(requiredPassword.equals("Y"));
-        } catch (Exception e) {
-            passwordSettingsButton.setSelected(false);
-        }
 
         if(qrList.length > 0)
             clearQRCache.setEnabled(true);
@@ -100,47 +99,21 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        passwordSettingsButton.setOnClickListener(new View.OnClickListener() {
+        createResetPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context = SettingsActivity.this;
-                Dialog dialog = new Dialog(context);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.enter_password_popup);
-
-                TextView passwordField = dialog.findViewById(R.id.PasswordField);
-                Switch requirePasswordSwitch = dialog.findViewById(R.id.SettingsPasswordSwitch);
-                Button doneButton = dialog.findViewById(R.id.DoneButton);
-                Button cancelButton = dialog.findViewById(R.id.CancelButton);
-
-                String[] passwordData = HashMapManager.pullSettingsPassword(context);
-                try {
-                    passwordField.setText(passwordData[0]);
-                    requirePasswordSwitch.setChecked(passwordData[1].equals("Y"));
-                } catch (Exception e) {}
-
-                passwordField.setHint(settingsHashMap.get("DefaultPassword").toString());
-
-                dialog.show();
-
-                doneButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String password = passwordField.getText().toString(), requiredPassword = requirePasswordSwitch.isChecked() ? "Y" : "N";
-                        HashMapManager.saveSettingsPassword(new String[]{password, requiredPassword}, context);
-                        dialog.dismiss();
-                        HashMapManager.saveSettingsPassword(new String[]{password, requiredPassword}, context);
-                        passwordSettingsButton.setSelected(requiredPassword.equals("Y"));
-                    }
-                });
-
-                cancelButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
+                if (createResetPasswordButton.getText().equals(getString(R.string.ResetPassword))) {
+                    HashMapManager.saveSettingsPassword(new String[] {"", "N"}, getApplicationContext());
+                    Toast.makeText(getApplicationContext(),"Successfully reset password!", Toast.LENGTH_SHORT).show();
+                    updatePasswordButtons();
+                } else {
+                    createPasswordChangeDialog();
+                }
             }
+        });
+
+        changePasswordButton.setOnClickListener(v -> {
+            createPasswordChangeDialog();
         });
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -203,6 +176,66 @@ public class SettingsActivity extends AppCompatActivity {
                         error -> Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show()
                 ));
         });
+    }
+
+    private void createPasswordChangeDialog() {
+        Context context = SettingsActivity.this;
+        Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.enter_password_popup);
+
+        TextView passwordField = dialog.findViewById(R.id.PasswordField);
+        Switch requirePasswordSwitch = dialog.findViewById(R.id.SettingsPasswordSwitch);
+        Button doneButton = dialog.findViewById(R.id.DoneButton);
+        Button cancelButton = dialog.findViewById(R.id.CancelButton);
+
+        String[] passwordData = HashMapManager.pullSettingsPassword(context);
+        try {
+            passwordField.setText(passwordData[0]);
+            requirePasswordSwitch.setChecked(passwordData[1].equals("Y"));
+        } catch (Exception e) {
+        }
+
+        passwordField.setHint(settingsHashMap.get("DefaultPassword").toString());
+
+        dialog.show();
+
+        doneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String password = passwordField.getText().toString(), requiredPassword = requirePasswordSwitch.isChecked() ? "Y" : "N";
+                HashMapManager.saveSettingsPassword(new String[]{password, requiredPassword}, context);
+                dialog.dismiss();
+                HashMapManager.saveSettingsPassword(new String[]{password, requiredPassword}, context);
+                createResetPasswordButton.setSelected(requiredPassword.equals("Y"));
+                updatePasswordButtons();
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+
+    private void updatePasswordButtons() {
+        boolean passwordSet, usePassword;
+        String[] password = HashMapManager.pullSettingsPassword(getApplicationContext());
+        if (password != null) {
+            passwordSet = !password[0].isEmpty();
+            usePassword = password[1].equalsIgnoreCase("y");
+        } else {
+            passwordSet = false;
+            usePassword = false;
+        }
+        createResetPasswordButton.setSelected(usePassword);
+        createResetPasswordButton.setText(passwordSet ? R.string.ResetPassword : R.string.CreatePassword);
+        changePasswordButton.setVisibility(passwordSet ? View.VISIBLE : View.INVISIBLE);
+        passwordPreviewID.setText(
+                passwordSet ? "*".repeat(Math.min(password[0].length(), 16)): getString(R.string.DefaultPasswordPreview));
     }
 
     private Maybe<String> getLastFetchedDate() {
